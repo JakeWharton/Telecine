@@ -1,0 +1,9 @@
+<resources>
+
+  <style name="Theme.Telecine" parent="android:Theme.Material.Light.DarkActionBar">
+    <item name="android:colorPrimary">@color/primary_normal</item>
+    <item name="android:colorPrimaryDark">@color/primary_dark_normal</item>
+    <item name="android:colorAccent">@color/accent_normal</item>
+  </style>
+
+</resources>

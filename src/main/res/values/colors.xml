@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="primary_normal">#ff455a64</color>
+  <color name="primary_dark_normal">#ff263238</color>
+  <color name="accent_normal">#ffdd2c00</color>
+
+  <color name="gray_normal">#ff757575</color>
+  <color name="gray_pressed">#ff616161</color>
+  <color name="red_normal">#ffd01716</color>
+  <color name="red_pressed">#ff97120a</color>
+</resources>
