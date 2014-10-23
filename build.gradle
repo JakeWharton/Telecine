@@ -1,17 +1,22 @@
 buildscript {
   repositories {
     mavenCentral()
+    maven {
+      url 'https://maven.fabric.io/repo'
+    }
   }
   dependencies {
     classpath 'com.android.tools.build:gradle:0.13.3'
+    classpath 'io.fabric.tools:gradle:1.14.1'
   }
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
 android {
   compileSdkVersion 21
-  buildToolsVersion '21.0.1'
+  buildToolsVersion '21.0.2'
 
   defaultConfig {
     applicationId 'com.jakewharton.telecine'
@@ -44,15 +49,22 @@ android {
       applicationIdSuffix '.dev'
       signingConfig signingConfigs.debug
     }
+    beta {
+      applicationIdSuffix '.beta'
+    }
   }
 }
 
 repositories {
   mavenCentral()
+  maven {
+    url 'https://maven.fabric.io/repo'
+  }
 }
 
 dependencies {
   compile 'com.android.support:support-annotations:21.0.0'
   compile 'com.jakewharton:butterknife:5.1.2'
   compile 'com.jakewharton.timber:timber:2.4.1'
+  compile 'com.crashlytics.sdk.android:crashlytics:2.0.0'
 }

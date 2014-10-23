@@ -11,3 +11,6 @@ reports
 
 # Mac OS
 .DS_Store
+
+# Crashlytics
+com_crashlytics_export_strings.xml

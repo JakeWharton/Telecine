@@ -3,6 +3,7 @@
     package="com.jakewharton.telecine"
     >
 
+  <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
@@ -14,18 +15,27 @@
       android:theme="@style/Theme.Telecine"
       android:process=":main"
       >
+    <meta-data
+        android:name="com.crashlytics.ApiKey"
+        android:value="ce3e44107be72a8da56320eaa60a13b018eee121"
+        />
+
     <activity
         android:name=".TelecineActivity"
         android:label="@string/app_name"
         >
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
+
         <category android:name="android.intent.category.LAUNCHER"/>
         <category android:name="android.intent.category.DEFAULT"/>
       </intent-filter>
     </activity>
 
-    <service android:name=".TelecineService" android:process=":recorder"/>
+    <service
+        android:name=".TelecineService"
+        android:process=":recorder"
+        />
   </application>
 
 </manifest>
