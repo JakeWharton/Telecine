@@ -29,8 +29,12 @@ public final class TelecineActivity extends Activity {
   @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     switch (requestCode) {
       case CREATE_SCREEN_CAPTURE:
-        Timber.d("Acquired permission to screen capture. Starting service.");
-        startService(TelecineService.newIntent(this, resultCode, data));
+        if (resultCode == 0) {
+          Timber.d("Failed to acquire permission to screen capture.");
+        } else {
+          Timber.d("Acquired permission to screen capture. Starting service.");
+          startService(TelecineService.newIntent(this, resultCode, data));
+        }
         break;
 
       default:
