@@ -18,4 +18,53 @@
       android:text="@string/launch_overlay"
       />
 
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="32dp"
+      android:layout_marginBottom="8dp"
+      android:text="@string/Preferences"
+      android:textAllCaps="true"
+      android:textColor="?android:attr/colorAccent"
+      android:fontFamily="sans-serif-condensed"
+      />
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="48dp"
+      android:orientation="horizontal"
+      android:gravity="center_vertical"
+      >
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/countdown"
+        />
+    <Switch
+        android:id="@+id/switch_show_countdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="48dp"
+      android:orientation="horizontal"
+      android:gravity="center_vertical"
+      >
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/recents_hide"
+        />
+    <Switch
+        android:id="@+id/switch_hide_from_recents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+  </LinearLayout>
+
 </LinearLayout>

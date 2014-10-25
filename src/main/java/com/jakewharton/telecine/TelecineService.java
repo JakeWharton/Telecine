@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
+import javax.inject.Inject;
 import timber.log.Timber;
 
 public final class TelecineService extends Service {
@@ -17,6 +18,8 @@ public final class TelecineService extends Service {
     intent.putExtra(EXTRA_DATA, data);
     return intent;
   }
+
+  @Inject @ShowCountdown BooleanPreference showCountdownPreference;
 
   private boolean running;
   private RecordingSession recordingSession;
@@ -42,7 +45,10 @@ public final class TelecineService extends Service {
       throw new IllegalStateException("Result code or data missing.");
     }
 
-    recordingSession = RecordingSession.create(this, listener, resultCode, data);
+    ((TelecineApplication) getApplication()).inject(this);
+
+    recordingSession = RecordingSession.create(this, listener, resultCode, data,
+        showCountdownPreference.get());
     recordingSession.showOverlay();
 
     return START_NOT_STICKY;

@@ -46,8 +46,8 @@ final class RecordingSession {
   private static final String MIME_TYPE = "video/mp4";
 
   public static RecordingSession create(Context context, Listener listener, int resultCode,
-      Intent data) {
-    return new RecordingSession(context, listener, resultCode, data);
+      Intent data, boolean showCountdown) {
+    return new RecordingSession(context, listener, resultCode, data, showCountdown);
   }
 
   interface Listener {
@@ -94,7 +94,8 @@ final class RecordingSession {
   private String outputFile;
   private boolean running;
 
-  private RecordingSession(Context context, Listener listener, int resultCode, Intent data) {
+  private RecordingSession(Context context, Listener listener, int resultCode, Intent data,
+      boolean showCountDown) {
     this.context = context;
     this.listener = listener;
     this.resultCode = resultCode;
@@ -119,7 +120,7 @@ final class RecordingSession {
     windowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
     projectionManager = (MediaProjectionManager) context.getSystemService(MEDIA_PROJECTION_SERVICE);
 
-    overlayView = OverlayView.create(context, overlayListener, true/*TODO preference*/);
+    overlayView = OverlayView.create(context, overlayListener, showCountDown);
   }
 
   public void showOverlay() {

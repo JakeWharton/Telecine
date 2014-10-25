@@ -13,16 +13,13 @@
       android:label="@string/launcher_name"
       android:name=".TelecineApplication"
       android:theme="@style/Theme.Telecine"
-      android:process=":main"
       >
     <meta-data
         android:name="com.crashlytics.ApiKey"
         android:value="ce3e44107be72a8da56320eaa60a13b018eee121"
         />
 
-    <activity
-        android:name=".TelecineActivity"
-        >
+    <activity android:name=".TelecineActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
@@ -31,10 +28,7 @@
       </intent-filter>
     </activity>
 
-    <service
-        android:name=".TelecineService"
-        android:process=":recorder"
-        />
+    <service android:name=".TelecineService"/>
   </application>
 
 </manifest>
