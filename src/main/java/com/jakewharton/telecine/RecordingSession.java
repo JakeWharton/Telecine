@@ -179,13 +179,14 @@ final class RecordingSession {
 
     hideOverlay();
 
-    recorder.stop();
-    recorder.release();
-
+    // Stop the projection in order to flush everything to the recorder.
     projection.stop();
-    projection = null;
+
+    // Stop the recorder which writes the contents to the file.
+    recorder.stop();
+
+    recorder.release();
     display.release();
-    display = null;
 
     Timber.d("Screen recording stopped. Notifying media scanner of new video.");
 
