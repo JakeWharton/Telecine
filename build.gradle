@@ -1,3 +1,9 @@
+// Manifest version information!
+def versionMajor = 0
+def versionMinor = 1
+def versionPatch = 0
+def versionBuild = 0 // bump for dogfood builds, public betas, etc.
+
 buildscript {
   repositories {
     mavenCentral()
@@ -20,10 +26,12 @@ android {
 
   defaultConfig {
     applicationId 'com.jakewharton.telecine'
+
     minSdkVersion 21
     targetSdkVersion 21
-    versionCode 1
-    versionName '1.0.0'
+
+    versionCode versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
+    versionName "${versionMajor}.${versionMinor}.${versionPatch}"
   }
 
   compileOptions {
@@ -33,6 +41,10 @@ android {
 
   lintOptions {
     abortOnError false
+  }
+
+  dexOptions {
+    preDexLibraries = Boolean.valueOf(System.getProperty("pre-dex", "true"))
   }
 
   signingConfigs {
@@ -46,11 +58,8 @@ android {
 
   buildTypes {
     debug {
-      applicationIdSuffix '.dev'
+      applicationIdSuffix '.debug'
       signingConfig signingConfigs.debug
-    }
-    beta {
-      applicationIdSuffix '.beta'
     }
   }
 }

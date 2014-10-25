@@ -4,6 +4,11 @@
     <item name="android:colorPrimary">@color/primary_normal</item>
     <item name="android:colorPrimaryDark">@color/primary_dark_normal</item>
     <item name="android:colorAccent">@color/accent_normal</item>
+    <item name="android:actionBarStyle">@style/Widget.Telecine.ActionBar</item>
+  </style>
+
+  <style name="Widget.Telecine.ActionBar" parent="android:Widget.Material.ActionBar.Solid">
+    <item name="android:title">@string/app_name</item>
   </style>
 
 </resources>

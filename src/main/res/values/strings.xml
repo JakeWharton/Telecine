@@ -2,6 +2,8 @@
 
 <resources>
   <string name="app_name">Telecine</string>
+  <string name="launcher_name">@string/app_name</string>
+
   <string name="clear">Clear</string>
   <string name="record">Record</string>
   <string name="countdown_one">1…</string>
