@@ -36,7 +36,7 @@
       android:textColor="#fff"
       android:textStyle="bold"
       android:textAllCaps="true"
-      android:background="@color/red_pressed"
+      android:background="@color/accent_pressed"
       android:visibility="invisible"
       />
   <View
