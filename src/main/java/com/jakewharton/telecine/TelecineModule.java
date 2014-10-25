@@ -34,4 +34,10 @@ final class TelecineModule {
       SharedPreferences prefs) {
     return new BooleanPreference(prefs, "hide-from-recents", DEFAULT_HIDE_FROM_RECENTS);
   }
+
+  @Provides @Singleton @VideoQuality EnumPreference<EncodingQuality> provideVideQuality(
+      SharedPreferences prefs) {
+    return new EnumPreference<>(prefs, "video-quality", EncodingQuality.class,
+        EncodingQuality.NORMAL);
+  }
 }
