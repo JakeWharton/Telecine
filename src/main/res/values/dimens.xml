@@ -1,6 +1,5 @@
 <resources>
-  <dimen name="activity_horizontal_margin">16dp</dimen>
-  <dimen name="activity_vertical_margin">16dp</dimen>
+  <dimen name="content_padding">16dp</dimen>
   <dimen name="overlay_width">96dp</dimen>
   <dimen name="overlay_height">25dp</dimen>
 </resources>
