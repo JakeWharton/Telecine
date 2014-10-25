@@ -15,4 +15,8 @@
   <string name="countdown">Three second countdown</string>
   <string name="recents_hide">Hide from recent apps</string>
   <string name="video_size_percentage">Video size</string>
+  <string name="view_tutorial">View Tutorial</string>
+  <string name="skip">Skip</string>
+  <string name="next">Next</string>
+  <string name="tutorial_welcome">Welcome to Telecine</string>
 </resources>

@@ -2,4 +2,5 @@
   <dimen name="content_padding">16dp</dimen>
   <dimen name="overlay_width">96dp</dimen>
   <dimen name="overlay_height">25dp</dimen>
+  <dimen name="main_animation_translation_y">5dp</dimen>
 </resources>
