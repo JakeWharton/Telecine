@@ -7,9 +7,9 @@ fi
 
 REPO_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
-UNSIGNED="$REPO_DIR/build/outputs/apk/telecine-release-unsigned.apk"
-UNALIGNED="$REPO_DIR/build/outputs/apk/telecine-release-unaligned.apk"
-FINAL="$REPO_DIR/build/outputs/apk/telecine-release.apk"
+UNSIGNED="$REPO_DIR/app/build/outputs/apk/app-release-unsigned.apk"
+UNALIGNED="$REPO_DIR/app/build/outputs/apk/app-release-unaligned.apk"
+FINAL="$REPO_DIR/app/build/outputs/apk/app-release.apk"
 
 if [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]]; then
   echo "Working directory dirty. Please revert or commit."
@@ -24,4 +24,4 @@ jarsigner -sigalg SHA1withRSA -digestalg SHA1 -sigfile CERT -keystore "$1" -sign
 
 $ANDROID_HOME/build-tools/21.0.0/zipalign 4 "$UNALIGNED" "$FINAL"
 
-open "$REPO_DIR/build/outputs/apk"
+open "$REPO_DIR/app/build/outputs/apk"

@@ -1,83 +1,17 @@
-// Manifest version information!
-def versionMajor = 0
-def versionMinor = 2
-def versionPatch = 0
-def versionBuild = 0 // bump for dogfood builds, public betas, etc.
+allprojects {
+  buildscript {
+    repositories {
+      mavenCentral()
+      maven {
+        url 'https://maven.fabric.io/repo'
+      }
+    }
+  }
 
-buildscript {
   repositories {
     mavenCentral()
     maven {
       url 'https://maven.fabric.io/repo'
     }
   }
-  dependencies {
-    classpath 'com.android.tools.build:gradle:0.13.3'
-    classpath 'io.fabric.tools:gradle:1.14.1'
-    classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
-  }
-}
-
-apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
-apply plugin: 'com.neenbedankt.android-apt'
-
-android {
-  compileSdkVersion 21
-  buildToolsVersion '21.0.2'
-
-  defaultConfig {
-    applicationId 'com.jakewharton.telecine'
-
-    minSdkVersion 21
-    targetSdkVersion 21
-
-    versionCode versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
-    versionName "${versionMajor}.${versionMinor}.${versionPatch}"
-  }
-
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_7
-    targetCompatibility JavaVersion.VERSION_1_7
-  }
-
-  lintOptions {
-    abortOnError false
-  }
-
-  dexOptions {
-    preDexLibraries = Boolean.valueOf(System.getProperty("pre-dex", "true"))
-  }
-
-  signingConfigs {
-    debug {
-      storeFile file('debug.keystore')
-      storePassword 'android'
-      keyAlias 'android'
-      keyPassword 'android'
-    }
-  }
-
-  buildTypes {
-    debug {
-      applicationIdSuffix '.debug'
-      signingConfig signingConfigs.debug
-    }
-  }
-}
-
-repositories {
-  mavenCentral()
-  maven {
-    url 'https://maven.fabric.io/repo'
-  }
-}
-
-dependencies {
-  compile 'com.android.support:support-annotations:21.0.0'
-  compile 'com.jakewharton:butterknife:5.1.2'
-  compile 'com.jakewharton.timber:timber:2.4.1'
-  compile 'com.crashlytics.sdk.android:crashlytics:2.0.0'
-  compile 'com.squareup.dagger:dagger:1.2.2'
-  apt 'com.squareup.dagger:dagger-compiler:1.2.2'
 }
