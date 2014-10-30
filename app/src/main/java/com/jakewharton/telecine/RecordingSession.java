@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 import timber.log.Timber;
 
 import static android.content.Context.MEDIA_PROJECTION_SERVICE;
@@ -39,6 +40,7 @@ import static android.media.MediaRecorder.OutputFormat.MPEG_4;
 import static android.media.MediaRecorder.VideoEncoder.H264;
 import static android.media.MediaRecorder.VideoSource.SURFACE;
 import static android.os.Environment.DIRECTORY_MOVIES;
+import static android.os.Environment.DIRECTORY_PICTURES;
 
 final class RecordingSession {
   private static final String DISPLAY_NAME = "telecine";
@@ -65,7 +67,6 @@ final class RecordingSession {
   private final DateFormat fileFormat =
       new SimpleDateFormat("'Telecine_'yyyy-MM-dd-HH-mm-ss'.mp4'");
 
-  private final MediaRecorder recorder;
   private final int displayHeight;
   private final int displayWidth;
   private final int displayDpi;
@@ -89,12 +90,14 @@ final class RecordingSession {
     }
   };
 
+  private MediaRecorder recorder;
   private MediaProjection projection;
   private VirtualDisplay display;
-  private String outputFile;
+  private String outputPath;
+  private File gifFile;
   private boolean running;
 
-  private RecordingSession(Context context, Listener listener, int resultCode, Intent data,
+  RecordingSession(Context context, Listener listener, int resultCode, Intent data,
       boolean showCountDown) {
     this.context = context;
     this.listener = listener;
@@ -104,17 +107,13 @@ final class RecordingSession {
     File picturesDir = Environment.getExternalStoragePublicDirectory(DIRECTORY_MOVIES);
     outputRoot = new File(picturesDir, "Telecine");
 
+    gifFile = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_PICTURES), "temp.gif");
+    Timber.d("GIF GIF GIF: %s", gifFile.getAbsoluteFile());
+
     DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
     displayHeight = displayMetrics.heightPixels;
     displayWidth = displayMetrics.widthPixels;
     displayDpi = displayMetrics.densityDpi;
-
-    recorder = new MediaRecorder();
-    recorder.setVideoSource(SURFACE);
-    recorder.setOutputFormat(MPEG_4);
-    recorder.setVideoEncoder(H264);
-    recorder.setVideoSize(displayWidth, displayHeight);
-    recorder.setVideoEncodingBitRate(8 * 1000 * 1000);
 
     notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
     windowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
@@ -141,15 +140,22 @@ final class RecordingSession {
   private void startRecording() {
     Timber.d("Starting screen recording...");
 
-    if (outputRoot.mkdirs()) {
+    if (!outputRoot.mkdirs()) {
       Timber.e("Unable to create output directory '%s'.", outputRoot.getAbsolutePath());
       // We're probably about to crash, but at least the log will indicate as to why.
     }
 
+    recorder = new MediaRecorder();
+    recorder.setVideoSource(SURFACE);
+    recorder.setOutputFormat(MPEG_4);
+    recorder.setVideoEncoder(H264);
+    recorder.setVideoSize(displayWidth, displayHeight);
+    recorder.setVideoEncodingBitRate(8 * 1000 * 1000);
+
     String outputName = fileFormat.format(new Date());
-    outputFile = new File(outputRoot, outputName).getAbsolutePath();
-    Timber.i("Output file '%s'.", outputFile);
-    recorder.setOutputFile(outputFile);
+    outputPath = new File(outputRoot, outputName).getAbsolutePath();
+    Timber.i("Output file '%s'.", outputPath);
+    recorder.setOutputFile(outputPath);
 
     try {
       recorder.prepare();
@@ -188,9 +194,20 @@ final class RecordingSession {
     recorder.release();
     display.release();
 
-    Timber.d("Screen recording stopped. Notifying media scanner of new video.");
+    Timber.d("Screen recording stopped.");
 
-    MediaScannerConnection.scanFile(context, new String[] { outputFile }, null,
+    final File cacheDir = new File(context.getCacheDir(), UUID.randomUUID().toString());
+    cacheDir.mkdirs();
+    new Thread(new Runnable() {
+      @Override public void run() {
+        Mp4ToGifConverter.convert(new File(outputPath), gifFile, displayWidth, displayHeight);
+        Timber.d("GIF DONE");
+      }
+    }).start();
+
+    Timber.d("Notifying media scanner of new video.");
+
+    MediaScannerConnection.scanFile(context, new String[] { outputPath }, null,
         new MediaScannerConnection.OnScanCompletedListener() {
           @Override public void onScanCompleted(String path, final Uri uri) {
             Timber.d("Media scanner completed.");

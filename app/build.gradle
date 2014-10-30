@@ -65,6 +65,7 @@ dependencies {
   compile 'com.jakewharton:butterknife:5.1.2'
   compile 'com.jakewharton.timber:timber:2.4.1'
   compile 'com.crashlytics.sdk.android:crashlytics:2.0.0'
+  compile 'com.madgag:animated-gif-lib:1.2'
   compile 'com.squareup.dagger:dagger:1.2.2'
   apt 'com.squareup.dagger:dagger-compiler:1.2.2'
 }
