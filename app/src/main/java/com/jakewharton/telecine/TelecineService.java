@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import javax.inject.Inject;
+import javax.inject.Provider;
 import timber.log.Timber;
 
 public final class TelecineService extends Service {
@@ -19,7 +20,8 @@ public final class TelecineService extends Service {
     return intent;
   }
 
-  @Inject @ShowCountdown BooleanPreference showCountdownPreference;
+  @Inject @ShowCountdown Provider<Boolean> showCountdownProvider;
+  @Inject @VideoSizePercentage Provider<Integer> videoSizePercentageProvider;
 
   private boolean running;
   private RecordingSession recordingSession;
@@ -47,8 +49,8 @@ public final class TelecineService extends Service {
 
     ((TelecineApplication) getApplication()).inject(this);
 
-    recordingSession = RecordingSession.create(this, listener, resultCode, data,
-        showCountdownPreference.get());
+    recordingSession = new RecordingSession(this, listener, resultCode, data, showCountdownProvider,
+        videoSizePercentageProvider);
     recordingSession.showOverlay();
 
     return START_NOT_STICKY;

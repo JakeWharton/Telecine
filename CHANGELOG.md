@@ -4,6 +4,9 @@ Change Log
 0.3.0 *(In Development)*
 ------------------------
 
+Public:
+ * Add preference for setting video size as a percentage (100%, 75%, 50%).
+
 Internal:
  * Switch from Crashlytics to Bugsnag
 

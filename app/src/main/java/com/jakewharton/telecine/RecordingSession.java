@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.inject.Provider;
 import timber.log.Timber;
 
 import static android.content.Context.MEDIA_PROJECTION_SERVICE;
@@ -45,11 +46,6 @@ final class RecordingSession {
   private static final int NOTIFICATION_ID = 522592;
   private static final String MIME_TYPE = "video/mp4";
 
-  public static RecordingSession create(Context context, Listener listener, int resultCode,
-      Intent data, boolean showCountdown) {
-    return new RecordingSession(context, listener, resultCode, data, showCountdown);
-  }
-
   interface Listener {
     void onEnd();
   }
@@ -61,76 +57,68 @@ final class RecordingSession {
   private final int resultCode;
   private final Intent data;
 
+  private final Provider<Boolean> showCountDown;
+  private final Provider<Integer> videoSizePercentage;
+
   private final File outputRoot;
   private final DateFormat fileFormat =
       new SimpleDateFormat("'Telecine_'yyyy-MM-dd-HH-mm-ss'.mp4'");
-
-  private final MediaRecorder recorder;
-  private final int displayHeight;
-  private final int displayWidth;
-  private final int displayDpi;
 
   private final NotificationManager notificationManager;
   private final WindowManager windowManager;
   private final MediaProjectionManager projectionManager;
 
-  private final OverlayView overlayView;
-  private final OverlayView.Listener overlayListener = new OverlayView.Listener() {
-    @Override public void onCancel() {
-      cancelRecording();
-    }
-
-    @Override public void onStart() {
-      startRecording();
-    }
-
-    @Override public void onStop() {
-      stopRecording();
-    }
-  };
-
+  private OverlayView overlayView;
+  private MediaRecorder recorder;
   private MediaProjection projection;
   private VirtualDisplay display;
   private String outputFile;
   private boolean running;
 
-  private RecordingSession(Context context, Listener listener, int resultCode, Intent data,
-      boolean showCountDown) {
+  RecordingSession(Context context, Listener listener, int resultCode, Intent data,
+      Provider<Boolean> showCountDown, Provider<Integer> videoSizePercentage) {
     this.context = context;
     this.listener = listener;
     this.resultCode = resultCode;
     this.data = data;
 
+    this.showCountDown = showCountDown;
+    this.videoSizePercentage = videoSizePercentage;
+
     File picturesDir = Environment.getExternalStoragePublicDirectory(DIRECTORY_MOVIES);
     outputRoot = new File(picturesDir, "Telecine");
-
-    DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-    displayHeight = displayMetrics.heightPixels;
-    displayWidth = displayMetrics.widthPixels;
-    displayDpi = displayMetrics.densityDpi;
-
-    recorder = new MediaRecorder();
-    recorder.setVideoSource(SURFACE);
-    recorder.setOutputFormat(MPEG_4);
-    recorder.setVideoEncoder(H264);
-    recorder.setVideoSize(displayWidth, displayHeight);
-    recorder.setVideoEncodingBitRate(8 * 1000 * 1000);
 
     notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
     windowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
     projectionManager = (MediaProjectionManager) context.getSystemService(MEDIA_PROJECTION_SERVICE);
-
-    overlayView = OverlayView.create(context, overlayListener, showCountDown);
   }
 
   public void showOverlay() {
     Timber.d("Adding overlay view to window.");
+
+    OverlayView.Listener overlayListener = new OverlayView.Listener() {
+      @Override public void onCancel() {
+        cancelRecording();
+      }
+
+      @Override public void onStart() {
+        startRecording();
+      }
+
+      @Override public void onStop() {
+        stopRecording();
+      }
+    };
+    overlayView = OverlayView.create(context, overlayListener, showCountDown.get());
     windowManager.addView(overlayView, OverlayView.createLayoutParams(context));
   }
 
   private void hideOverlay() {
-    Timber.d("Removing overlay view from window.");
-    windowManager.removeView(overlayView);
+    if (overlayView != null) {
+      Timber.d("Removing overlay view from window.");
+      windowManager.removeView(overlayView);
+      overlayView = null;
+    }
   }
 
   private void cancelRecording() {
@@ -141,10 +129,25 @@ final class RecordingSession {
   private void startRecording() {
     Timber.d("Starting screen recording...");
 
-    if (outputRoot.mkdirs()) {
+    if (!outputRoot.mkdirs()) {
       Timber.e("Unable to create output directory '%s'.", outputRoot.getAbsolutePath());
       // We're probably about to crash, but at least the log will indicate as to why.
     }
+
+    int sizePercentage = videoSizePercentage.get();
+    Timber.d("Video size: %s%%", sizePercentage);
+
+    DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+    int displayHeight = displayMetrics.heightPixels * sizePercentage / 100;
+    int displayWidth = displayMetrics.widthPixels * sizePercentage / 100;
+    int displayDpi = displayMetrics.densityDpi;
+
+    recorder = new MediaRecorder();
+    recorder.setVideoSource(SURFACE);
+    recorder.setOutputFormat(MPEG_4);
+    recorder.setVideoEncoder(H264);
+    recorder.setVideoSize(displayWidth, displayHeight);
+    recorder.setVideoEncodingBitRate(8 * 1000 * 1000);
 
     String outputName = fileFormat.format(new Date());
     outputFile = new File(outputRoot, outputName).getAbsolutePath();
@@ -264,9 +267,11 @@ final class RecordingSession {
     int height = bitmap.getHeight();
     if (width > height) {
       x = (width - height) / 2;
+      //noinspection SuspiciousNameCombination
       width = height;
     } else {
       y = (height - width) / 2;
+      //noinspection SuspiciousNameCombination
       height = width;
     }
     return Bitmap.createBitmap(bitmap, x, y, width, height, null, true);
