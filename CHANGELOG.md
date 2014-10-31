@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+0.3.0 *(In Development)*
+------------------------
+
+Internal:
+ * Switch from Crashlytics to Bugsnag
+
+
 0.2.0 *(2014-10-25)*
 --------------------
 

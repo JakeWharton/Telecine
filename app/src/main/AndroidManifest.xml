@@ -14,11 +14,6 @@
       android:name=".TelecineApplication"
       android:theme="@style/Theme.Telecine"
       >
-    <meta-data
-        android:name="com.crashlytics.ApiKey"
-        android:value="ce3e44107be72a8da56320eaa60a13b018eee121"
-        />
-
     <activity android:name=".TelecineActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
