@@ -60,7 +60,7 @@ android {
 
 dependencies {
   compile 'com.android.support:support-annotations:21.0.0'
-  compile 'com.jakewharton:butterknife:5.1.2'
+  compile 'com.jakewharton:butterknife:6.0.0'
   compile 'com.jakewharton.timber:timber:2.4.1'
   compile 'com.bugsnag:bugsnag-android:2.2.2'
   compile 'com.squareup.dagger:dagger:1.2.2'
