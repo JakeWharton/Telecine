@@ -8,13 +8,21 @@ import java.util.Deque;
 import timber.log.Timber;
 
 /**
- * A logging implementation which buffers the last 100 messages and notifies on error exceptions.
+ * A logging implementation which buffers the last 200 messages and notifies on error exceptions.
  */
 final class BugsnagTree extends Timber.HollowTree {
-  private static final int BUFFER_SIZE = 100;
+  private static final int BUFFER_SIZE = 200;
 
   // Adding one to the initial size accounts for the add before remove.
   private final Deque<String> buffer = new ArrayDeque<>(BUFFER_SIZE + 1);
+
+  @Override public void d(String message, Object... args) {
+    logMessage(Log.DEBUG, message, args);
+  }
+
+  @Override public void d(Throwable t, String message, Object... args) {
+    logMessage(Log.DEBUG, message, args);
+  }
 
   @Override public void i(String message, Object... args) {
     logMessage(Log.INFO, message, args);
@@ -71,6 +79,8 @@ final class BugsnagTree extends Timber.HollowTree {
         return "W";
       case Log.INFO:
         return "I";
+      case Log.DEBUG:
+        return "D";
       default:
         return String.valueOf(priority);
     }

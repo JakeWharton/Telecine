@@ -1,6 +1,8 @@
 package com.jakewharton.telecine;
 
 import android.content.SharedPreferences;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -20,6 +22,11 @@ final class TelecineModule {
 
   TelecineModule(TelecineApplication app) {
     this.app = app;
+  }
+
+  @Provides @Singleton Tracker provideAnalyticsTracker() {
+    GoogleAnalytics googleAnalytics = GoogleAnalytics.getInstance(app);
+    return googleAnalytics.newTracker(R.xml.analytics_tracker);
   }
 
   @Provides @Singleton SharedPreferences provideSharedPreferences() {

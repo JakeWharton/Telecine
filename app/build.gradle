@@ -1,7 +1,7 @@
 // Manifest version information!
 def versionMajor = 0
-def versionMinor = 4
-def versionPatch = 0
+def versionMinor = 3
+def versionPatch = 1
 def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 buildscript {
@@ -60,6 +60,7 @@ android {
 
 dependencies {
   compile 'com.android.support:support-annotations:21.0.0'
+  compile 'com.google.android.gms:play-services:6.1.11'
   compile 'com.jakewharton:butterknife:6.0.0'
   compile 'com.jakewharton.timber:timber:2.4.1'
   compile 'com.bugsnag:bugsnag-android:2.2.2'

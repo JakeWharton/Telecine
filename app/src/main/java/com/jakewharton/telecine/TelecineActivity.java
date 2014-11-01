@@ -11,6 +11,8 @@ import butterknife.InjectView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import javax.inject.Inject;
 import timber.log.Timber;
 
@@ -24,6 +26,8 @@ public final class TelecineActivity extends Activity {
   @Inject @VideoSizePercentage IntPreference videoSizePreference;
   @Inject @ShowCountdown BooleanPreference showCountdownPreference;
   @Inject @HideFromRecents BooleanPreference hideFromRecentsPreference;
+
+  @Inject Tracker tracker;
 
   private VideoSizePercentageAdapter videoSizePercentageAdapter;
 
@@ -52,25 +56,57 @@ public final class TelecineActivity extends Activity {
         (MediaProjectionManager) getSystemService(MEDIA_PROJECTION_SERVICE);
     Intent intent = manager.createScreenCaptureIntent();
     startActivityForResult(intent, CREATE_SCREEN_CAPTURE);
+
+    tracker.send(new HitBuilders.EventBuilder() //
+        .setCategory(Analytics.CATEGORY_SETTINGS)
+        .setAction(Analytics.ACTION_CAPTURE_INTENT_LAUNCH)
+        .build());
   }
 
   @OnItemSelected(R.id.spinner_video_size_percentage) void onVideoSizePercentageSelected(
       int position) {
     int newValue = videoSizePercentageAdapter.getItem(position);
-    Timber.d("Video size percentage changing to %s%%", newValue);
-    videoSizePreference.set(newValue);
+    int oldValue = videoSizePreference.get();
+    if (newValue != oldValue) {
+      Timber.d("Video size percentage changing to %s%%", newValue);
+      videoSizePreference.set(newValue);
+
+      tracker.send(new HitBuilders.EventBuilder() //
+          .setCategory(Analytics.CATEGORY_SETTINGS)
+          .setAction(Analytics.ACTION_CHANGE_VIDEO_SIZE)
+          .setValue(newValue)
+          .build());
+    }
   }
 
   @OnCheckedChanged(R.id.switch_show_countdown) void onShowCountdownChanged() {
     boolean newValue = showCountdownView.isChecked();
-    Timber.d("Hide show countdown changing to %s", newValue);
-    showCountdownPreference.set(newValue);
+    boolean oldValue = showCountdownPreference.get();
+    if (newValue != oldValue) {
+      Timber.d("Hide show countdown changing to %s", newValue);
+      showCountdownPreference.set(newValue);
+
+      tracker.send(new HitBuilders.EventBuilder() //
+          .setCategory(Analytics.CATEGORY_SETTINGS)
+          .setAction(Analytics.ACTION_CHANGE_SHOW_COUNTDOWN)
+          .setValue(newValue ? 1 : 0)
+          .build());
+    }
   }
 
   @OnCheckedChanged(R.id.switch_hide_from_recents) void onHideFromRecentsChanged() {
     boolean newValue = hideFromRecentsView.isChecked();
-    Timber.d("Hide from recents preference changing to %s", newValue);
-    hideFromRecentsPreference.set(newValue);
+    boolean oldValue = hideFromRecentsPreference.get();
+    if (newValue != oldValue) {
+      Timber.d("Hide from recents preference changing to %s", newValue);
+      hideFromRecentsPreference.set(newValue);
+
+      tracker.send(new HitBuilders.EventBuilder() //
+          .setCategory(Analytics.CATEGORY_SETTINGS)
+          .setAction(Analytics.ACTION_CHANGE_HIDE_RECENTS)
+          .setValue(newValue ? 1 : 0)
+          .build());
+    }
   }
 
   @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -82,6 +118,13 @@ public final class TelecineActivity extends Activity {
           Timber.d("Acquired permission to screen capture. Starting service.");
           startService(TelecineService.newIntent(this, resultCode, data));
         }
+
+        tracker.send(new HitBuilders.EventBuilder() //
+            .setCategory(Analytics.CATEGORY_SETTINGS)
+            .setAction(Analytics.ACTION_CAPTURE_INTENT_RESULT)
+            .setValue(resultCode)
+            .build());
+
         break;
 
       default:

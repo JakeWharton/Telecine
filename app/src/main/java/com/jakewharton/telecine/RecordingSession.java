@@ -22,11 +22,14 @@ import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 import android.view.Surface;
 import android.view.WindowManager;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import javax.inject.Provider;
 import timber.log.Timber;
 
@@ -57,6 +60,7 @@ final class RecordingSession {
   private final int resultCode;
   private final Intent data;
 
+  private final Tracker tracker;
   private final Provider<Boolean> showCountDown;
   private final Provider<Integer> videoSizePercentage;
 
@@ -74,13 +78,15 @@ final class RecordingSession {
   private VirtualDisplay display;
   private String outputFile;
   private boolean running;
+  private long recordingStartNanos;
 
-  RecordingSession(Context context, Listener listener, int resultCode, Intent data,
+  RecordingSession(Context context, Listener listener, int resultCode, Intent data, Tracker tracker,
       Provider<Boolean> showCountDown, Provider<Integer> videoSizePercentage) {
     this.context = context;
     this.listener = listener;
     this.resultCode = resultCode;
     this.data = data;
+    this.tracker = tracker;
 
     this.showCountDown = showCountDown;
     this.videoSizePercentage = videoSizePercentage;
@@ -98,7 +104,7 @@ final class RecordingSession {
 
     OverlayView.Listener overlayListener = new OverlayView.Listener() {
       @Override public void onCancel() {
-        cancelRecording();
+        cancelOverlay();
       }
 
       @Override public void onStart() {
@@ -111,6 +117,9 @@ final class RecordingSession {
     };
     overlayView = OverlayView.create(context, overlayListener, showCountDown.get());
     windowManager.addView(overlayView, OverlayView.createLayoutParams(context));
+
+    tracker.send(new HitBuilders.EventBuilder() //
+        .setCategory(Analytics.CATEGORY_RECORDING).setAction(Analytics.ACTION_OVERLAY_SHOW).build());
   }
 
   private void hideOverlay() {
@@ -118,18 +127,28 @@ final class RecordingSession {
       Timber.d("Removing overlay view from window.");
       windowManager.removeView(overlayView);
       overlayView = null;
+
+      tracker.send(new HitBuilders.EventBuilder() //
+          .setCategory(Analytics.CATEGORY_RECORDING)
+          .setAction(Analytics.ACTION_OVERLAY_HIDE)
+          .build());
     }
   }
 
-  private void cancelRecording() {
+  private void cancelOverlay() {
     hideOverlay();
     listener.onEnd();
+
+    tracker.send(new HitBuilders.EventBuilder() //
+        .setCategory(Analytics.CATEGORY_RECORDING)
+        .setAction(Analytics.ACTION_OVERLAY_CANCEL)
+        .build());
   }
 
   private void startRecording() {
     Timber.d("Starting screen recording...");
 
-    if (!outputRoot.mkdirs()) {
+    if (outputRoot.mkdirs()) {
       Timber.e("Unable to create output directory '%s'.", outputRoot.getAbsolutePath());
       // We're probably about to crash, but at least the log will indicate as to why.
     }
@@ -168,8 +187,14 @@ final class RecordingSession {
 
     recorder.start();
     running = true;
+    recordingStartNanos = System.nanoTime();
 
     Timber.d("Screen recording started.");
+
+    tracker.send(new HitBuilders.EventBuilder() //
+        .setCategory(Analytics.CATEGORY_RECORDING)
+        .setAction(Analytics.ACTION_RECORDING_START)
+        .build());
   }
 
   private void stopRecording() {
@@ -188,8 +213,20 @@ final class RecordingSession {
     // Stop the recorder which writes the contents to the file.
     recorder.stop();
 
+    long recordingStopNanos = System.nanoTime();
+
     recorder.release();
     display.release();
+
+    tracker.send(new HitBuilders.EventBuilder() //
+        .setCategory(Analytics.CATEGORY_RECORDING)
+        .setAction(Analytics.ACTION_RECORDING_STOP)
+        .build());
+    tracker.send(new HitBuilders.TimingBuilder() //
+        .setCategory(Analytics.CATEGORY_RECORDING)
+        .setValue(TimeUnit.NANOSECONDS.toMillis(recordingStopNanos - recordingStartNanos))
+        .setVariable(Analytics.VARIABLE_RECORDING_LENGTH)
+        .build());
 
     Timber.d("Screen recording stopped. Notifying media scanner of new video.");
 
