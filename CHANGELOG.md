@@ -1,8 +1,8 @@
 Change Log
 ==========
 
-0.3.0 *(In Development)*
-------------------------
+0.3.0 *(2014-10-31)*
+--------------------
 
 Public:
  * Add preference for setting video size as a percentage (100%, 75%, 50%).
