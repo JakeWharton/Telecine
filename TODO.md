@@ -2,5 +2,5 @@ To Do
 =====
 
  * Export to GIF
- * Analytics
  * First-run wizard
+ * 1x1 Widget
