@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+0.3.2 *(2014-11-04)*
+--------------------
+
+Public:
+ * Fix: Crash when 50% video size resolution was selected.
+
+
 0.3.1 *(2014-10-31)*
 --------------------
 
