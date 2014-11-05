@@ -16,7 +16,7 @@ final class VideoSizePercentageAdapter extends BaseAdapter {
       case 75:
         return 1;
       case 50:
-        return 3;
+        return 2;
       default:
         return 0;
     }
