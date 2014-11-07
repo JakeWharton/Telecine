@@ -1,10 +1,24 @@
 Change Log
 ==========
 
+0.4.1 *(Developing)*
+--------------------
+
+Public:
+
+ * New icon!
+
+Internal:
+
+ * Fix widget launching in the same task as the activity.
+ * Automatically finish widget activity if home is pressed.
+
+
 0.4.0 *(2014-11-06)*
 --------------------
 
 Public:
+
  * Add 1x1 widget to auto-launch recording overlay.
 
 
@@ -12,6 +26,7 @@ Public:
 --------------------
 
 Public:
+
  * Fix: Crash when 50% video size resolution was selected.
 
 
@@ -19,6 +34,7 @@ Public:
 --------------------
 
 Internal:
+
  * Add Google Analytics events.
 
 
@@ -26,9 +42,11 @@ Internal:
 --------------------
 
 Public:
+
  * Add preference for setting video size as a percentage (100%, 75%, 50%).
 
 Internal:
+
  * Switch from Crashlytics to Bugsnag
 
 
@@ -36,10 +54,12 @@ Internal:
 --------------------
 
 Public:
+
  * Add preference toggle for disabling the three second countdown.
  * Add preference toggle for removing the activity from the recents list.
 
 Internal:
+
  * Remove separate processes for the activity and service.
  * Introduce Dagger for dependency management and injection.
 

@@ -35,6 +35,7 @@
         android:name=".TelecineWidgetLaunchActivity"
         android:theme="@style/Theme.Telecine.Transparent"
         android:excludeFromRecents="true"
+        android:taskAffinity=""
         />
     <receiver android:name=".TelecineWidgetProvider">
       <intent-filter>

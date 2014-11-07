@@ -21,4 +21,11 @@ public final class TelecineWidgetLaunchActivity extends Activity {
     }
     finish();
   }
+
+  @Override protected void onStop() {
+    if (!isFinishing()) {
+      finish();
+    }
+    super.onStop();
+  }
 }

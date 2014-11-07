@@ -4,7 +4,6 @@
     android:minWidth="40dp"
     android:minHeight="40dp"
     android:updatePeriodMillis="0"
-    android:previewImage="@drawable/ic_launcher"
     android:initialLayout="@layout/widget"
     android:configure="com.jakewharton.telecine.TelecineWidgetConfigureActivity"
     />
