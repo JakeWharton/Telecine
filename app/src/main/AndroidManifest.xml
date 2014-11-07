@@ -29,10 +29,12 @@
     <activity
         android:name=".TelecineWidgetConfigureActivity"
         android:theme="@style/Theme.Telecine.Transparent"
+        android:excludeFromRecents="true"
         />
     <activity
         android:name=".TelecineWidgetLaunchActivity"
         android:theme="@style/Theme.Telecine.Transparent"
+        android:excludeFromRecents="true"
         />
     <receiver android:name=".TelecineWidgetProvider">
       <intent-filter>

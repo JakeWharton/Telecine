@@ -1,7 +1,11 @@
 package com.jakewharton.telecine;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -30,6 +34,13 @@ public final class TelecineActivity extends Activity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+    Resources res = getResources();
+    String taskName = res.getString(R.string.app_name);
+    Bitmap taskIcon =
+        ((BitmapDrawable) res.getDrawable(R.drawable.ic_videocam_white_48dp)).getBitmap();
+    int taskColor = res.getColor(R.color.primary_normal);
+    setTaskDescription(new ActivityManager.TaskDescription(taskName, taskIcon, taskColor));
 
     ((TelecineApplication) getApplication()).inject(this);
 
