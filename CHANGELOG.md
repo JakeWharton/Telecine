@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+0.4.0 *(2014-11-06)*
+--------------------
+
+Public:
+ * Add 1x1 widget to auto-launch recording overlay.
+
+
 0.3.2 *(2014-11-04)*
 --------------------
 

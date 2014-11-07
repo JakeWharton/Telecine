@@ -4,7 +4,7 @@
     >
 
   <uses-permission android:name="android.permission.INTERNET"/>
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
   <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
@@ -25,6 +25,24 @@
     </activity>
 
     <service android:name=".TelecineService"/>
+
+    <activity
+        android:name=".TelecineWidgetConfigureActivity"
+        android:theme="@style/Theme.Telecine.Transparent"
+        />
+    <activity
+        android:name=".TelecineWidgetLaunchActivity"
+        android:theme="@style/Theme.Telecine.Transparent"
+        />
+    <receiver android:name=".TelecineWidgetProvider">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+      </intent-filter>
+      <meta-data
+          android:name="android.appwidget.provider"
+          android:resource="@xml/widget"
+          />
+    </receiver>
   </application>
 
 </manifest>

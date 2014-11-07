@@ -3,6 +3,7 @@ package com.jakewharton.telecine;
 interface Analytics {
   String CATEGORY_SETTINGS = "Settings";
   String CATEGORY_RECORDING = "Recording";
+  String CATEGORY_WIDGET = "Widget";
 
   String ACTION_CAPTURE_INTENT_LAUNCH = "Launch Overlay Launch";
   String ACTION_CAPTURE_INTENT_RESULT = "Launch Overlay Result";
@@ -14,6 +15,8 @@ interface Analytics {
   String ACTION_OVERLAY_CANCEL = "Overlay Cancel";
   String ACTION_RECORDING_START = "Recording Start";
   String ACTION_RECORDING_STOP = "Recording Stop";
+  String ACTION_WIDGET_ADDED = "Widget Added";
+  String ACTION_WIDGET_REMOVED = "Widget Removed";
 
   String VARIABLE_RECORDING_LENGTH = "Recording Length";
 }

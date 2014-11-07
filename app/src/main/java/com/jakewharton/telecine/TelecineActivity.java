@@ -2,7 +2,6 @@ package com.jakewharton.telecine;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.projection.MediaProjectionManager;
 import android.os.Bundle;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -17,8 +16,6 @@ import javax.inject.Inject;
 import timber.log.Timber;
 
 public final class TelecineActivity extends Activity {
-  private static final int CREATE_SCREEN_CAPTURE = 4242;
-
   @InjectView(R.id.spinner_video_size_percentage) Spinner videoSizePercentageView;
   @InjectView(R.id.switch_show_countdown) Switch showCountdownView;
   @InjectView(R.id.switch_hide_from_recents) Switch hideFromRecentsView;
@@ -51,16 +48,7 @@ public final class TelecineActivity extends Activity {
 
   @OnClick(R.id.launch) void onLaunchClicked() {
     Timber.d("Attempting to acquire permission to screen capture.");
-
-    MediaProjectionManager manager =
-        (MediaProjectionManager) getSystemService(MEDIA_PROJECTION_SERVICE);
-    Intent intent = manager.createScreenCaptureIntent();
-    startActivityForResult(intent, CREATE_SCREEN_CAPTURE);
-
-    tracker.send(new HitBuilders.EventBuilder() //
-        .setCategory(Analytics.CATEGORY_SETTINGS)
-        .setAction(Analytics.ACTION_CAPTURE_INTENT_LAUNCH)
-        .build());
+    CaptureHelper.fireScreenCaptureIntent(this, tracker);
   }
 
   @OnItemSelected(R.id.spinner_video_size_percentage) void onVideoSizePercentageSelected(
@@ -110,25 +98,8 @@ public final class TelecineActivity extends Activity {
   }
 
   @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    switch (requestCode) {
-      case CREATE_SCREEN_CAPTURE:
-        if (resultCode == 0) {
-          Timber.d("Failed to acquire permission to screen capture.");
-        } else {
-          Timber.d("Acquired permission to screen capture. Starting service.");
-          startService(TelecineService.newIntent(this, resultCode, data));
-        }
-
-        tracker.send(new HitBuilders.EventBuilder() //
-            .setCategory(Analytics.CATEGORY_SETTINGS)
-            .setAction(Analytics.ACTION_CAPTURE_INTENT_RESULT)
-            .setValue(resultCode)
-            .build());
-
-        break;
-
-      default:
-        super.onActivityResult(requestCode, resultCode, data);
+    if (!CaptureHelper.handleActivityResult(this, requestCode, resultCode, data, tracker)) {
+      super.onActivityResult(requestCode, resultCode, data);
     }
   }
 

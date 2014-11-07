@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ImageButton
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/ic_launcher"
+    android:contentDescription="@string/launch_overlay"
+    android:background="?android:attr/selectableItemBackground"
+    android:scaleType="fitCenter"
+    />

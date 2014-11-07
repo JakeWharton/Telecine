@@ -7,6 +7,12 @@
     <item name="android:actionBarStyle">@style/Widget.Telecine.ActionBar</item>
   </style>
 
+  <style name="Theme.Telecine.Transparent" parent="android:Theme.Translucent.NoTitleBar">
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:backgroundDimEnabled">false</item>
+    <item name="android:windowIsFloating">true</item>
+  </style>
+
   <style name="Widget.Telecine.ActionBar" parent="android:Widget.Material.ActionBar.Solid">
     <item name="android:title">@string/app_name</item>
   </style>
