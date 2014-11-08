@@ -259,7 +259,7 @@ final class RecordingSession {
         .setContentText(subtitle)
         .setWhen(System.currentTimeMillis())
         .setShowWhen(true)
-        .setSmallIcon(R.drawable.ic_launcher)
+        .setSmallIcon(R.drawable.ic_videocam_white_24dp)
         .setColor(context.getResources().getColor(R.color.primary_normal))
         .setContentIntent(pendingViewIntent)
         .setAutoCancel(true)
