@@ -12,6 +12,7 @@ Internal:
 
  * Fix widget launching in the same task as the activity.
  * Automatically finish widget activity if home is pressed.
+ * Update Bugsnag to 2.2.3 to fix packaging problem with 2.2.2.
 
 
 0.4.0 *(2014-11-06)*
