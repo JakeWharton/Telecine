@@ -16,7 +16,7 @@ public final class TelecineApplication extends Application {
     if (BuildConfig.DEBUG) {
       Timber.plant(new Timber.DebugTree());
     } else {
-      Bugsnag.init(this, "8c9c38a766416720b3ede7518c54e522");
+      Bugsnag.init(this, BuildConfig.BUGSNAG_KEY);
       Bugsnag.setReleaseStage(BuildConfig.BUILD_TYPE);
       Bugsnag.setProjectPackages("com.jakewharton.telecine");
 

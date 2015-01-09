@@ -11,6 +11,10 @@ buildscript {
   }
 }
 
+def getBugsnagKey() {
+  return hasProperty('TELECINE_BUGSNAG_KEY') ? TELECINE_BUGSNAG_KEY : ''
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
@@ -26,6 +30,8 @@ android {
 
     versionCode versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
     versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+
+    buildConfigField "String", "BUGSNAG_KEY", "\"${getBugsnagKey()}\""
   }
 
   compileOptions {

@@ -14,6 +14,7 @@ import butterknife.InjectView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
+import butterknife.OnLongClick;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import javax.inject.Inject;
@@ -31,6 +32,7 @@ public final class TelecineActivity extends Activity {
   @Inject Tracker tracker;
 
   private VideoSizePercentageAdapter videoSizePercentageAdapter;
+  private int longClickCount;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -58,8 +60,19 @@ public final class TelecineActivity extends Activity {
   }
 
   @OnClick(R.id.launch) void onLaunchClicked() {
+    longClickCount = 0;
+    Timber.d("Long click count reset.");
+
     Timber.d("Attempting to acquire permission to screen capture.");
     CaptureHelper.fireScreenCaptureIntent(this, tracker);
+  }
+
+  @OnLongClick(R.id.launch) boolean onLongClick() {
+    if (++longClickCount == 5) {
+      throw new RuntimeException("Crash! Bang! Pow! This is only a test...");
+    }
+    Timber.d("Long click count updated to %s", longClickCount);
+    return true;
   }
 
   @OnItemSelected(R.id.spinner_video_size_percentage) void onVideoSizePercentageSelected(
