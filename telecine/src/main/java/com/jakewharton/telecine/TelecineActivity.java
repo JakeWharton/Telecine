@@ -59,8 +59,10 @@ public final class TelecineActivity extends Activity {
   }
 
   @OnClick(R.id.launch) void onLaunchClicked() {
-    longClickCount = 0;
-    Timber.d("Long click count reset.");
+    if (longClickCount > 0) {
+      longClickCount = 0;
+      Timber.d("Long click count reset.");
+    }
 
     Timber.d("Attempting to acquire permission to screen capture.");
     CaptureHelper.fireScreenCaptureIntent(this, analytics);
