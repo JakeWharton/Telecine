@@ -32,6 +32,11 @@ android {
     versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
     buildConfigField "String", "BUGSNAG_KEY", "\"${getBugsnagKey()}\""
+
+    // Resource language filters
+    resConfigs "en"
+    // Resource density filters
+    resConfigs "nodpi", "mdpi", "hdpi", "xhdpi", "xxhdpi", "xxxhdpi"
   }
 
   compileOptions {
