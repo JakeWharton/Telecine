@@ -1,1 +1,3 @@
-include ':app'
+rootProject.name = 'telecine-project'
+
+include ':telecine'

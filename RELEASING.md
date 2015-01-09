@@ -1,8 +1,8 @@
 Release Process
 ===============
 
- 1. Update the `app/build.gradle` versions to whatever you feel conveys the sheer awesomeness of
-    the update to which you are about to bestow on the masses.
+ 1. Update the `telecine/build.gradle` versions to whatever you feel conveys the sheer awesomeness
+    of the update to which you are about to bestow on the masses.
 
  2. Update the `CHANGELOG.md` with the public and internal changes.
 
