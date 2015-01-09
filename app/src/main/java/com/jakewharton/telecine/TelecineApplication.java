@@ -13,8 +13,6 @@ public final class TelecineApplication extends Application {
   @Override public void onCreate() {
     super.onCreate();
 
-    objectGraph = ObjectGraph.create(new TelecineModule(this));
-
     if (BuildConfig.DEBUG) {
       Timber.plant(new Timber.DebugTree());
     } else {
@@ -32,6 +30,8 @@ public final class TelecineApplication extends Application {
 
       Timber.plant(tree);
     }
+
+    objectGraph = ObjectGraph.create(new TelecineModule(this));
   }
 
   public void inject(Object o) {
