@@ -5,7 +5,9 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import dagger.Module;
 import dagger.Provides;
+import java.util.Map;
 import javax.inject.Singleton;
+import timber.log.Timber;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -28,11 +30,19 @@ final class TelecineModule {
     this.app = app;
   }
 
-  @Provides @Singleton Tracker provideAnalyticsTracker() {
+  @Provides @Singleton Analytics provideAnalytics() {
+    if (BuildConfig.DEBUG) {
+      return new Analytics() {
+        @Override public void send(Map<String, String> params) {
+          Timber.tag("Analytics").d(String.valueOf(params));
+        }
+      };
+    }
+
     GoogleAnalytics googleAnalytics = GoogleAnalytics.getInstance(app);
     Tracker tracker = googleAnalytics.newTracker(BuildConfig.ANALYTICS_KEY);
     tracker.setSessionTimeout(300); // ms? s? better be s.
-    return tracker;
+    return new Analytics.GoogleAnalytics(tracker);
   }
 
   @Provides @Singleton SharedPreferences provideSharedPreferences() {

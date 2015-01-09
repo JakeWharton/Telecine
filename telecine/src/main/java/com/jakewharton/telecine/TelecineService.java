@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
-import com.google.android.gms.analytics.Tracker;
 import javax.inject.Inject;
 import javax.inject.Provider;
 import timber.log.Timber;
@@ -24,7 +23,7 @@ public final class TelecineService extends Service {
   @Inject @ShowCountdown Provider<Boolean> showCountdownProvider;
   @Inject @VideoSizePercentage Provider<Integer> videoSizePercentageProvider;
 
-  @Inject Tracker tracker;
+  @Inject Analytics analytics;
 
   private boolean running;
   private RecordingSession recordingSession;
@@ -53,7 +52,7 @@ public final class TelecineService extends Service {
     ((TelecineApplication) getApplication()).inject(this);
 
     recordingSession =
-        new RecordingSession(this, listener, resultCode, data, tracker, showCountdownProvider,
+        new RecordingSession(this, listener, resultCode, data, analytics, showCountdownProvider,
             videoSizePercentageProvider);
     recordingSession.showOverlay();
 

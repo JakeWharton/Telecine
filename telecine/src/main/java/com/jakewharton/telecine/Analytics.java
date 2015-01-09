@@ -1,5 +1,8 @@
 package com.jakewharton.telecine;
 
+import com.google.android.gms.analytics.Tracker;
+import java.util.Map;
+
 interface Analytics {
   String CATEGORY_SETTINGS = "Settings";
   String CATEGORY_RECORDING = "Recording";
@@ -19,4 +22,19 @@ interface Analytics {
   String ACTION_WIDGET_REMOVED = "Widget Removed";
 
   String VARIABLE_RECORDING_LENGTH = "Recording Length";
+
+  /** @see {@link Tracker#send(Map)} for usage. */
+  void send(Map<String, String> params);
+
+  class GoogleAnalytics implements Analytics {
+    private final Tracker tracker;
+
+    public GoogleAnalytics(Tracker tracker) {
+      this.tracker = tracker;
+    }
+
+    @Override public void send(Map<String, String> params) {
+      tracker.send(params);
+    }
+  }
 }

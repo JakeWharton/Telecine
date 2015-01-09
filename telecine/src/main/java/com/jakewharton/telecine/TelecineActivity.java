@@ -16,7 +16,6 @@ import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import butterknife.OnLongClick;
 import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import javax.inject.Inject;
 import timber.log.Timber;
 
@@ -29,7 +28,7 @@ public final class TelecineActivity extends Activity {
   @Inject @ShowCountdown BooleanPreference showCountdownPreference;
   @Inject @HideFromRecents BooleanPreference hideFromRecentsPreference;
 
-  @Inject Tracker tracker;
+  @Inject Analytics analytics;
 
   private VideoSizePercentageAdapter videoSizePercentageAdapter;
   private int longClickCount;
@@ -64,7 +63,7 @@ public final class TelecineActivity extends Activity {
     Timber.d("Long click count reset.");
 
     Timber.d("Attempting to acquire permission to screen capture.");
-    CaptureHelper.fireScreenCaptureIntent(this, tracker);
+    CaptureHelper.fireScreenCaptureIntent(this, analytics);
   }
 
   @OnLongClick(R.id.launch) boolean onLongClick() {
@@ -83,7 +82,7 @@ public final class TelecineActivity extends Activity {
       Timber.d("Video size percentage changing to %s%%", newValue);
       videoSizePreference.set(newValue);
 
-      tracker.send(new HitBuilders.EventBuilder() //
+      analytics.send(new HitBuilders.EventBuilder() //
           .setCategory(Analytics.CATEGORY_SETTINGS)
           .setAction(Analytics.ACTION_CHANGE_VIDEO_SIZE)
           .setValue(newValue)
@@ -98,7 +97,7 @@ public final class TelecineActivity extends Activity {
       Timber.d("Hide show countdown changing to %s", newValue);
       showCountdownPreference.set(newValue);
 
-      tracker.send(new HitBuilders.EventBuilder() //
+      analytics.send(new HitBuilders.EventBuilder() //
           .setCategory(Analytics.CATEGORY_SETTINGS)
           .setAction(Analytics.ACTION_CHANGE_SHOW_COUNTDOWN)
           .setValue(newValue ? 1 : 0)
@@ -113,7 +112,7 @@ public final class TelecineActivity extends Activity {
       Timber.d("Hide from recents preference changing to %s", newValue);
       hideFromRecentsPreference.set(newValue);
 
-      tracker.send(new HitBuilders.EventBuilder() //
+      analytics.send(new HitBuilders.EventBuilder() //
           .setCategory(Analytics.CATEGORY_SETTINGS)
           .setAction(Analytics.ACTION_CHANGE_HIDE_RECENTS)
           .setValue(newValue ? 1 : 0)
@@ -122,7 +121,7 @@ public final class TelecineActivity extends Activity {
   }
 
   @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    if (!CaptureHelper.handleActivityResult(this, requestCode, resultCode, data, tracker)) {
+    if (!CaptureHelper.handleActivityResult(this, requestCode, resultCode, data, analytics)) {
       super.onActivityResult(requestCode, resultCode, data);
     }
   }

@@ -23,7 +23,6 @@ import android.util.DisplayMetrics;
 import android.view.Surface;
 import android.view.WindowManager;
 import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -60,7 +59,7 @@ final class RecordingSession {
   private final int resultCode;
   private final Intent data;
 
-  private final Tracker tracker;
+  private final Analytics analytics;
   private final Provider<Boolean> showCountDown;
   private final Provider<Integer> videoSizePercentage;
 
@@ -80,13 +79,13 @@ final class RecordingSession {
   private boolean running;
   private long recordingStartNanos;
 
-  RecordingSession(Context context, Listener listener, int resultCode, Intent data, Tracker tracker,
-      Provider<Boolean> showCountDown, Provider<Integer> videoSizePercentage) {
+  RecordingSession(Context context, Listener listener, int resultCode, Intent data,
+      Analytics analytics, Provider<Boolean> showCountDown, Provider<Integer> videoSizePercentage) {
     this.context = context;
     this.listener = listener;
     this.resultCode = resultCode;
     this.data = data;
-    this.tracker = tracker;
+    this.analytics = analytics;
 
     this.showCountDown = showCountDown;
     this.videoSizePercentage = videoSizePercentage;
@@ -118,7 +117,7 @@ final class RecordingSession {
     overlayView = OverlayView.create(context, overlayListener, showCountDown.get());
     windowManager.addView(overlayView, OverlayView.createLayoutParams(context));
 
-    tracker.send(new HitBuilders.EventBuilder() //
+    analytics.send(new HitBuilders.EventBuilder() //
         .setCategory(Analytics.CATEGORY_RECORDING).setAction(Analytics.ACTION_OVERLAY_SHOW).build());
   }
 
@@ -128,7 +127,7 @@ final class RecordingSession {
       windowManager.removeView(overlayView);
       overlayView = null;
 
-      tracker.send(new HitBuilders.EventBuilder() //
+      analytics.send(new HitBuilders.EventBuilder() //
           .setCategory(Analytics.CATEGORY_RECORDING)
           .setAction(Analytics.ACTION_OVERLAY_HIDE)
           .build());
@@ -139,7 +138,7 @@ final class RecordingSession {
     hideOverlay();
     listener.onEnd();
 
-    tracker.send(new HitBuilders.EventBuilder() //
+    analytics.send(new HitBuilders.EventBuilder() //
         .setCategory(Analytics.CATEGORY_RECORDING)
         .setAction(Analytics.ACTION_OVERLAY_CANCEL)
         .build());
@@ -191,7 +190,7 @@ final class RecordingSession {
 
     Timber.d("Screen recording started.");
 
-    tracker.send(new HitBuilders.EventBuilder() //
+    analytics.send(new HitBuilders.EventBuilder() //
         .setCategory(Analytics.CATEGORY_RECORDING)
         .setAction(Analytics.ACTION_RECORDING_START)
         .build());
@@ -218,11 +217,11 @@ final class RecordingSession {
     recorder.release();
     display.release();
 
-    tracker.send(new HitBuilders.EventBuilder() //
+    analytics.send(new HitBuilders.EventBuilder() //
         .setCategory(Analytics.CATEGORY_RECORDING)
         .setAction(Analytics.ACTION_RECORDING_STOP)
         .build());
-    tracker.send(new HitBuilders.TimingBuilder() //
+    analytics.send(new HitBuilders.TimingBuilder() //
         .setCategory(Analytics.CATEGORY_RECORDING)
         .setValue(TimeUnit.NANOSECONDS.toMillis(recordingStopNanos - recordingStartNanos))
         .setVariable(Analytics.VARIABLE_RECORDING_LENGTH)

@@ -7,11 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import javax.inject.Inject;
 
 public final class TelecineWidgetProvider extends AppWidgetProvider {
-  @Inject Tracker tracker;
+  @Inject Analytics analytics;
 
   @Override public void onUpdate(Context context, AppWidgetManager manager, int[] ids) {
     for (int id : ids) {
@@ -31,7 +30,7 @@ public final class TelecineWidgetProvider extends AppWidgetProvider {
     super.onDeleted(context, ids);
 
     ((TelecineApplication) context.getApplicationContext()).inject(this);
-    tracker.send(new HitBuilders.EventBuilder() //
+    analytics.send(new HitBuilders.EventBuilder() //
         .setCategory(Analytics.CATEGORY_WIDGET) //
         .setAction(Analytics.ACTION_WIDGET_REMOVED) //
         .build());
