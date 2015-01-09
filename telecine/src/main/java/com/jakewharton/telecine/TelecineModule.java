@@ -30,7 +30,9 @@ final class TelecineModule {
 
   @Provides @Singleton Tracker provideAnalyticsTracker() {
     GoogleAnalytics googleAnalytics = GoogleAnalytics.getInstance(app);
-    return googleAnalytics.newTracker(R.xml.analytics_tracker);
+    Tracker tracker = googleAnalytics.newTracker(BuildConfig.ANALYTICS_KEY);
+    tracker.setSessionTimeout(300); // ms? s? better be s.
+    return tracker;
   }
 
   @Provides @Singleton SharedPreferences provideSharedPreferences() {

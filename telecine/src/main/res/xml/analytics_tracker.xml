@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-  <integer name="ga_sessionTimeout">300</integer>
-  <string name="ga_trackingId">UA-3637749-20</string>
-</resources>

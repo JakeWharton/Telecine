@@ -14,6 +14,9 @@ buildscript {
 def getBugsnagKey() {
   return hasProperty('TELECINE_BUGSNAG_KEY') ? TELECINE_BUGSNAG_KEY : ''
 }
+def getAnalyticsKey() {
+  return hasProperty('TELECINE_ANALYTICS_KEY') ? TELECINE_ANALYTICS_KEY : ''
+}
 
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
@@ -32,6 +35,7 @@ android {
     versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
     buildConfigField "String", "BUGSNAG_KEY", "\"${getBugsnagKey()}\""
+    buildConfigField "String", "ANALYTICS_KEY", "\"${getAnalyticsKey()}\""
 
     // Resource language filters
     resConfigs "en"

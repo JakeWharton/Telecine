@@ -1,6 +1,19 @@
 Release Process
 ===============
 
+Setup
+-----
+
+Place the following in `~/.gradle/gradle.properties`:
+```
+TELECINE_BUGSNAG_KEY=<key>
+TELECINE_ANALYTICS_KEY=<key>
+```
+
+
+Release
+-------
+
  1. Update the `telecine/build.gradle` versions to whatever you feel conveys the sheer awesomeness
     of the update to which you are about to bestow on the masses.
 
