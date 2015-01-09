@@ -2,4 +2,5 @@
 
 <resources>
   <string name="launcher_name">Telecine Debug</string>
+  <string name="shortcut_name">Launch Debug</string>
 </resources>

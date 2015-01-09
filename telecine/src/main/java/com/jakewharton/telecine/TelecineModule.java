@@ -14,9 +14,8 @@ import static android.content.Context.MODE_PRIVATE;
 @Module(injects = {
     TelecineActivity.class,
     TelecineService.class,
-    TelecineWidgetConfigureActivity.class,
-    TelecineWidgetLaunchActivity.class,
-    TelecineWidgetProvider.class,
+    TelecineShortcutConfigureActivity.class,
+    TelecineShortcutLaunchActivity.class,
 })
 final class TelecineModule {
   private static final String PREFERENCES_NAME = "telecine";
