@@ -19,7 +19,6 @@ import butterknife.OnClick;
 
 import static android.graphics.PixelFormat.TRANSLUCENT;
 import static android.view.ViewAnimationUtils.createCircularReveal;
-import static android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
 import static android.view.WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
 import static android.view.WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
 import static android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;
@@ -45,8 +44,7 @@ final class OverlayView extends FrameLayout {
             | FLAG_NOT_TOUCH_MODAL
             | FLAG_LAYOUT_NO_LIMITS
             | FLAG_LAYOUT_INSET_DECOR
-            | FLAG_LAYOUT_IN_SCREEN
-            | FLAG_HARDWARE_ACCELERATED, TRANSLUCENT);
+            | FLAG_LAYOUT_IN_SCREEN, TRANSLUCENT);
     params.gravity = Gravity.END | Gravity.TOP;
 
     return params;
