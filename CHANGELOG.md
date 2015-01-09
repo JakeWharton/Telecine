@@ -9,6 +9,8 @@ ZOMG 1.0!
 Internal:
 
  * Housekeeping for open sourcing.
+   * Move Bugsnag key to `BuildConfig`.
+   * Regenerated Bugsnag key!
 
 
 0.4.1 *(2014-11-11)*
