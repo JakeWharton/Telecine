@@ -1,6 +1,16 @@
 Change Log
 ==========
 
+1.0.0 *(2015-01-08)*
+--------------------
+
+ZOMG 1.0!
+
+Internal:
+
+ * Housekeeping for open sourcing.
+
+
 0.4.1 *(2014-11-11)*
 --------------------
 
@@ -48,7 +58,7 @@ Public:
 
 Internal:
 
- * Switch from Crashlytics to Bugsnag
+ * Switch from Crashlytics to Bugsnag.
 
 
 0.2.0 *(2014-10-25)*
