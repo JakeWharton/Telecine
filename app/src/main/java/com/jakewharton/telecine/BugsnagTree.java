@@ -1,7 +1,7 @@
 package com.jakewharton.telecine;
 
 import android.util.Log;
-import com.bugsnag.Error;
+import com.bugsnag.android.Error;
 import com.bugsnag.android.Bugsnag;
 import java.util.ArrayDeque;
 import java.util.Deque;
