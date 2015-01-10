@@ -27,25 +27,22 @@
     <service android:name=".TelecineService"/>
 
     <activity
-        android:name=".TelecineWidgetConfigureActivity"
-        android:theme="@style/Theme.Telecine.Transparent"
-        android:excludeFromRecents="true"
-        />
-    <activity
-        android:name=".TelecineWidgetLaunchActivity"
+        android:name=".TelecineShortcutConfigureActivity"
         android:theme="@style/Theme.Telecine.Transparent"
         android:excludeFromRecents="true"
         android:taskAffinity=""
-        />
-    <receiver android:name=".TelecineWidgetProvider">
+        >
       <intent-filter>
-        <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+        <action android:name="android.intent.action.CREATE_SHORTCUT" />
       </intent-filter>
-      <meta-data
-          android:name="android.appwidget.provider"
-          android:resource="@xml/widget"
-          />
-    </receiver>
+    </activity>
+    <activity
+        android:name=".TelecineShortcutLaunchActivity"
+        android:theme="@style/Theme.Telecine.Transparent"
+        android:excludeFromRecents="true"
+        android:taskAffinity=""
+        android:exported="true"
+        />
   </application>
 
 </manifest>

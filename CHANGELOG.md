@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+1.1.0 *(In Development)*
+------------------------
+
+Public:
+
+ * Replaced the 1x1 widget with a shortcut.
+
+
 1.0.0 *(2015-01-08)*
 --------------------
 
