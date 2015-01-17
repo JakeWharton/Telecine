@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string name="app_name">Telecine</string>
+  <string name="launcher_name">@string/app_name</string>
+  <string name="shortcut_name">Uruchom</string>
+
+  <string name="clear">Wyczyść</string>
+  <string name="record">Nagraj</string>
+  <string name="countdown_one">1…</string>
+  <string name="countdown_two">2…</string>
+  <string name="countdown_three">3…</string>
+  <string name="launch_overlay">Uruchom nakładkę</string>
+  <string name="remove_task">Zamknij i usuń z ostatnio używanych aplikacji</string>
+  <string name="Preferences">Ustawienia</string>
+  <string name="countdown">Trzysekundowe odliczanie</string>
+  <string name="recents_hide">Nie pokazuj w ostatnio użytych aplikacjach</string>
+  <string name="video_size_percentage">Rozmiar nagrania</string>
+</resources>
