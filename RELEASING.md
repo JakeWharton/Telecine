@@ -19,7 +19,7 @@ Release
 
  2. Update the `CHANGELOG.md` with the public and internal changes.
 
- 3. Commit.
+ 3. Commit with `git commit -m "Prepare version X.Y.Z."` replacing 'X.Y.Z' with the version number.
 
  4. Create an annotated tag with `git tag -a X.Y.X -m "Version X.Y.Z"` replacing 'X.Y.Z' with the
     version number.
