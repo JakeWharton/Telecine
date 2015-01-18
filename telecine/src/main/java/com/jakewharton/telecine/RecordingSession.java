@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Provider;
 import timber.log.Timber;
@@ -65,7 +66,7 @@ final class RecordingSession {
 
   private final File outputRoot;
   private final DateFormat fileFormat =
-      new SimpleDateFormat("'Telecine_'yyyy-MM-dd-HH-mm-ss'.mp4'");
+      new SimpleDateFormat("'Telecine_'yyyy-MM-dd-HH-mm-ss'.mp4'", Locale.US);
 
   private final NotificationManager notificationManager;
   private final WindowManager windowManager;
