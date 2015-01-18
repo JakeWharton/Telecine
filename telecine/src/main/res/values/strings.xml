@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-  <string name="app_name">Telecine</string>
-  <string name="launcher_name">@string/app_name</string>
-  <string name="shortcut_name">Launch</string>
+  <string name="app_name" translatable="false">Telecine</string>
+  <string name="launcher_name" translatable="false">@string/app_name</string>
 
+  <string name="shortcut_name">Launch</string>
   <string name="clear">Clear</string>
   <string name="record">Record</string>
   <string name="countdown_one">1…</string>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-  <string name="launcher_name">Telecine Debug</string>
+  <string name="launcher_name" translatable="false">Telecine Debug</string>
+
   <string name="shortcut_name">Launch Debug</string>
 </resources>

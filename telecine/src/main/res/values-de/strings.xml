@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-  <string name="app_name">Telecine</string>
-  <string name="launcher_name">@string/app_name</string>
   <string name="shortcut_name">Aufnahme starten</string>
-
   <string name="clear">Leeren</string>
   <string name="record">Aufnehmen</string>
   <string name="countdown_one">1…</string>
