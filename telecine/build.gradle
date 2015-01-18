@@ -6,7 +6,7 @@ def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 buildscript {
   dependencies {
-    classpath 'com.android.tools.build:gradle:1.0.0'
+    classpath 'com.android.tools.build:gradle:1.0.1'
     classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
   }
 }
