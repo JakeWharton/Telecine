@@ -27,6 +27,7 @@
       android:textAllCaps="true"
       android:textColor="?android:attr/colorAccent"
       android:fontFamily="sans-serif-condensed"
+      android:textAlignment="viewStart"
       />
 
   <LinearLayout
@@ -40,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/video_size_percentage"
+        android:textAlignment="viewStart"
         />
     <Spinner
         android:id="@+id/spinner_video_size_percentage"
@@ -59,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/countdown"
+        android:textAlignment="viewStart"
         />
     <Switch
         android:id="@+id/switch_show_countdown"
@@ -78,6 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/recents_hide"
+        android:textAlignment="viewStart"
         />
     <Switch
         android:id="@+id/switch_hide_from_recents"
