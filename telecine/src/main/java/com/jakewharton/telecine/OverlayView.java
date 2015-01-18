@@ -16,8 +16,10 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import java.util.Locale;
 
 import static android.graphics.PixelFormat.TRANSLUCENT;
+import static android.text.TextUtils.getLayoutDirectionFromLocale;
 import static android.view.ViewAnimationUtils.createCircularReveal;
 import static android.view.WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
 import static android.view.WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
@@ -30,6 +32,7 @@ import static android.view.WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
 final class OverlayView extends FrameLayout {
   private static final int COUNTDOWN_DELAY = 1000;
   private static final int NON_COUNTDOWN_DELAY = 500;
+  private static final int DURATION_ENTER_EXIT = 300;
 
   static OverlayView create(Context context, Listener listener, boolean showCountDown) {
     return new OverlayView(context, listener, showCountDown);
@@ -45,9 +48,15 @@ final class OverlayView extends FrameLayout {
             | FLAG_LAYOUT_NO_LIMITS
             | FLAG_LAYOUT_INSET_DECOR
             | FLAG_LAYOUT_IN_SCREEN, TRANSLUCENT);
-    params.gravity = Gravity.END | Gravity.TOP;
+    params.gravity = Gravity.TOP | gravityEndLocaleHack();
 
     return params;
+  }
+
+  @SuppressLint("RtlHardcoded") // Gravity.END is not honored by WindowManager for added views.
+  private static int gravityEndLocaleHack() {
+    int direction = getLayoutDirectionFromLocale(Locale.getDefault());
+    return direction == LAYOUT_DIRECTION_RTL ? Gravity.LEFT : Gravity.RIGHT;
   }
 
   interface Listener {
@@ -72,11 +81,18 @@ final class OverlayView extends FrameLayout {
 
   private final Listener listener;
   private final boolean showCountDown;
+  private final int animationWidth;
 
   private OverlayView(Context context, Listener listener, boolean showCountDown) {
     super(context);
     this.listener = listener;
     this.showCountDown = showCountDown;
+
+    int width = getResources().getDimensionPixelSize(R.dimen.overlay_width);
+    if (getLayoutDirectionFromLocale(Locale.getDefault()) == LAYOUT_DIRECTION_RTL) {
+      width = -width; // Account for animating in from the other side of the screen.
+    }
+    animationWidth = width;
 
     inflate(context, R.layout.overlay_view, this);
     ButterKnife.inject(this);
@@ -87,15 +103,15 @@ final class OverlayView extends FrameLayout {
   @Override protected void onAttachedToWindow() {
     super.onAttachedToWindow();
 
-    int width = getResources().getDimensionPixelSize(R.dimen.overlay_width);
-    setTranslationX(width);
-    animate().translationX(0).setDuration(300).setInterpolator(new DecelerateInterpolator());
+    setTranslationX(animationWidth);
+    animate().translationX(0)
+        .setDuration(DURATION_ENTER_EXIT)
+        .setInterpolator(new DecelerateInterpolator());
   }
 
   @OnClick(R.id.record_overlay_cancel) void onCancelClicked() {
-    int width = getResources().getDimensionPixelSize(R.dimen.overlay_width);
-    animate().translationX(width)
-        .setDuration(300)
+    animate().translationX(animationWidth)
+        .setDuration(DURATION_ENTER_EXIT)
         .setInterpolator(new AccelerateInterpolator())
         .withEndAction(new Runnable() {
               @Override public void run() {
