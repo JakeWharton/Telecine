@@ -36,11 +36,6 @@ android {
 
     buildConfigField "String", "BUGSNAG_KEY", "\"${getBugsnagKey()}\""
     buildConfigField "String", "ANALYTICS_KEY", "\"${getAnalyticsKey()}\""
-
-    // Resource language filters
-    resConfigs "en"
-    // Resource density filters
-    resConfigs "nodpi", "mdpi", "hdpi", "xhdpi", "xxhdpi", "xxxhdpi"
   }
 
   compileOptions {
