@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string name="app_name">Telecine</string>
+  <string name="launcher_name">@string/app_name</string>
+  <string name="shortcut_name">Aufnahme starten</string>
+
+  <string name="clear">Leeren</string>
+  <string name="record">Aufnehmen</string>
+  <string name="countdown_one">1…</string>
+  <string name="countdown_two">2…</string>
+  <string name="countdown_three">3…</string>
+  <string name="launch_overlay">Overlay starten</string>
+  <string name="Preferences">Einstellungen</string>
+  <string name="countdown">3-Sekunden Countdown</string>
+  <string name="recents_hide">in zuletzt benutzten Apps verstecken</string>
+  <string name="video_size_percentage">Videogröße</string>
+</resources>
