@@ -164,6 +164,7 @@ final class RecordingSession {
     recorder = new MediaRecorder();
     recorder.setVideoSource(SURFACE);
     recorder.setOutputFormat(MPEG_4);
+    recorder.setVideoFrameRate(30);
     recorder.setVideoEncoder(H264);
     recorder.setVideoSize(displayWidth, displayHeight);
     recorder.setVideoEncodingBitRate(8 * 1000 * 1000);
