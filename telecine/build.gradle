@@ -43,10 +43,6 @@ android {
     targetCompatibility JavaVersion.VERSION_1_7
   }
 
-  lintOptions {
-    abortOnError false
-  }
-
   dexOptions {
     preDexLibraries = Boolean.valueOf(System.getProperty("pre-dex", "true"))
   }
