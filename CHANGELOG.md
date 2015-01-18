@@ -1,12 +1,15 @@
 Change Log
 ==========
 
-1.1.0 *(In Development)*
-------------------------
+1.1.0 *(2015-01-18)*
+--------------------
 
 Public:
 
  * Replaced the 1x1 widget with a shortcut.
+ * Support RTL.
+ * Translations for DE, PL.
+ * Fix: MediaRecorder prepare crash on some devices, not all.
 
 
 1.0.0 *(2015-01-08)*
