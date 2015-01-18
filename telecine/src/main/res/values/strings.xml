@@ -11,7 +11,6 @@
   <string name="countdown_two">2…</string>
   <string name="countdown_three">3…</string>
   <string name="launch_overlay">Launch Overlay</string>
-  <string name="remove_task">Close and remove from recents</string>
   <string name="Preferences">Preferences</string>
   <string name="countdown">Three second countdown</string>
   <string name="recents_hide">Hide from recent apps</string>
