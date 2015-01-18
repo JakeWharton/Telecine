@@ -11,7 +11,7 @@
   <string name="countdown_two">2…</string>
   <string name="countdown_three">3…</string>
   <string name="launch_overlay">Uruchom nakładkę</string>
-  <string name="Preferences">Ustawienia</string>
+  <string name="preferences">Ustawienia</string>
   <string name="countdown">Trzysekundowe odliczanie</string>
   <string name="recents_hide">Nie pokazuj w ostatnio użytych aplikacjach</string>
   <string name="video_size_percentage">Rozmiar nagrania</string>

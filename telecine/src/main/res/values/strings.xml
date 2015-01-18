@@ -11,7 +11,7 @@
   <string name="countdown_two">2…</string>
   <string name="countdown_three">3…</string>
   <string name="launch_overlay">Launch Overlay</string>
-  <string name="Preferences">Preferences</string>
+  <string name="preferences">Preferences</string>
   <string name="countdown">Three second countdown</string>
   <string name="recents_hide">Hide from recent apps</string>
   <string name="video_size_percentage">Video size</string>
