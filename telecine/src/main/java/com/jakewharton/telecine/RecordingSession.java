@@ -253,8 +253,8 @@ final class RecordingSession {
     shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
     PendingIntent pendingShareIntent = PendingIntent.getActivity(context, 0, shareIntent, 0);
 
-    String title = "Screen recording captured.";
-    String subtitle = "Touch to view your screen recording.";
+    String title = context.getString(R.string.notification_title);
+    String subtitle = context.getString(R.string.notification_subtitle);
     Notification.Builder builder = new Notification.Builder(context) //
         .setContentTitle(title)
         .setContentText(subtitle)
