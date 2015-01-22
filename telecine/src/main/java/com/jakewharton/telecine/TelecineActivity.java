@@ -130,8 +130,7 @@ public final class TelecineActivity extends Activity {
 
   @Override protected void onStop() {
     super.onStop();
-
-    if (hideFromRecentsPreference.get()) {
+    if (hideFromRecentsPreference.get() && !isChangingConfigurations()) {
       Timber.d("Removing task because hide from recents preference was enabled.");
       finishAndRemoveTask();
     }
