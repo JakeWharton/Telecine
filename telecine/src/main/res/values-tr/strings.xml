@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="shortcut_name">Çalıştır</string>
+    <string name="clear">Temizle</string>
+    <string name="record">Kayıt</string>
+    <string name="countdown_one">1…</string>
+    <string name="countdown_two">2…</string>
+    <string name="countdown_three">3…</string>
+    <string name="launch_overlay">Overlay Olarak Çalıştır</string>
+    <string name="preferences">Seçenekler</string>
+    <string name="countdown">3 saniyelik geri sayım</string>
+    <string name="recents_hide">Son uygulamalardan gizle</string>
+    <string name="video_size_percentage">Video boyutu</string>
+</resources>
