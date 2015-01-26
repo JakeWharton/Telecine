@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<resources>
+  <string name="shortcut_name">Avvia</string>
+  <string name="clear">Clear</string>
+  <string name="record">Registra</string>
+  <string name="countdown_one">1…</string>
+  <string name="countdown_two">2…</string>
+  <string name="countdown_three">3…</string>
+  <string name="launch_overlay">Avvia Overlay</string>
+  <string name="preferences">Preferenze</string>
+  <string name="countdown">Conto alla rovescia di tre secondi</string>
+  <string name="recents_hide">Nascondi dalle app recenti</string>
+  <string name="video_size_percentage">Dimensione del video</string>
+  <string name="notification_title">Registrazione dello schermo completa.</string>
+  <string name="notification_subtitle">Tocca per vedere la registrazione dello schermo.</string>
+  <string name="notification_share">Condividi</string>
+</resources>
