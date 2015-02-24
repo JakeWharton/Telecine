@@ -44,7 +44,9 @@ android {
   }
 
   lintOptions {
+    textReport true
     textOutput 'stdout'
+    warning 'MissingTranslation'
   }
 
   dexOptions {
