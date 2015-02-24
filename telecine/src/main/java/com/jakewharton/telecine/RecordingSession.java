@@ -255,6 +255,7 @@ final class RecordingSession {
 
     String title = context.getString(R.string.notification_title);
     String subtitle = context.getString(R.string.notification_subtitle);
+    String share = context.getString(R.string.notification_share);
     Notification.Builder builder = new Notification.Builder(context) //
         .setContentTitle(title)
         .setContentText(subtitle)
@@ -264,7 +265,7 @@ final class RecordingSession {
         .setColor(context.getResources().getColor(R.color.primary_normal))
         .setContentIntent(pendingViewIntent)
         .setAutoCancel(true)
-        .addAction(R.drawable.ic_share_white_24dp, "Share", pendingShareIntent);
+        .addAction(R.drawable.ic_share_white_24dp, share, pendingShareIntent);
 
     if (bitmap != null) {
       builder.setLargeIcon(createSquareBitmap(bitmap)) //
