@@ -23,10 +23,12 @@ public final class TelecineActivity extends Activity {
   @InjectView(R.id.spinner_video_size_percentage) Spinner videoSizePercentageView;
   @InjectView(R.id.switch_show_countdown) Switch showCountdownView;
   @InjectView(R.id.switch_hide_from_recents) Switch hideFromRecentsView;
+  @InjectView(R.id.switch_recording_notification) Switch recordingNotificationView;
 
   @Inject @VideoSizePercentage IntPreference videoSizePreference;
   @Inject @ShowCountdown BooleanPreference showCountdownPreference;
   @Inject @HideFromRecents BooleanPreference hideFromRecentsPreference;
+  @Inject @RecordingNotification BooleanPreference recordingNotificationPreference;
 
   @Inject Analytics analytics;
 
@@ -56,6 +58,7 @@ public final class TelecineActivity extends Activity {
 
     showCountdownView.setChecked(showCountdownPreference.get());
     hideFromRecentsView.setChecked(hideFromRecentsPreference.get());
+    recordingNotificationView.setChecked(recordingNotificationPreference.get());
   }
 
   @OnClick(R.id.launch) void onLaunchClicked() {
@@ -117,6 +120,21 @@ public final class TelecineActivity extends Activity {
       analytics.send(new HitBuilders.EventBuilder() //
           .setCategory(Analytics.CATEGORY_SETTINGS)
           .setAction(Analytics.ACTION_CHANGE_HIDE_RECENTS)
+          .setValue(newValue ? 1 : 0)
+          .build());
+    }
+  }
+
+  @OnCheckedChanged(R.id.switch_recording_notification) void onRecordingNotificationChanged() {
+    boolean newValue = recordingNotificationView.isChecked();
+    boolean oldValue = recordingNotificationPreference.get();
+    if (newValue != oldValue) {
+      Timber.d("Recording notification preference changing to %s", newValue);
+      recordingNotificationPreference.set(newValue);
+
+      analytics.send(new HitBuilders.EventBuilder() //
+          .setCategory(Analytics.CATEGORY_SETTINGS)
+          .setAction(Analytics.ACTION_CHANGE_RECORDING_NOTIFICATION)
           .setValue(newValue ? 1 : 0)
           .build());
     }

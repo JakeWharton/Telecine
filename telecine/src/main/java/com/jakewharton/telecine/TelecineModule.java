@@ -21,6 +21,7 @@ final class TelecineModule {
   private static final String PREFERENCES_NAME = "telecine";
   private static final boolean DEFAULT_SHOW_COUNTDOWN = true;
   private static final boolean DEFAULT_HIDE_FROM_RECENTS = false;
+  private static final boolean DEFAULT_RECORDING_NOTIFICATION = false;
   private static final int DEFAULT_VIDEO_SIZE_PERCENTAGE = 100;
 
   private final TelecineApplication app;
@@ -54,6 +55,16 @@ final class TelecineModule {
   }
 
   @Provides @ShowCountdown Boolean provideShowCountdown(@ShowCountdown BooleanPreference pref) {
+    return pref.get();
+  }
+
+  @Provides @Singleton @RecordingNotification
+  BooleanPreference provideRecordingNotificationPreference(SharedPreferences prefs) {
+    return new BooleanPreference(prefs, "recording-notification", DEFAULT_RECORDING_NOTIFICATION);
+  }
+
+  @Provides @RecordingNotification Boolean provideRecordingNotification(
+      @RecordingNotification BooleanPreference pref) {
     return pref.get();
   }
 
