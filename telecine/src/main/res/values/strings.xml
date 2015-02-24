@@ -15,7 +15,10 @@
   <string name="countdown">Three second countdown</string>
   <string name="recents_hide">Hide from recent apps</string>
   <string name="video_size_percentage">Video size</string>
-  <string name="notification_title">Screen recording captured.</string>
-  <string name="notification_subtitle">Touch to view your screen recording.</string>
-  <string name="notification_share">Share</string>
+  <string name="notification_captured_title">Screen recording captured.</string>
+  <string name="notification_captured_subtitle">Touch to view your screen recording.</string>
+  <string name="notification_captured_share">Share</string>
+  <string name="notification_recording_title">Recording screen.</string>
+  <string name="notification_recording_subtitle">Touch the clock area to stop recording.</string>
+  <string name="recording_notification">Recording Notification</string>
 </resources>

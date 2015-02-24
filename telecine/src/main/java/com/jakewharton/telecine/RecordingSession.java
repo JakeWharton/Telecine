@@ -53,6 +53,11 @@ final class RecordingSession {
   private static final String MIME_TYPE = "video/mp4";
 
   interface Listener {
+    /** Invoked immediately prior to the start of recording. */
+    void onStart();
+    /** Invoked immediately after the end of recording. */
+    void onStop();
+    /** Invoked after all work for this session has completed. */
     void onEnd();
   }
 
@@ -214,6 +219,7 @@ final class RecordingSession {
     recorder.start();
     running = true;
     recordingStartNanos = System.nanoTime();
+    listener.onStart();
 
     Timber.d("Screen recording started.");
 
@@ -254,6 +260,8 @@ final class RecordingSession {
         .setVariable(Analytics.VARIABLE_RECORDING_LENGTH)
         .build());
 
+    listener.onStop();
+
     Timber.d("Screen recording stopped. Notifying media scanner of new video.");
 
     MediaScannerConnection.scanFile(context, new String[] { outputFile }, null,
@@ -278,9 +286,9 @@ final class RecordingSession {
     shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
     PendingIntent pendingShareIntent = PendingIntent.getActivity(context, 0, shareIntent, 0);
 
-    String title = context.getString(R.string.notification_title);
-    String subtitle = context.getString(R.string.notification_subtitle);
-    String share = context.getString(R.string.notification_share);
+    String title = context.getString(R.string.notification_captured_title);
+    String subtitle = context.getString(R.string.notification_captured_subtitle);
+    String share = context.getString(R.string.notification_captured_share);
     Notification.Builder builder = new Notification.Builder(context) //
         .setContentTitle(title)
         .setContentText(subtitle)
