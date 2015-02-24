@@ -73,8 +73,8 @@ android {
 dependencies {
   compile 'com.android.support:support-annotations:21.0.0'
   compile 'com.google.android.gms:play-services-base:6.5.87'
-  compile 'com.jakewharton:butterknife:6.0.0'
-  compile 'com.jakewharton.timber:timber:2.5.0'
+  compile 'com.jakewharton:butterknife:6.1.0'
+  compile 'com.jakewharton.timber:timber:2.7.1'
   compile 'com.bugsnag:bugsnag-android:3.2.2'
   compile 'com.squareup.dagger:dagger:1.2.2'
   apt 'com.squareup.dagger:dagger-compiler:1.2.2'
