@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string name="shortcut_name">起動</string>
+  <string name="clear">クリア</string>
+  <string name="record">録画</string>
+  <string name="countdown_one">1…</string>
+  <string name="countdown_two">2…</string>
+  <string name="countdown_three">3…</string>
+  <string name="launch_overlay">オーバーレイ起動</string>
+  <string name="preferences">設定</string>
+  <string name="countdown">3秒カウントダウン</string>
+  <string name="recents_hide">履歴に表示しない</string>
+  <string name="video_size_percentage">ビデオサイズ</string>
+</resources>
