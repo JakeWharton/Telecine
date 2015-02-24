@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+1.2.0 *(2015-02-24)*
+--------------------
+
+Public:
+
+ * Option for a running notification while recording. This prevents the recording process from
+   being killed by Android.
+ * Translations for IT, JA, TR.
+ * Fix: MediaRecorder prepare crash on most devices.
+
+
 1.1.0 *(2015-01-18)*
 --------------------
 
