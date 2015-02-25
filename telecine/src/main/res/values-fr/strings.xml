@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="countdown">Compte à rebours de 3 secondes</string>
+  <string name="countdown_one">1...</string>
+  <string name="countdown_three">2...</string>
+  <string name="countdown_two">3...</string>
+  <string name="notification_captured_share">Partager</string>
+  <string name="notification_captured_subtitle">Appuyez pour voir votre enregistrement.</string>
+  <string name="notification_captured_title">Capture vidéo de l\'écran réussie.</string>
+  <string name="notification_recording_subtitle">Touchez l\'horloge pour arrêter l\'enregistrement.</string>
+  <string name="notification_recording_title">Capture de l\'écran en cours.</string>
+  <string name="preferences">Paramètres</string>
+  <string name="recents_hide">Ne pas afficher dans les applications récentes</string>
+  <string name="clear">XXXXXX</string>
+  <string name="record">Enregistrement</string>
+  <string name="recording_notification">Notification d\'enregistrement</string>
+  <string name="launch_overlay">Activer le calque</string>
+  <string name="shortcut_name">Lancer en debug</string>
+  <string name="video_size_percentage">Taille de la vidéo</string>
+</resources>
