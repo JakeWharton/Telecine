@@ -5,6 +5,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -27,6 +28,7 @@ public final class TelecineService extends Service {
   @Inject @ShowCountdown Provider<Boolean> showCountdownProvider;
   @Inject @VideoSizePercentage Provider<Integer> videoSizePercentageProvider;
   @Inject @RecordingNotification Provider<Boolean> recordingNotificationProvider;
+  @Inject @ShowTouches Provider<Boolean> showTouchesProvider;
 
   @Inject Analytics analytics;
 
@@ -35,6 +37,10 @@ public final class TelecineService extends Service {
 
   private final RecordingSession.Listener listener = new RecordingSession.Listener() {
     @Override public void onStart() {
+      if(showTouchesProvider.get()) {
+        Settings.System.putInt(TelecineService.this.getContentResolver(), "show_touches", 1);
+      }
+
       if (!recordingNotificationProvider.get()) {
         return; // No running notification was requested.
       }
@@ -56,6 +62,10 @@ public final class TelecineService extends Service {
     }
 
     @Override public void onStop() {
+      if(showTouchesProvider.get()) {
+        Settings.System.putInt(TelecineService.this.getContentResolver(), "show_touches", 0);
+      }
+
       stopForeground(true /* remove notification */);
     }
 
