@@ -72,7 +72,7 @@ android {
 
 dependencies {
   compile 'com.android.support:support-annotations:22.1.1'
-  compile 'com.google.android.gms:play-services-base:6.5.87'
+  compile 'com.google.android.gms:play-services-analytics:7.0.0'
   compile 'com.jakewharton:butterknife:6.1.0'
   compile 'com.jakewharton.timber:timber:2.7.1'
   compile 'com.bugsnag:bugsnag-android:3.2.2'
