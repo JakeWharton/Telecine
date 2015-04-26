@@ -75,7 +75,7 @@ dependencies {
   compile 'com.google.android.gms:play-services-analytics:7.0.0'
   compile 'com.jakewharton:butterknife:6.1.0'
   compile 'com.jakewharton.timber:timber:2.7.1'
-  compile 'com.bugsnag:bugsnag-android:3.2.2'
+  compile 'com.bugsnag:bugsnag-android:3.2.5'
   compile 'com.squareup.dagger:dagger:1.2.2'
   apt 'com.squareup.dagger:dagger-compiler:1.2.2'
   testCompile 'junit:junit:4.12'
