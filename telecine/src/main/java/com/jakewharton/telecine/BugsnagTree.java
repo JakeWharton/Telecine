@@ -10,55 +10,23 @@ import timber.log.Timber;
 /**
  * A logging implementation which buffers the last 200 messages and notifies on error exceptions.
  */
-final class BugsnagTree extends Timber.HollowTree {
+final class BugsnagTree extends Timber.Tree {
   private static final int BUFFER_SIZE = 200;
 
   // Adding one to the initial size accounts for the add before remove.
   private final Deque<String> buffer = new ArrayDeque<>(BUFFER_SIZE + 1);
 
-  @Override public void d(String message, Object... args) {
-    logMessage(Log.DEBUG, message, args);
-  }
-
-  @Override public void d(Throwable t, String message, Object... args) {
-    logMessage(Log.DEBUG, message, args);
-  }
-
-  @Override public void i(String message, Object... args) {
-    logMessage(Log.INFO, message, args);
-  }
-
-  @Override public void i(Throwable t, String message, Object... args) {
-    logMessage(Log.INFO, message, args);
-  }
-
-  @Override public void w(String message, Object... args) {
-    logMessage(Log.WARN, message, args);
-  }
-
-  @Override public void w(Throwable t, String message, Object... args) {
-    logMessage(Log.WARN, message, args);
-  }
-
-  @Override public void e(String message, Object... args) {
-    logMessage(Log.ERROR, message, args);
-  }
-
-  @Override public void e(Throwable t, String message, Object... args) {
-    logMessage(Log.ERROR, message, args);
-    Bugsnag.notify(t);
-  }
-
-  private void logMessage(int priority, String message, Object... args) {
-    if (args.length > 0) {
-      message = String.format(message, args);
-    }
+  @Override
+  protected void log(int priority, String tag, String message, Throwable t) {
     message = System.currentTimeMillis() + " " + priorityToString(priority) + " " + message;
     synchronized (buffer) {
       buffer.addLast(message);
       if (buffer.size() > BUFFER_SIZE) {
         buffer.removeFirst();
       }
+    }
+    if (t != null && priority == Log.ERROR) {
+      Bugsnag.notify(t);
     }
   }
 
