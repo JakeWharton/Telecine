@@ -1,5 +1,6 @@
 package com.jakewharton.telecine;
 
+import android.content.ContentResolver;
 import android.content.SharedPreferences;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
@@ -44,6 +45,10 @@ final class TelecineModule {
     Tracker tracker = googleAnalytics.newTracker(BuildConfig.ANALYTICS_KEY);
     tracker.setSessionTimeout(300); // ms? s? better be s.
     return new Analytics.GoogleAnalytics(tracker);
+  }
+
+  @Provides @Singleton ContentResolver provideContentResolver() {
+    return app.getContentResolver();
   }
 
   @Provides @Singleton SharedPreferences provideSharedPreferences() {

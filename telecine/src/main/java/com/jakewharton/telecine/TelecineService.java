@@ -2,6 +2,7 @@ package com.jakewharton.telecine;
 
 import android.app.Notification;
 import android.app.Service;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
@@ -31,6 +32,7 @@ public final class TelecineService extends Service {
   @Inject @ShowTouches Provider<Boolean> showTouchesProvider;
 
   @Inject Analytics analytics;
+  @Inject ContentResolver contentResolver;
 
   private boolean running;
   private RecordingSession recordingSession;
@@ -38,7 +40,7 @@ public final class TelecineService extends Service {
   private final RecordingSession.Listener listener = new RecordingSession.Listener() {
     @Override public void onStart() {
       if(showTouchesProvider.get()) {
-        Settings.System.putInt(TelecineService.this.getContentResolver(), "show_touches", 1);
+        Settings.System.putInt(contentResolver, "show_touches", 1);
       }
 
       if (!recordingNotificationProvider.get()) {
@@ -63,7 +65,7 @@ public final class TelecineService extends Service {
 
     @Override public void onStop() {
       if(showTouchesProvider.get()) {
-        Settings.System.putInt(TelecineService.this.getContentResolver(), "show_touches", 0);
+        Settings.System.putInt(contentResolver, "show_touches", 0);
       }
 
       stopForeground(true /* remove notification */);
