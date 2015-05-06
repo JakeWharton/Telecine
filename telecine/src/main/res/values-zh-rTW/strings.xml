@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string name="shortcut_name">啟動</string>
+  <string name="clear">清除</string>
+  <string name="record">記錄</string>
+  <string name="countdown_one">1…</string>
+  <string name="countdown_two">2…</string>
+  <string name="countdown_three">3…</string>
+  <string name="launch_overlay">啟動覆蓋</string>
+  <string name="preferences">參數</string>
+  <string name="countdown">三秒倒計時</string>
+  <string name="recents_hide">隱藏最近使用程式</string>
+  <string name="video_size_percentage">視頻尺寸</string>
+  <string name="notification_captured_title">屏幕錄製拍攝.</string>
+  <string name="notification_captured_subtitle">觸摸查看屏幕錄像.</string>
+  <string name="notification_captured_share">分享</string>
+  <string name="notification_recording_title">錄製屏幕中.</string>
+  <string name="notification_recording_subtitle">觸摸時鍾區域停止錄像.</string>
+  <string name="recording_notification">錄像通知</string>
+</resources>
