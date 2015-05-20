@@ -152,7 +152,7 @@ public final class TelecineActivity extends Activity {
 
       analytics.send(new HitBuilders.EventBuilder() //
           .setCategory(Analytics.CATEGORY_SETTINGS)
-          .setAction(Analytics.ACTION_CHANGE_RECORDING_NOTIFICATION)
+          .setAction(Analytics.ACTION_CHANGE_SHOW_TOUCHES)
           .setValue(newValue ? 1 : 0)
           .build());
     }
