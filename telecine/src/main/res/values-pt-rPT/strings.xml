@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="shortcut_name">Iniciar</string>
+  <string name="clear">Limpar</string>
+  <string name="record">Gravar</string>
+  <string name="countdown_one">1…</string>
+  <string name="countdown_two">2…</string>
+  <string name="countdown_three">3…</string>
+  <string name="launch_overlay">Iniciar Gravação</string>
+  <string name="preferences">Configurações</string>
+  <string name="countdown">Contador de três segundos</string>
+  <string name="recents_hide">Ocultar da lista de aplicações recentes</string>
+  <string name="video_size_percentage">Tamanho do vídeo</string>
+  <string name="notification_captured_title">Gravação de ecrã concluída.</string>
+  <string name="notification_captured_subtitle">Toque para visualizar sua gravação do ecrã.</string>
+  <string name="notification_captured_share">Partilhar</string>
+  <string name="notification_recording_title">Gravar o ecrã.</string>
+  <string name="notification_recording_subtitle">Toque na área do relógio para interromper a gravação.</string>
+  <string name="recording_notification">Notificação de Gravação</string>
+</resources>
