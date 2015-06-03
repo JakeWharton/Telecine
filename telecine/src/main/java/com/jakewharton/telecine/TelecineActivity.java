@@ -5,18 +5,21 @@ import android.app.ActivityManager;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.Spinner;
 import android.widget.Switch;
+
+import com.google.android.gms.analytics.HitBuilders;
+
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import butterknife.OnLongClick;
-import com.google.android.gms.analytics.HitBuilders;
-import javax.inject.Inject;
 import timber.log.Timber;
 
 public final class TelecineActivity extends Activity {
@@ -40,8 +43,7 @@ public final class TelecineActivity extends Activity {
 
     Resources res = getResources();
     String taskName = res.getString(R.string.app_name);
-    Bitmap taskIcon =
-        ((BitmapDrawable) res.getDrawable(R.drawable.ic_videocam_white_48dp)).getBitmap();
+    Bitmap taskIcon = BitmapFactory.decodeResource(res, R.drawable.ic_videocam_white_48dp);
     int taskColor = res.getColor(R.color.primary_normal);
     setTaskDescription(new ActivityManager.TaskDescription(taskName, taskIcon, taskColor));
 
