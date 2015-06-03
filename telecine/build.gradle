@@ -6,7 +6,7 @@ def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 buildscript {
   dependencies {
-    classpath 'com.android.tools.build:gradle:1.1.0'
+    classpath 'com.android.tools.build:gradle:1.2.3'
     classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
   }
 }
@@ -71,8 +71,8 @@ android {
 }
 
 dependencies {
-  compile 'com.android.support:support-annotations:22.1.1'
-  compile 'com.google.android.gms:play-services-analytics:7.0.0'
+  compile 'com.android.support:support-annotations:22.2.0'
+  compile 'com.google.android.gms:play-services-analytics:7.5.0'
   compile 'com.jakewharton:butterknife:6.1.0'
   compile 'com.jakewharton.timber:timber:3.0.1'
   compile 'com.bugsnag:bugsnag-android:3.2.5'
