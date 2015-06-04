@@ -18,6 +18,7 @@ public final class TelecineService extends Service {
   private static final String EXTRA_RESULT_CODE = "result-code";
   private static final String EXTRA_DATA = "data";
   private static final int NOTIFICATION_ID = 99118822;
+  private static final String SHOW_TOUCHES = "show_touches";
 
   public static Intent newIntent(Context context, int resultCode, Intent data) {
     Intent intent = new Intent(context, TelecineService.class);
@@ -39,8 +40,8 @@ public final class TelecineService extends Service {
 
   private final RecordingSession.Listener listener = new RecordingSession.Listener() {
     @Override public void onStart() {
-      if(showTouchesProvider.get()) {
-        Settings.System.putInt(contentResolver, "show_touches", 1);
+      if (showTouchesProvider.get()) {
+        Settings.System.putInt(contentResolver, SHOW_TOUCHES, 1);
       }
 
       if (!recordingNotificationProvider.get()) {
@@ -64,8 +65,8 @@ public final class TelecineService extends Service {
     }
 
     @Override public void onStop() {
-      if(showTouchesProvider.get()) {
-        Settings.System.putInt(contentResolver, "show_touches", 0);
+      if (showTouchesProvider.get()) {
+        Settings.System.putInt(contentResolver, SHOW_TOUCHES, 0);
       }
 
       stopForeground(true /* remove notification */);
