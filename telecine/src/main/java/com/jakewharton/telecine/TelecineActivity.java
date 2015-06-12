@@ -146,7 +146,7 @@ public final class TelecineActivity extends Activity {
   @OnCheckedChanged(R.id.switch_show_touches) void onShowTouchesChanged() {
     boolean newValue = showTouchesView.isChecked();
     boolean oldValue = showTouchesPreference.get();
-    if(newValue != oldValue) {
+    if (newValue != oldValue) {
       Timber.d("Show touches preference changing to %s", newValue);
       showTouchesPreference.set(newValue);
 
