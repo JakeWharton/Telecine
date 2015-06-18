@@ -1,8 +1,8 @@
 package com.jakewharton.telecine;
 
 import android.util.Log;
-import com.bugsnag.android.Error;
 import com.bugsnag.android.Bugsnag;
+import com.bugsnag.android.Error;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import timber.log.Timber;

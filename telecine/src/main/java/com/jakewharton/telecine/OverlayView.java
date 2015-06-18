@@ -137,14 +137,7 @@ final class OverlayView extends FrameLayout {
         if (showCountDown) {
           showCountDown();
         } else {
-          recordingView.animate()
-              .alpha(0)
-              .setDuration(NON_COUNTDOWN_DELAY)
-              .withEndAction(new Runnable() {
-                @Override public void run() {
-                  startRecording();
-                }
-              });
+          countdownComplete();
         }
       }
     }, showCountDown ? COUNTDOWN_DELAY : NON_COUNTDOWN_DELAY);
@@ -162,23 +155,30 @@ final class OverlayView extends FrameLayout {
   }
 
   private void showCountDown() {
-    recordingView.setText(R.string.countdown_three);
+    String[] countdown = getResources().getStringArray(R.array.countdown);
+    countdown(countdown, 0); // array resource must not be empty
+  }
+
+  private void countdownComplete() {
+    recordingView.animate()
+        .alpha(0)
+        .setDuration(COUNTDOWN_DELAY)
+        .withEndAction(new Runnable() {
+          @Override public void run() {
+            startRecording();
+          }
+        });
+  }
+
+  private void countdown(final String[] countdownArr, final int index) {
     postDelayed(new Runnable() {
       @Override public void run() {
-        recordingView.setText(R.string.countdown_two);
-        postDelayed(new Runnable() {
-          @Override public void run() {
-            recordingView.setText(R.string.countdown_one);
-            recordingView.animate()
-                .alpha(0)
-                .setDuration(COUNTDOWN_DELAY)
-                .withEndAction(new Runnable() {
-                  @Override public void run() {
-                    startRecording();
-                  }
-                });
-          }
-        }, COUNTDOWN_DELAY);
+        recordingView.setText(countdownArr[index]);
+        if (index < countdownArr.length - 1) {
+          countdown(countdownArr, index + 1);
+        } else {
+          countdownComplete();
+        }
       }
     }, COUNTDOWN_DELAY);
   }
