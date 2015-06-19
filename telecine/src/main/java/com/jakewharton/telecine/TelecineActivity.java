@@ -9,17 +9,14 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.Spinner;
 import android.widget.Switch;
-
-import com.google.android.gms.analytics.HitBuilders;
-
-import javax.inject.Inject;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import butterknife.OnLongClick;
+import com.google.android.gms.analytics.HitBuilders;
+import javax.inject.Inject;
 import timber.log.Timber;
 
 public final class TelecineActivity extends Activity {
