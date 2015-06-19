@@ -182,7 +182,7 @@ final class RecordingSession {
   private void startRecording() {
     Timber.d("Starting screen recording...");
 
-    if (outputRoot.mkdirs()) {
+    if (!outputRoot.mkdirs()) {
       Timber.e("Unable to create output directory '%s'.", outputRoot.getAbsolutePath());
       // We're probably about to crash, but at least the log will indicate as to why.
     }
