@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.View;
@@ -19,6 +20,7 @@ import butterknife.OnClick;
 import java.util.Locale;
 
 import static android.graphics.PixelFormat.TRANSLUCENT;
+import static android.os.Build.VERSION_CODES.LOLLIPOP_MR1;
 import static android.text.TextUtils.getLayoutDirectionFromLocale;
 import static android.view.ViewAnimationUtils.createCircularReveal;
 import static android.view.WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
@@ -42,6 +44,11 @@ final class OverlayView extends FrameLayout {
     Resources res = context.getResources();
     int width = res.getDimensionPixelSize(R.dimen.overlay_width);
     int height = res.getDimensionPixelSize(R.dimen.overlay_height);
+    // TODO Remove explicit "M" comparison when M is released.
+    if (Build.VERSION.SDK_INT > LOLLIPOP_MR1 || "M".equals(Build.VERSION.RELEASE)) {
+      height = res.getDimensionPixelSize(R.dimen.overlay_height_m);
+    }
+
     final WindowManager.LayoutParams params =
         new WindowManager.LayoutParams(width, height, TYPE_SYSTEM_ERROR, FLAG_NOT_FOCUSABLE
             | FLAG_NOT_TOUCH_MODAL
