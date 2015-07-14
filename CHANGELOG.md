@@ -1,6 +1,22 @@
 Change Log
 ==========
 
+1.3.0 *(2015-07-14)*
+--------------------
+
+Public:
+
+ * Option for enabling "Show Touches" feature which places white dots on the recording for screen
+   interactions.
+ * Translations for FR, PT, ZH.
+
+
+Internal:
+
+ * Alter height on M preview to be 24dp to match new status bar height.
+ * Correct log when unable to create output dir to actually log when unable.
+
+
 1.2.0 *(2015-02-24)*
 --------------------
 
