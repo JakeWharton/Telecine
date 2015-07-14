@@ -1,5 +1,6 @@
 package com.jakewharton.telecine;
 
+import android.content.ContentResolver;
 import android.content.SharedPreferences;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
@@ -21,6 +22,7 @@ final class TelecineModule {
   private static final String PREFERENCES_NAME = "telecine";
   private static final boolean DEFAULT_SHOW_COUNTDOWN = true;
   private static final boolean DEFAULT_HIDE_FROM_RECENTS = false;
+  private static final boolean DEFAULT_SHOW_TOUCHES = false;
   private static final boolean DEFAULT_RECORDING_NOTIFICATION = false;
   private static final int DEFAULT_VIDEO_SIZE_PERCENTAGE = 100;
 
@@ -43,6 +45,10 @@ final class TelecineModule {
     Tracker tracker = googleAnalytics.newTracker(BuildConfig.ANALYTICS_KEY);
     tracker.setSessionTimeout(300); // ms? s? better be s.
     return new Analytics.GoogleAnalytics(tracker);
+  }
+
+  @Provides @Singleton ContentResolver provideContentResolver() {
+    return app.getContentResolver();
   }
 
   @Provides @Singleton SharedPreferences provideSharedPreferences() {
@@ -71,6 +77,15 @@ final class TelecineModule {
   @Provides @Singleton @HideFromRecents BooleanPreference provideHideFromRecentsPreference(
       SharedPreferences prefs) {
     return new BooleanPreference(prefs, "hide-from-recents", DEFAULT_HIDE_FROM_RECENTS);
+  }
+
+  @Provides @Singleton @ShowTouches BooleanPreference provideShowTouchesPreference(
+      SharedPreferences prefs) {
+    return new BooleanPreference(prefs, "show-touches", DEFAULT_SHOW_TOUCHES);
+  }
+
+  @Provides @ShowTouches Boolean provideShowTouches(@ShowTouches BooleanPreference pref) {
+    return pref.get();
   }
 
   @Provides @Singleton @VideoSizePercentage IntPreference provideVideoSizePercentagePreference(

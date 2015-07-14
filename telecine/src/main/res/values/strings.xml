@@ -21,6 +21,7 @@
   <string name="notification_recording_title">Recording screen.</string>
   <string name="notification_recording_subtitle">Touch the clock area to stop recording.</string>
   <string name="recording_notification">Recording Notification</string>
+  <string name="show_touches">Show Touches</string>
 
   <array name="countdown">
     <item>@string/countdown_three</item>
