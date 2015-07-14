@@ -14,8 +14,9 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import butterknife.Bind;
+import butterknife.BindDimen;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 import java.util.Locale;
 
@@ -80,29 +81,29 @@ final class OverlayView extends FrameLayout {
     void onStop();
   }
 
-  @InjectView(R.id.record_overlay_buttons) View buttonsView;
-  @InjectView(R.id.record_overlay_cancel) View cancelView;
-  @InjectView(R.id.record_overlay_start) View startView;
-  @InjectView(R.id.record_overlay_stop) View stopView;
-  @InjectView(R.id.record_overlay_recording) TextView recordingView;
+  @Bind(R.id.record_overlay_buttons) View buttonsView;
+  @Bind(R.id.record_overlay_cancel) View cancelView;
+  @Bind(R.id.record_overlay_start) View startView;
+  @Bind(R.id.record_overlay_stop) View stopView;
+  @Bind(R.id.record_overlay_recording) TextView recordingView;
+
+  @BindDimen(R.dimen.overlay_width) int animationWidth;
 
   private final Listener listener;
   private final boolean showCountDown;
-  private final int animationWidth;
 
   private OverlayView(Context context, Listener listener, boolean showCountDown) {
     super(context);
     this.listener = listener;
     this.showCountDown = showCountDown;
 
-    int width = getResources().getDimensionPixelSize(R.dimen.overlay_width);
-    if (getLayoutDirectionFromLocale(Locale.getDefault()) == LAYOUT_DIRECTION_RTL) {
-      width = -width; // Account for animating in from the other side of the screen.
-    }
-    animationWidth = width;
-
     inflate(context, R.layout.overlay_view, this);
-    ButterKnife.inject(this);
+    ButterKnife.bind(this);
+
+    if (getLayoutDirectionFromLocale(Locale.getDefault()) == LAYOUT_DIRECTION_RTL) {
+      animationWidth = -animationWidth; // Account for animating in from the other side of screen.
+    }
+
     CheatSheet.setup(cancelView);
     CheatSheet.setup(startView);
   }

@@ -9,8 +9,10 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.Spinner;
 import android.widget.Switch;
+import butterknife.Bind;
+import butterknife.BindColor;
+import butterknife.BindString;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
@@ -20,11 +22,14 @@ import javax.inject.Inject;
 import timber.log.Timber;
 
 public final class TelecineActivity extends Activity {
-  @InjectView(R.id.spinner_video_size_percentage) Spinner videoSizePercentageView;
-  @InjectView(R.id.switch_show_countdown) Switch showCountdownView;
-  @InjectView(R.id.switch_hide_from_recents) Switch hideFromRecentsView;
-  @InjectView(R.id.switch_recording_notification) Switch recordingNotificationView;
-  @InjectView(R.id.switch_show_touches) Switch showTouchesView;
+  @Bind(R.id.spinner_video_size_percentage) Spinner videoSizePercentageView;
+  @Bind(R.id.switch_show_countdown) Switch showCountdownView;
+  @Bind(R.id.switch_hide_from_recents) Switch hideFromRecentsView;
+  @Bind(R.id.switch_recording_notification) Switch recordingNotificationView;
+  @Bind(R.id.switch_show_touches) Switch showTouchesView;
+
+  @BindString(R.string.app_name) String appName;
+  @BindColor(R.color.primary_normal) int primaryNormal;
 
   @Inject @VideoSizePercentage IntPreference videoSizePreference;
   @Inject @ShowCountdown BooleanPreference showCountdownPreference;
@@ -40,16 +45,14 @@ public final class TelecineActivity extends Activity {
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    Resources res = getResources();
-    String taskName = res.getString(R.string.app_name);
-    Bitmap taskIcon = BitmapFactory.decodeResource(res, R.drawable.ic_videocam_white_48dp);
-    int taskColor = res.getColor(R.color.primary_normal);
-    setTaskDescription(new ActivityManager.TaskDescription(taskName, taskIcon, taskColor));
-
     ((TelecineApplication) getApplication()).inject(this);
 
     setContentView(R.layout.activity_main);
-    ButterKnife.inject(this);
+    ButterKnife.bind(this);
+
+    Resources res = getResources();
+    Bitmap taskIcon = BitmapFactory.decodeResource(res, R.drawable.ic_videocam_white_48dp);
+    setTaskDescription(new ActivityManager.TaskDescription(appName, taskIcon, primaryNormal));
 
     videoSizePercentageAdapter = new VideoSizePercentageAdapter(this);
 
