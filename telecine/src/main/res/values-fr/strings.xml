@@ -2,8 +2,8 @@
 <resources>
   <string name="countdown">Compte à rebours de 3 secondes</string>
   <string name="countdown_one">1…</string>
-  <string name="countdown_three">2…</string>
-  <string name="countdown_two">3…</string>
+  <string name="countdown_two">2…</string>
+  <string name="countdown_three">3…</string>
   <string name="notification_captured_share">Partager</string>
   <string name="notification_captured_subtitle">Appuyez pour voir votre enregistrement.</string>
   <string name="notification_captured_title">Capture vidéo de l\'écran réussie.</string>
