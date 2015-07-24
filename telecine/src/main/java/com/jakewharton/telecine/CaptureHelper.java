@@ -33,11 +33,11 @@ final class CaptureHelper {
       return false;
     }
 
-    if (resultCode == 0) {
-      Timber.d("Failed to acquire permission to screen capture.");
-    } else {
+    if (resultCode == Activity.RESULT_OK) {
       Timber.d("Acquired permission to screen capture. Starting service.");
       activity.startService(TelecineService.newIntent(activity, resultCode, data));
+    } else {
+      Timber.d("Failed to acquire permission to screen capture.");
     }
 
     analytics.send(new HitBuilders.EventBuilder() //
