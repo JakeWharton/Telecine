@@ -3,6 +3,8 @@ package com.jakewharton.telecine;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -48,15 +50,18 @@ import static android.media.MediaRecorder.VideoSource.SURFACE;
 import static android.os.Environment.DIRECTORY_MOVIES;
 
 final class RecordingSession {
+  static final int NOTIFICATION_ID = 522592;
+
   private static final String DISPLAY_NAME = "telecine";
-  private static final int NOTIFICATION_ID = 522592;
   private static final String MIME_TYPE = "video/mp4";
 
   interface Listener {
     /** Invoked immediately prior to the start of recording. */
     void onStart();
+
     /** Invoked immediately after the end of recording. */
     void onStop();
+
     /** Invoked after all work for this session has completed. */
     void onEnd();
   }
@@ -127,7 +132,9 @@ final class RecordingSession {
     windowManager.addView(overlayView, OverlayView.createLayoutParams(context));
 
     analytics.send(new HitBuilders.EventBuilder() //
-        .setCategory(Analytics.CATEGORY_RECORDING).setAction(Analytics.ACTION_OVERLAY_SHOW).build());
+        .setCategory(Analytics.CATEGORY_RECORDING)
+        .setAction(Analytics.ACTION_OVERLAY_SHOW)
+        .build());
   }
 
   private void hideOverlay() {
@@ -213,8 +220,9 @@ final class RecordingSession {
     projection = projectionManager.getMediaProjection(resultCode, data);
 
     Surface surface = recorder.getSurface();
-    display = projection.createVirtualDisplay(DISPLAY_NAME, recordingInfo.width, recordingInfo.height,
-        recordingInfo.density, VIRTUAL_DISPLAY_FLAG_PRESENTATION, surface, null, null);
+    display =
+        projection.createVirtualDisplay(DISPLAY_NAME, recordingInfo.width, recordingInfo.height,
+            recordingInfo.density, VIRTUAL_DISPLAY_FLAG_PRESENTATION, surface, null, null);
 
     recorder.start();
     running = true;
@@ -286,9 +294,14 @@ final class RecordingSession {
     shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
     PendingIntent pendingShareIntent = PendingIntent.getActivity(context, 0, shareIntent, 0);
 
-    String title = context.getString(R.string.notification_captured_title);
-    String subtitle = context.getString(R.string.notification_captured_subtitle);
-    String share = context.getString(R.string.notification_captured_share);
+    Intent deleteIntent = new Intent(context, DeleteRecordingBroadcastReceiver.class);
+    deleteIntent.setData(uri);
+    PendingIntent pendingDeleteIntent = PendingIntent.getBroadcast(context, 0, deleteIntent, 0);
+
+    CharSequence title = context.getText(R.string.notification_captured_title);
+    CharSequence subtitle = context.getText(R.string.notification_captured_subtitle);
+    CharSequence share = context.getText(R.string.notification_captured_share);
+    CharSequence delete = context.getText(R.string.notification_captured_delete);
     Notification.Builder builder = new Notification.Builder(context) //
         .setContentTitle(title)
         .setContentText(subtitle)
@@ -298,13 +311,14 @@ final class RecordingSession {
         .setColor(context.getResources().getColor(R.color.primary_normal))
         .setContentIntent(pendingViewIntent)
         .setAutoCancel(true)
-        .addAction(R.drawable.ic_share_white_24dp, share, pendingShareIntent);
+        .addAction(R.drawable.ic_share_white_24dp, share, pendingShareIntent)
+        .addAction(R.drawable.ic_delete_white_24dp, delete, pendingDeleteIntent);
 
     if (bitmap != null) {
-      builder.setLargeIcon(createSquareBitmap(bitmap)) //
+      builder.setLargeIcon(createSquareBitmap(bitmap))
           .setStyle(new Notification.BigPictureStyle() //
-              .setBigContentTitle(title)
-              .setSummaryText(subtitle)
+              .setBigContentTitle(title) //
+              .setSummaryText(subtitle) //
               .bigPicture(bitmap));
     }
 
@@ -393,6 +407,28 @@ final class RecordingSession {
     if (running) {
       Timber.w("Destroyed while running!");
       stopRecording();
+    }
+  }
+
+  public static final class DeleteRecordingBroadcastReceiver extends BroadcastReceiver {
+
+    @Override public void onReceive(Context context, Intent intent) {
+      NotificationManager notificationManager =
+              (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+      notificationManager.cancel(NOTIFICATION_ID);
+      final Uri uri = intent.getData();
+      final ContentResolver contentResolver = context.getContentResolver();
+      new AsyncTask<Void, Void, Void>() {
+        @Override protected Void doInBackground(@NonNull Void... none) {
+          int rowsDeleted = contentResolver.delete(uri, null, null);
+          if (rowsDeleted == 1) {
+            Timber.i("Deleted recording.");
+          } else {
+            Timber.e("Error deleting recording.");
+          }
+          return null;
+        }
+      }.execute();
     }
   }
 }

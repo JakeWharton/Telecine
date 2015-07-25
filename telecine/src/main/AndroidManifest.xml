@@ -28,6 +28,8 @@
 
     <service android:name=".TelecineService"/>
 
+    <receiver android:name=".RecordingSession$DeleteRecordingBroadcastReceiver"/>
+
     <activity
         android:name=".TelecineShortcutConfigureActivity"
         android:theme="@style/Theme.Telecine.Transparent"

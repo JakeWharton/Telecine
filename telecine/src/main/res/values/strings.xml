@@ -18,6 +18,7 @@
   <string name="notification_captured_title">Screen recording captured.</string>
   <string name="notification_captured_subtitle">Touch to view your screen recording.</string>
   <string name="notification_captured_share">Share</string>
+  <string name="notification_captured_delete">Delete</string>
   <string name="notification_recording_title">Recording screen.</string>
   <string name="notification_recording_subtitle">Touch the clock area to stop recording.</string>
   <string name="recording_notification">Recording Notification</string>
