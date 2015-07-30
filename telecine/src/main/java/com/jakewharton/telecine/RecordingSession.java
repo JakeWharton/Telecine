@@ -292,6 +292,7 @@ final class RecordingSession {
     Intent shareIntent = new Intent(ACTION_SEND);
     shareIntent.setType(MIME_TYPE);
     shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+    shareIntent = Intent.createChooser(shareIntent, null);
     PendingIntent pendingShareIntent = PendingIntent.getActivity(context, 0, shareIntent, 0);
 
     Intent deleteIntent = new Intent(context, DeleteRecordingBroadcastReceiver.class);
@@ -414,7 +415,7 @@ final class RecordingSession {
 
     @Override public void onReceive(Context context, Intent intent) {
       NotificationManager notificationManager =
-              (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+          (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
       notificationManager.cancel(NOTIFICATION_ID);
       final Uri uri = intent.getData();
       final ContentResolver contentResolver = context.getContentResolver();
