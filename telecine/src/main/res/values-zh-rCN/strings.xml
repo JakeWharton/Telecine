@@ -7,7 +7,7 @@
   <string name="countdown_one">1…</string>
   <string name="countdown_two">2…</string>
   <string name="countdown_three">3…</string>
-  <string name="launch_overlay">启动覆盖</string>
+  <string name="launch_overlay">准备录制</string>
   <string name="preferences">参数</string>
   <string name="countdown">三秒倒计时</string>
   <string name="recents_hide">隐藏最近使用程序</string>
@@ -16,6 +16,7 @@
   <string name="notification_captured_subtitle">触摸查看屏幕录像.</string>
   <string name="notification_captured_share">分享</string>
   <string name="notification_recording_title">录制屏幕中.</string>
-  <string name="notification_recording_subtitle">触摸时钟区域停止录像.</string>
+  <string name="notification_recording_subtitle">触摸右上角停止录像.</string>
   <string name="recording_notification">录像通知</string>
+  <string name="show_touches">显示触摸区域</string>
 </resources>
