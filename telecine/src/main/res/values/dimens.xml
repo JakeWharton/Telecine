@@ -4,4 +4,5 @@
   <dimen name="overlay_height">25dp</dimen>
   <!-- TODO move to values-23/ as overlay_height overload when M is released. -->
   <dimen name="overlay_height_m">24dp</dimen>
+  <dimen name="preference_height">48dp</dimen>
 </resources>
