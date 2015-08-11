@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="shortcut_name">Inicia</string>
+    <string name="clear">Despejar</string>
+    <string name="record">Grabar</string>
+    <string name="launch_overlay">Inicia superposición</string>
+    <string name="preferences">Preferencias</string>
+    <string name="countdown">Cuenta atrás de 3 segundos</string>
+    <string name="recents_hide">Oculta de los aplicaciones recientes</string>
+    <string name="video_size_percentage">Tamaño del vídeo</string>
+    <string name="notification_captured_title">Sucedió captura de vídeo de pantalla.</string>
+    <string name="notification_captured_subtitle">Toque para ver su grabación.</string>
+    <string name="notification_captured_share">Compartir</string>
+    <string name="notification_captured_delete">Borrar</string>
+    <string name="notification_recording_title">La pantalla de grabación.</string>
+    <string name="notification_recording_subtitle">Toque el reloj para detener la grabación.</string>
+    <string name="recording_notification">Notificación de grabación</string>
+    <string name="show_touches">Mostrar Toques</string>
+</resources>
