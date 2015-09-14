@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="clear">Убрать</string>
+  <string name="countdown">Обратный отсчет (3 сек)</string>
+  <string name="countdown_one">1…</string>
+  <string name="countdown_two">2…</string>
+  <string name="countdown_three">3…</string>
+  <string name="launch_overlay">Запустить в области уведомлений</string>
+  <string name="notification_captured_share">Поделиться</string>
+  <string name="notification_captured_subtitle">Нажмите, чтобы просмотреть видео.</string>
+  <string name="notification_captured_title">Запись экрана завершена.</string>
+  <string name="notification_recording_subtitle">Нажмите на часы, чтобы остановить запись.</string>
+  <string name="notification_recording_title">Идет запись экрана.</string>
+  <string name="notification_captured_delete">Удалить</string>
+  <string name="preferences">Настройки</string>
+  <string name="recents_hide">Не показывать в недавних приложениях</string>
+  <string name="record">Запись</string>
+  <string name="recording_notification">Уведомление о записи экрана</string>
+  <string name="shortcut_name">Начать запись</string>
+  <string name="show_touches">Показывать нажатия на экран</string>
+  <string name="video_size_percentage">Размер видео</string>
+</resources>
