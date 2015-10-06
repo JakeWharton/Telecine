@@ -177,13 +177,14 @@ final class RecordingSession {
     CamcorderProfile camcorderProfile = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH);
     int cameraWidth = camcorderProfile != null ? camcorderProfile.videoFrameWidth : -1;
     int cameraHeight = camcorderProfile != null ? camcorderProfile.videoFrameHeight : -1;
-    Timber.d("Camera size: %s x %s", cameraWidth, cameraHeight);
+    int cameraFrameRate = camcorderProfile != null ? camcorderProfile.videoFrameRate : 30;
+    Timber.d("Camera size: %s x %s framerate: %s", cameraWidth, cameraHeight, cameraFrameRate);
 
     int sizePercentage = videoSizePercentage.get();
     Timber.d("Size percentage: %s", sizePercentage);
 
     return calculateRecordingInfo(displayWidth, displayHeight, displayDensity, isLandscape,
-        cameraWidth, cameraHeight, sizePercentage);
+        cameraWidth, cameraHeight, cameraFrameRate, sizePercentage);
   }
 
   private void startRecording() {
@@ -201,7 +202,7 @@ final class RecordingSession {
     recorder = new MediaRecorder();
     recorder.setVideoSource(SURFACE);
     recorder.setOutputFormat(MPEG_4);
-    recorder.setVideoFrameRate(30);
+    recorder.setVideoFrameRate(recordingInfo.frameRate);
     recorder.setVideoEncoder(H264);
     recorder.setVideoSize(recordingInfo.width, recordingInfo.height);
     recorder.setVideoEncodingBitRate(8 * 1000 * 1000);
@@ -349,21 +350,21 @@ final class RecordingSession {
 
   static RecordingInfo calculateRecordingInfo(int displayWidth, int displayHeight,
       int displayDensity, boolean isLandscapeDevice, int cameraWidth, int cameraHeight,
-      int sizePercentage) {
+      int cameraFrameRate, int sizePercentage) {
     // Scale the display size before any maximum size calculations.
     displayWidth = displayWidth * sizePercentage / 100;
     displayHeight = displayHeight * sizePercentage / 100;
 
     if (cameraWidth == -1 && cameraHeight == -1) {
       // No cameras. Fall back to the display size.
-      return new RecordingInfo(displayWidth, displayHeight, displayDensity);
+      return new RecordingInfo(displayWidth, displayHeight, cameraFrameRate, displayDensity);
     }
 
     int frameWidth = isLandscapeDevice ? cameraWidth : cameraHeight;
     int frameHeight = isLandscapeDevice ? cameraHeight : cameraWidth;
     if (frameWidth >= displayWidth && frameHeight >= displayHeight) {
       // Frame can hold the entire display. Use exact values.
-      return new RecordingInfo(displayWidth, displayHeight, displayDensity);
+      return new RecordingInfo(displayWidth, displayHeight, cameraFrameRate, displayDensity);
     }
 
     // Calculate new width or height to preserve aspect ratio.
@@ -372,17 +373,19 @@ final class RecordingSession {
     } else {
       frameHeight = displayHeight * frameWidth / displayWidth;
     }
-    return new RecordingInfo(frameWidth, frameHeight, displayDensity);
+    return new RecordingInfo(frameWidth, frameHeight, cameraFrameRate, displayDensity);
   }
 
   static final class RecordingInfo {
     final int width;
     final int height;
+    final int frameRate;
     final int density;
 
-    RecordingInfo(int width, int height, int density) {
+    RecordingInfo(int width, int height, int frameRate, int density) {
       this.width = width;
       this.height = height;
+      this.frameRate = frameRate;
       this.density = density;
     }
   }
