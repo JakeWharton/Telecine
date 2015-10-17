@@ -21,12 +21,12 @@ Release
 
  3. Commit with `git commit -am "Prepare version X.Y.Z."` replacing 'X.Y.Z' with the version number.
 
- 4. Create an annotated tag with `git tag -a X.Y.X -m "Version X.Y.Z"` replacing 'X.Y.Z' with the
+ 4. Run `./release.sh /path/to/your.keystore`. Enter your password when prompted.
+
+ 5. Create an annotated tag with `git tag -a X.Y.X -m "Version X.Y.Z"` replacing 'X.Y.Z' with the
     version number.
 
- 5. Push. Push tags (`git push --tags`).
-
- 6. Run `./release.sh /path/to/your.keystore`. Enter your password when prompted.
+ 6. Push. Push tags (`git push --tags`).
 
  7. Install the release APK.
 

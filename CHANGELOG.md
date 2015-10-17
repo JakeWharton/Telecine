@@ -1,6 +1,20 @@
 Change Log
 ==========
 
+1.4.0 *(2015-10-17)*
+--------------------
+
+Public:
+
+ * Added "Delete" option to recording completed notification.
+ * Ensure an application chooser is always shown when sharing from the recording completed notification.
+ * Translations for ES, RU, ZH (China)
+
+Internal:
+
+ * Use the camera framerate for the MediaRecorder.
+
+
 1.3.0 *(2015-07-14)*
 --------------------
 
