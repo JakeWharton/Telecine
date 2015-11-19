@@ -37,6 +37,7 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Provider;
 import timber.log.Timber;
 
+import static android.app.PendingIntent.FLAG_CANCEL_CURRENT;
 import static android.content.Context.MEDIA_PROJECTION_SERVICE;
 import static android.content.Context.NOTIFICATION_SERVICE;
 import static android.content.Context.WINDOW_SERVICE;
@@ -288,17 +289,20 @@ final class RecordingSession {
 
   private void showNotification(final Uri uri, Bitmap bitmap) {
     Intent viewIntent = new Intent(ACTION_VIEW, uri);
-    PendingIntent pendingViewIntent = PendingIntent.getActivity(context, 0, viewIntent, 0);
+    PendingIntent pendingViewIntent =
+        PendingIntent.getActivity(context, 0, viewIntent, FLAG_CANCEL_CURRENT);
 
     Intent shareIntent = new Intent(ACTION_SEND);
     shareIntent.setType(MIME_TYPE);
     shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
     shareIntent = Intent.createChooser(shareIntent, null);
-    PendingIntent pendingShareIntent = PendingIntent.getActivity(context, 0, shareIntent, 0);
+    PendingIntent pendingShareIntent =
+        PendingIntent.getActivity(context, 0, shareIntent, FLAG_CANCEL_CURRENT);
 
     Intent deleteIntent = new Intent(context, DeleteRecordingBroadcastReceiver.class);
     deleteIntent.setData(uri);
-    PendingIntent pendingDeleteIntent = PendingIntent.getBroadcast(context, 0, deleteIntent, 0);
+    PendingIntent pendingDeleteIntent =
+        PendingIntent.getBroadcast(context, 0, deleteIntent, FLAG_CANCEL_CURRENT);
 
     CharSequence title = context.getText(R.string.notification_captured_title);
     CharSequence subtitle = context.getText(R.string.notification_captured_subtitle);
