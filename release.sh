@@ -22,6 +22,6 @@ $REPO_DIR/gradlew -p "$REPO_DIR" clean assemble -Dpre-dex=false
 
 jarsigner -sigalg SHA1withRSA -digestalg SHA1 -sigfile CERT -keystore "$1" -signedjar "$UNALIGNED" "$UNSIGNED" jakewharton
 
-$ANDROID_HOME/build-tools/21.0.0/zipalign 4 "$UNALIGNED" "$FINAL"
+$ANDROID_HOME/build-tools/23.0.2/zipalign 4 "$UNALIGNED" "$FINAL"
 
 open "$REPO_DIR/telecine/build/outputs/apk"
