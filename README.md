@@ -1,6 +1,6 @@
 [![Telecine](art/feature.png)][1]
 
-[![Get it on Google Play](art/en_generic_rgb_wo_60.png)][1]
+[![Get it on Google Play](art/en-play-badge.png)][1]
 
 
 
