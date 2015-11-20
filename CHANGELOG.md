@@ -1,6 +1,16 @@
 Change Log
 ==========
 
+1.5.0 *(2015-11-20)*
+--------------------
+
+Public:
+
+ * New icon! Thanks to Victor Stuber for donating his time to creating it.
+ * Fix notification share/delete acting on the wrong recording when multiple recordings were taken one
+   after the other.
+
+
 1.4.0 *(2015-10-17)*
 --------------------
 
