@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
-  <string name="countdown">Compte à rebours de 3 secondes</string>
+  <string name="shortcut_name">Lancer</string>
+  <string name="clear">Effacer</string>
+  <string name="record">Enregistrer</string>
   <string name="countdown_one">1…</string>
   <string name="countdown_two">2…</string>
   <string name="countdown_three">3…</string>
-  <string name="notification_captured_share">Partager</string>
-  <string name="notification_captured_subtitle">Appuyez pour voir votre enregistrement.</string>
-  <string name="notification_captured_title">Capture vidéo de l\'écran réussie.</string>
-  <string name="notification_recording_subtitle">Touchez l\'horloge pour arrêter l\'enregistrement.</string>
-  <string name="notification_recording_title">Capture de l\'écran en cours.</string>
+  <string name="launch_overlay">Lancer le calque</string>
   <string name="preferences">Paramètres</string>
-  <string name="recents_hide">Ne pas afficher dans les applications récentes</string>
-  <string name="clear">XXXXXX</string>
-  <string name="record">Enregistrement</string>
-  <string name="recording_notification">Notification d\'enregistrement</string>
-  <string name="launch_overlay">Activer le calque</string>
-  <string name="shortcut_name">Lancer en debug</string>
+  <string name="countdown">Compte à rebours de 3 secondes</string>
+  <string name="recents_hide">Masquer dans les applications récentes</string>
   <string name="video_size_percentage">Taille de la vidéo</string>
+  <string name="notification_captured_title">Capture d\'écran vidéo réussie.</string>
+  <string name="notification_captured_subtitle">Appuyez pour afficher votre capture d\'écran vidéo.</string>  
+  <string name="notification_captured_share">Partager</string>
+  <string name="notification_captured_delete">Supprimer</string>
+  <string name="notification_recording_title">Capture d\'écran vidéo en cours.</string>  
+  <string name="notification_recording_subtitle">Appuyez sur la zone de l\'horloge pour arrêter.</string>
+  <string name="recording_notification">Notification d\'enregistrement</string>
+  <string name="show_touches">Afficher les appuis</string>
 </resources>
