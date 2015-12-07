@@ -17,4 +17,6 @@
   <string name="notification_recording_title">Gravar o ecrã.</string>
   <string name="notification_recording_subtitle">Toque na área do relógio para interromper a gravação.</string>
   <string name="recording_notification">Notificação de Gravação</string>
+  <string name="show_touches">Apresentar toques</string>
+  <string name="notification_captured_delete">Apagar</string>
 </resources>
