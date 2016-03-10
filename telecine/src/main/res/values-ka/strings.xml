@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="shortcut_name">ჩაწერის დაწყება</string>
+    <string name="clear">წაშლა</string>
+    <string name="record">ჩაწერა</string>
+    <string name="launch_overlay">ჩაწერის დაწყება ფონურ რეჟიმში</string>
+    <string name="preferences">პარამეტრები</string>
+    <string name="countdown">უკუთვლა (3 წამი)</string>
+    <string name="recents_hide">დაიმალოს უახლესი პროგრამების სიაში</string>
+    <string name="video_size_percentage">ვიდეოს ზომა</string>
+    <string name="notification_captured_title">ეკრანის ჩაწერა დასრულებულია.</string>
+    <string name="notification_captured_subtitle">დააჭირეთ, რომ ნახოთ ვიდეო.</string>
+    <string name="notification_captured_share">გაზიარება</string>
+    <string name="notification_captured_delete">წაშლა</string>
+    <string name="notification_recording_title">მიმდინარეობს ეკრანის ჩაწერა.</string>
+    <string name="notification_recording_subtitle">ჩაწერის შესაწყვეტად დააჭირეთ დროის ღილაკს</string>
+    <string name="recording_notification">ჩაწერის პროცესის შეტყობინება</string>
+    <string name="show_touches">გამოჩნდეს ეკრანზე შეხება</string>
+</resources>
