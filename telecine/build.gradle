@@ -72,13 +72,13 @@ android {
 }
 
 dependencies {
-  compile 'com.android.support:support-annotations:23.1.0'
-  compile 'com.google.android.gms:play-services-analytics:7.5.0'
+  compile 'com.android.support:support-annotations:23.2.1'
+  compile 'com.google.android.gms:play-services-analytics:8.4.0'
   compile 'com.jakewharton:butterknife:7.0.1'
-  compile 'com.jakewharton.timber:timber:4.0.1'
-  compile 'com.bugsnag:bugsnag-android:3.2.5'
+  compile 'com.jakewharton.timber:timber:4.1.2'
+  compile 'com.bugsnag:bugsnag-android:3.4.0'
   compile 'com.squareup.dagger:dagger:1.2.2'
   apt 'com.squareup.dagger:dagger-compiler:1.2.2'
   testCompile 'junit:junit:4.12'
-  testCompile 'com.google.truth:truth:0.27'
+  testCompile 'com.google.truth:truth:0.28'
 }
