@@ -249,11 +249,24 @@ final class RecordingSession {
 
     hideOverlay();
 
-    // Stop the projection in order to flush everything to the recorder.
-    projection.stop();
+    boolean propagate = false;
+    try {
+      // Stop the projection in order to flush everything to the recorder.
+      projection.stop();
+      // Stop the recorder which writes the contents to the file.
+      recorder.stop();
 
-    // Stop the recorder which writes the contents to the file.
-    recorder.stop();
+      propagate = true;
+    } finally {
+      try {
+        // Ensure the listener can tear down its resources regardless if stopping crashes.
+        listener.onStop();
+      } catch (RuntimeException e) {
+        if (propagate) {
+          throw e; // Only allow listener exceptions to propagate if stopped successfully.
+        }
+      }
+    }
 
     long recordingStopNanos = System.nanoTime();
 
@@ -269,8 +282,6 @@ final class RecordingSession {
         .setValue(TimeUnit.NANOSECONDS.toMillis(recordingStopNanos - recordingStartNanos))
         .setVariable(Analytics.VARIABLE_RECORDING_LENGTH)
         .build());
-
-    listener.onStop();
 
     Timber.d("Screen recording stopped. Notifying media scanner of new video.");
 
