@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string name="shortcut_name">Start</string>
+  <string name="clear">Slett</string>
+  <string name="record">Ta opp</string>
+  <string name="launch_overlay">Start overlay</string>
+  <string name="preferences">Innstillinger</string>
+  <string name="countdown">Tre sekunds nedtelling</string>
+  <string name="recents_hide">Skjul fra nylige applikasjoner</string>
+  <string name="video_size_percentage">Videostørrelse</string>
+  <string name="notification_captured_title">Skjermopptak fanget.</string>
+  <string name="notification_captured_subtitle">Trykk for å vise skjermopptak.</string>
+  <string name="notification_captured_share">Del</string>
+  <string name="notification_captured_delete">Slett</string>
+  <string name="notification_recording_title">Tar opp skjerm.</string>
+  <string name="notification_recording_subtitle">Trykk på klokkeområdet for å stoppe opptak.</string>
+  <string name="recording_notification">Opptaksvarsel</string>
+  <string name="show_touches">Vis trykk på skjerm</string>
+</resources>
