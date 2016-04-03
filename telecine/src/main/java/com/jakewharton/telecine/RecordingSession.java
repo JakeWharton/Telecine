@@ -26,6 +26,7 @@ import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 import android.view.Surface;
 import android.view.WindowManager;
+import android.widget.Toast;
 import com.google.android.gms.analytics.HitBuilders;
 import java.io.File;
 import java.io.IOException;
@@ -49,6 +50,7 @@ import static android.media.MediaRecorder.OutputFormat.MPEG_4;
 import static android.media.MediaRecorder.VideoEncoder.H264;
 import static android.media.MediaRecorder.VideoSource.SURFACE;
 import static android.os.Environment.DIRECTORY_MOVIES;
+import static android.widget.Toast.LENGTH_SHORT;
 
 final class RecordingSession {
   static final int NOTIFICATION_ID = 522592;
@@ -191,9 +193,11 @@ final class RecordingSession {
   private void startRecording() {
     Timber.d("Starting screen recording...");
 
-    if (!outputRoot.mkdirs()) {
+    if (!outputRoot.exists() && !outputRoot.mkdirs()) {
       Timber.e("Unable to create output directory '%s'.", outputRoot.getAbsolutePath());
-      // We're probably about to crash, but at least the log will indicate as to why.
+      Toast.makeText(context, "Unable to create output directory.\nCannot record screen.",
+          LENGTH_SHORT).show();
+      return;
     }
 
     RecordingInfo recordingInfo = getRecordingInfo();
