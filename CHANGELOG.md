@@ -1,6 +1,21 @@
 Change Log
 ==========
 
+1.5.1 *(2016-04-03)*
+--------------------
+
+Public:
+
+ * Translations for Georgian & Norwegian, updated French & both Portugueses.
+ * Fix 'show touches' option persisting if recording crashes.
+
+Internal:
+
+ * Do not explicitly dismiss foreground notifications. Let service stop implicitly do it.
+ * Crash eagerly when media scan Uri is null.
+ * Do not attempt to record if output dir cannot be created when missing.
+
+
 1.5.0 *(2015-11-20)*
 --------------------
 
