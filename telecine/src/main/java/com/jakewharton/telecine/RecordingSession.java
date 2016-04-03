@@ -288,6 +288,7 @@ final class RecordingSession {
     MediaScannerConnection.scanFile(context, new String[] { outputFile }, null,
         new MediaScannerConnection.OnScanCompletedListener() {
           @Override public void onScanCompleted(String path, final Uri uri) {
+            if (uri == null) throw new NullPointerException("uri == null");
             Timber.d("Media scanner completed.");
             mainThread.post(new Runnable() {
               @Override public void run() {
