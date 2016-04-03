@@ -68,8 +68,6 @@ public final class TelecineService extends Service {
       if (showTouchesProvider.get()) {
         Settings.System.putInt(contentResolver, SHOW_TOUCHES, 0);
       }
-
-      stopForeground(true /* remove notification */);
     }
 
     @Override public void onEnd() {
