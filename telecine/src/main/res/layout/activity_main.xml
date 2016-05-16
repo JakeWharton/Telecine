@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TelecineActivity"
     >
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,19 +20,9 @@
         android:orientation="vertical"
         >
 
-      <Button
-          android:id="@+id/launch"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:paddingTop="24dp"
-          android:paddingBottom="24dp"
-          android:text="@string/launch_overlay"
-          />
-
       <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginTop="32dp"
           android:layout_marginBottom="8dp"
           android:text="@string/preferences"
           android:textAllCaps="true"
@@ -138,4 +132,15 @@
       </LinearLayout>
 
     </LinearLayout>
-</ScrollView>
+  </ScrollView>
+
+  <android.support.design.widget.FloatingActionButton
+      android:id="@+id/launch"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom|end"
+      android:layout_margin="16dp"
+      android:src="@drawable/ic_videocam_white_48dp"
+      app:fabSize="normal"
+      />
+</FrameLayout>

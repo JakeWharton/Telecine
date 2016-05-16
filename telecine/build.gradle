@@ -73,6 +73,7 @@ android {
 
 dependencies {
   compile 'com.android.support:support-annotations:23.2.1'
+  compile 'com.android.support:design:23.4.0'
   compile 'com.google.android.gms:play-services-analytics:8.4.0'
   compile 'com.jakewharton:butterknife:7.0.1'
   compile 'com.jakewharton.timber:timber:4.1.2'

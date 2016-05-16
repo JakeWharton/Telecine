@@ -1,12 +1,12 @@
 package com.jakewharton.telecine;
 
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Spinner;
 import android.widget.Switch;
 import butterknife.Bind;
@@ -21,7 +21,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import javax.inject.Inject;
 import timber.log.Timber;
 
-public final class TelecineActivity extends Activity {
+public final class TelecineActivity extends AppCompatActivity {
   @Bind(R.id.spinner_video_size_percentage) Spinner videoSizePercentageView;
   @Bind(R.id.switch_show_countdown) Switch showCountdownView;
   @Bind(R.id.switch_hide_from_recents) Switch hideFromRecentsView;
