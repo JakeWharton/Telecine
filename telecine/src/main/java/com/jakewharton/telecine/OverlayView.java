@@ -4,11 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Resources;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
@@ -21,9 +21,9 @@ import butterknife.OnClick;
 import java.util.Locale;
 
 import static android.graphics.PixelFormat.TRANSLUCENT;
-import static android.os.Build.VERSION_CODES.LOLLIPOP_MR1;
 import static android.text.TextUtils.getLayoutDirectionFromLocale;
 import static android.view.ViewAnimationUtils.createCircularReveal;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static android.view.WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
 import static android.view.WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
 import static android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;
@@ -42,16 +42,10 @@ final class OverlayView extends FrameLayout {
   }
 
   static WindowManager.LayoutParams createLayoutParams(Context context) {
-    Resources res = context.getResources();
-    int width = res.getDimensionPixelSize(R.dimen.overlay_width);
-    int height = res.getDimensionPixelSize(R.dimen.overlay_height);
-    // TODO Remove explicit "M" comparison when M is released.
-    if (Build.VERSION.SDK_INT > LOLLIPOP_MR1 || "M".equals(Build.VERSION.RELEASE)) {
-      height = res.getDimensionPixelSize(R.dimen.overlay_height_m);
-    }
+    int width = context.getResources().getDimensionPixelSize(R.dimen.overlay_width);
 
     final WindowManager.LayoutParams params =
-        new WindowManager.LayoutParams(width, height, TYPE_SYSTEM_ERROR, FLAG_NOT_FOCUSABLE
+        new WindowManager.LayoutParams(width, WRAP_CONTENT, TYPE_SYSTEM_ERROR, FLAG_NOT_FOCUSABLE
             | FLAG_NOT_TOUCH_MODAL
             | FLAG_LAYOUT_NO_LIMITS
             | FLAG_LAYOUT_INSET_DECOR
@@ -79,6 +73,9 @@ final class OverlayView extends FrameLayout {
 
     /** Called when stop is clicked. This view is unusable once this callback is invoked. */
     void onStop();
+
+    /** Called when the size or layout params of this view have changed and require a relayout. */
+    void onResize();
   }
 
   @Bind(R.id.record_overlay_buttons) View buttonsView;
@@ -106,6 +103,15 @@ final class OverlayView extends FrameLayout {
 
     CheatSheet.setup(cancelView);
     CheatSheet.setup(startView);
+  }
+
+  @Override public WindowInsets onApplyWindowInsets(WindowInsets insets) {
+    ViewGroup.LayoutParams lp = getLayoutParams();
+    lp.height = insets.getSystemWindowInsetTop();
+
+    listener.onResize();
+
+    return insets.consumeSystemWindowInsets();
   }
 
   @Override protected void onAttachedToWindow() {
