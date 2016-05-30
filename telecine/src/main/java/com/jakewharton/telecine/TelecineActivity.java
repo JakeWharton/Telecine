@@ -1,11 +1,13 @@
 package com.jakewharton.telecine;
 
 import android.app.ActivityManager;
+import android.app.ActivityManager.TaskDescription;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -20,6 +22,8 @@ import butterknife.OnLongClick;
 import com.google.android.gms.analytics.HitBuilders;
 import javax.inject.Inject;
 import timber.log.Timber;
+
+import static android.graphics.Bitmap.Config.ARGB_8888;
 
 public final class TelecineActivity extends AppCompatActivity {
   @Bind(R.id.spinner_video_size_percentage) Spinner videoSizePercentageView;
@@ -50,9 +54,7 @@ public final class TelecineActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
 
-    Resources res = getResources();
-    Bitmap taskIcon = BitmapFactory.decodeResource(res, R.drawable.ic_videocam_white_48dp);
-    setTaskDescription(new ActivityManager.TaskDescription(appName, taskIcon, primaryNormal));
+    setTaskDescription(new TaskDescription(appName, rasterizeTaskIcon(), primaryNormal));
 
     videoSizePercentageAdapter = new VideoSizePercentageAdapter(this);
 
@@ -64,6 +66,20 @@ public final class TelecineActivity extends AppCompatActivity {
     hideFromRecentsView.setChecked(hideFromRecentsPreference.get());
     recordingNotificationView.setChecked(recordingNotificationPreference.get());
     showTouchesView.setChecked(showTouchesPreference.get());
+  }
+
+  @NonNull private Bitmap rasterizeTaskIcon() {
+    Drawable drawable = getResources().getDrawable(R.drawable.ic_videocam_white_24dp, getTheme());
+
+    ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+    int size = am.getLauncherLargeIconSize();
+    Bitmap icon = Bitmap.createBitmap(size, size, ARGB_8888);
+
+    Canvas canvas = new Canvas(icon);
+    drawable.setBounds(0, 0, size, size);
+    drawable.draw(canvas);
+
+    return icon;
   }
 
   @OnClick(R.id.launch) void onLaunchClicked() {
