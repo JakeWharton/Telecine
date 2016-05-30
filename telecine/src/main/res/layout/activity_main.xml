@@ -15,27 +15,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/content_padding"
         android:gravity="center_horizontal"
         android:orientation="vertical"
+        android:padding="@dimen/content_padding"
         >
 
       <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginBottom="8dp"
+          android:fontFamily="sans-serif-condensed"
           android:text="@string/preferences"
+          android:textAlignment="viewStart"
           android:textAllCaps="true"
           android:textColor="?android:attr/colorAccent"
-          android:fontFamily="sans-serif-condensed"
-          android:textAlignment="viewStart"
           />
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="@dimen/preference_height"
-          android:orientation="horizontal"
           android:gravity="center_vertical"
+          android:orientation="horizontal"
           >
         <TextView
             android:layout_width="0dp"
@@ -54,8 +54,8 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="@dimen/preference_height"
-          android:orientation="horizontal"
           android:gravity="center_vertical"
+          android:orientation="horizontal"
           >
         <TextView
             android:layout_width="0dp"
@@ -74,8 +74,8 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="@dimen/preference_height"
-          android:orientation="horizontal"
           android:gravity="center_vertical"
+          android:orientation="horizontal"
           >
         <TextView
             android:layout_width="0dp"
@@ -94,8 +94,8 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="@dimen/preference_height"
-          android:orientation="horizontal"
           android:gravity="center_vertical"
+          android:orientation="horizontal"
           >
         <TextView
             android:layout_width="0dp"
@@ -114,8 +114,8 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="@dimen/preference_height"
-          android:orientation="horizontal"
           android:gravity="center_vertical"
+          android:orientation="horizontal"
           >
         <TextView
             android:layout_width="0dp"
@@ -140,7 +140,6 @@
       android:layout_height="wrap_content"
       android:layout_gravity="bottom|end"
       android:layout_margin="16dp"
-      android:src="@drawable/ic_videocam_white_48dp"
-      app:fabSize="normal"
+      android:src="@drawable/ic_videocam_white_24dp"
       />
 </FrameLayout>
