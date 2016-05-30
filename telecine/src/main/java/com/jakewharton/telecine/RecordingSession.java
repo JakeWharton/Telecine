@@ -130,6 +130,10 @@ final class RecordingSession {
       @Override public void onStop() {
         stopRecording();
       }
+
+      @Override public void onResize() {
+        windowManager.updateViewLayout(overlayView, overlayView.getLayoutParams());
+      }
     };
     overlayView = OverlayView.create(context, overlayListener, showCountDown.get());
     windowManager.addView(overlayView, OverlayView.createLayoutParams(context));
