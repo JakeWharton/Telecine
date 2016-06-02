@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Spinner;
 import android.widget.Switch;
 import butterknife.Bind;
@@ -31,6 +32,7 @@ public final class TelecineActivity extends AppCompatActivity {
   @Bind(R.id.switch_hide_from_recents) Switch hideFromRecentsView;
   @Bind(R.id.switch_recording_notification) Switch recordingNotificationView;
   @Bind(R.id.switch_show_touches) Switch showTouchesView;
+  @Bind(R.id.launch) View launchView;
 
   @BindString(R.string.app_name) String appName;
   @BindColor(R.color.primary_normal) int primaryNormal;
@@ -53,6 +55,8 @@ public final class TelecineActivity extends AppCompatActivity {
 
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
+
+    CheatSheet.setup(launchView);
 
     setTaskDescription(new TaskDescription(appName, rasterizeTaskIcon(), primaryNormal));
 
