@@ -22,8 +22,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
 android {
-  compileSdkVersion 23
-  buildToolsVersion '23.0.3'
+  compileSdkVersion 24
+  buildToolsVersion '24.0.0'
 
   defaultConfig {
     applicationId 'com.jakewharton.telecine'
@@ -72,8 +72,8 @@ android {
 }
 
 dependencies {
-  compile 'com.android.support:support-annotations:23.4.0'
-  compile 'com.android.support:design:23.4.0'
+  compile 'com.android.support:support-annotations:24.0.0'
+  compile 'com.android.support:design:24.0.0'
   compile 'com.google.android.gms:play-services-analytics:9.0.2'
   compile 'com.jakewharton:butterknife:8.0.1'
   apt 'com.jakewharton:butterknife-compiler:8.0.1'
