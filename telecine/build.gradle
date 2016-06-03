@@ -79,8 +79,8 @@ dependencies {
   apt 'com.jakewharton:butterknife-compiler:8.0.1'
   compile 'com.jakewharton.timber:timber:4.1.2'
   compile 'com.bugsnag:bugsnag-android:3.4.0'
-  compile 'com.squareup.dagger:dagger:1.2.2'
-  apt 'com.squareup.dagger:dagger-compiler:1.2.2'
+  compile 'com.squareup.dagger:dagger:1.2.5'
+  apt 'com.squareup.dagger:dagger-compiler:1.2.5'
   testCompile 'junit:junit:4.12'
   testCompile 'com.google.truth:truth:0.28'
 }
