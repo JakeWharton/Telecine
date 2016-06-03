@@ -14,10 +14,11 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import butterknife.Bind;
 import butterknife.BindDimen;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 import java.util.Locale;
 
 import static android.graphics.PixelFormat.TRANSLUCENT;
@@ -78,11 +79,11 @@ final class OverlayView extends FrameLayout {
     void onResize();
   }
 
-  @Bind(R.id.record_overlay_buttons) View buttonsView;
-  @Bind(R.id.record_overlay_cancel) View cancelView;
-  @Bind(R.id.record_overlay_start) View startView;
-  @Bind(R.id.record_overlay_stop) View stopView;
-  @Bind(R.id.record_overlay_recording) TextView recordingView;
+  @BindView(R.id.record_overlay_buttons) View buttonsView;
+  @BindView(R.id.record_overlay_cancel) View cancelView;
+  @BindView(R.id.record_overlay_start) View startView;
+  @BindView(R.id.record_overlay_stop) View stopView;
+  @BindView(R.id.record_overlay_recording) TextView recordingView;
 
   @BindDimen(R.dimen.overlay_width) int animationWidth;
 

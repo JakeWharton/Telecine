@@ -12,27 +12,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.Switch;
-import butterknife.Bind;
 import butterknife.BindColor;
 import butterknife.BindString;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import butterknife.OnLongClick;
 import com.google.android.gms.analytics.HitBuilders;
-import javax.inject.Inject;
 import timber.log.Timber;
+
+import javax.inject.Inject;
 
 import static android.graphics.Bitmap.Config.ARGB_8888;
 
 public final class TelecineActivity extends AppCompatActivity {
-  @Bind(R.id.spinner_video_size_percentage) Spinner videoSizePercentageView;
-  @Bind(R.id.switch_show_countdown) Switch showCountdownView;
-  @Bind(R.id.switch_hide_from_recents) Switch hideFromRecentsView;
-  @Bind(R.id.switch_recording_notification) Switch recordingNotificationView;
-  @Bind(R.id.switch_show_touches) Switch showTouchesView;
-  @Bind(R.id.launch) View launchView;
+  @BindView(R.id.spinner_video_size_percentage) Spinner videoSizePercentageView;
+  @BindView(R.id.switch_show_countdown) Switch showCountdownView;
+  @BindView(R.id.switch_hide_from_recents) Switch hideFromRecentsView;
+  @BindView(R.id.switch_recording_notification) Switch recordingNotificationView;
+  @BindView(R.id.switch_show_touches) Switch showTouchesView;
+  @BindView(R.id.launch) View launchView;
 
   @BindString(R.string.app_name) String appName;
   @BindColor(R.color.primary_normal) int primaryNormal;
