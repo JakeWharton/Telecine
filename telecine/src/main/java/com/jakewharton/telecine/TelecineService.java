@@ -8,9 +8,10 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import timber.log.Timber;
+
 import javax.inject.Inject;
 import javax.inject.Provider;
-import timber.log.Timber;
 
 import static android.app.Notification.PRIORITY_MIN;
 
@@ -90,7 +91,7 @@ public final class TelecineService extends Service {
       throw new IllegalStateException("Result code or data missing.");
     }
 
-    ((TelecineApplication) getApplication()).inject(this);
+    ((TelecineApplication) getApplication()).injector().inject(this);
 
     recordingSession =
         new RecordingSession(this, listener, resultCode, data, analytics, showCountdownProvider,

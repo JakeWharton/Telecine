@@ -52,7 +52,7 @@ public final class TelecineActivity extends AppCompatActivity {
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    ((TelecineApplication) getApplication()).inject(this);
+    ((TelecineApplication) getApplication()).injector().inject(this);
 
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);

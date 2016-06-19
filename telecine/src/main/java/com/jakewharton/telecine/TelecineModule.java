@@ -6,18 +6,14 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import dagger.Module;
 import dagger.Provides;
-import java.util.Map;
-import javax.inject.Singleton;
 import timber.log.Timber;
+
+import javax.inject.Singleton;
+import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 
-@Module(injects = {
-    TelecineActivity.class,
-    TelecineService.class,
-    TelecineShortcutConfigureActivity.class,
-    TelecineShortcutLaunchActivity.class,
-})
+@Module
 final class TelecineModule {
   private static final String PREFERENCES_NAME = "telecine";
   private static final boolean DEFAULT_SHOW_COUNTDOWN = true;

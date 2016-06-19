@@ -14,7 +14,7 @@ public final class TelecineShortcutConfigureActivity extends Activity {
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    ((TelecineApplication) getApplication()).inject(this);
+    ((TelecineApplication) getApplication()).injector().inject(this);
     analytics.send(new HitBuilders.EventBuilder() //
         .setCategory(Analytics.CATEGORY_SHORTCUT) //
         .setAction(Analytics.ACTION_SHORTCUT_ADDED) //

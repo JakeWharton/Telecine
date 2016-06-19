@@ -4,11 +4,11 @@ import android.app.Application;
 import com.bugsnag.android.BeforeNotify;
 import com.bugsnag.android.Bugsnag;
 import com.bugsnag.android.Error;
-import dagger.ObjectGraph;
 import timber.log.Timber;
 
 public final class TelecineApplication extends Application {
-  private ObjectGraph objectGraph;
+
+  private TelecineComponent telecineComponent;
 
   @Override public void onCreate() {
     super.onCreate();
@@ -31,10 +31,12 @@ public final class TelecineApplication extends Application {
       Timber.plant(tree);
     }
 
-    objectGraph = ObjectGraph.create(new TelecineModule(this));
+    telecineComponent = DaggerTelecineComponent.builder()
+        .telecineModule(new TelecineModule(this))
+        .build();
   }
 
-  public void inject(Object o) {
-    objectGraph.inject(o);
+  final TelecineComponent injector() {
+    return telecineComponent;
   }
 }
