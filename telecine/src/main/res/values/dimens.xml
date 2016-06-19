@@ -1,5 +1,5 @@
 <resources>
   <dimen name="content_padding">16dp</dimen>
-  <dimen name="overlay_width">96dp</dimen>
+  <dimen name="overlay_width">112dp</dimen>
   <dimen name="preference_height">48dp</dimen>
 </resources>
