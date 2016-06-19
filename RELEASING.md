@@ -30,7 +30,7 @@ Release
 
  7. Install the release APK.
 
- 8. Launch the app. Long press and release the "Launch" button 5 times. Ensure that the app crashed
-    and that the exception was reported to Bugsnag.
+ 8. Run `adb shell am start -n com.jakewharton.telecine/.TelecineActivity -e crash true` and ensure
+    that the app crashed and that the exception was reported to Bugsnag.
 
  9. :shipit:

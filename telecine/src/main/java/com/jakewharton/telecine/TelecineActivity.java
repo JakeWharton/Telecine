@@ -19,11 +19,9 @@ import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
-import butterknife.OnLongClick;
 import com.google.android.gms.analytics.HitBuilders;
-import timber.log.Timber;
-
 import javax.inject.Inject;
+import timber.log.Timber;
 
 import static android.graphics.Bitmap.Config.ARGB_8888;
 
@@ -47,10 +45,13 @@ public final class TelecineActivity extends AppCompatActivity {
   @Inject Analytics analytics;
 
   private VideoSizePercentageAdapter videoSizePercentageAdapter;
-  private int longClickCount;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+    if ("true".equals(getIntent().getStringExtra("crash"))) {
+      throw new RuntimeException("Crash! Bang! Pow! This is only a test...");
+    }
 
     ((TelecineApplication) getApplication()).injector().inject(this);
 
@@ -88,21 +89,8 @@ public final class TelecineActivity extends AppCompatActivity {
   }
 
   @OnClick(R.id.launch) void onLaunchClicked() {
-    if (longClickCount > 0) {
-      longClickCount = 0;
-      Timber.d("Long click count reset.");
-    }
-
     Timber.d("Attempting to acquire permission to screen capture.");
     CaptureHelper.fireScreenCaptureIntent(this, analytics);
-  }
-
-  @OnLongClick(R.id.launch) boolean onLongClick() {
-    if (++longClickCount == 5) {
-      throw new RuntimeException("Crash! Bang! Pow! This is only a test...");
-    }
-    Timber.d("Long click count updated to %s", longClickCount);
-    return true;
   }
 
   @OnItemSelected(R.id.spinner_video_size_percentage) void onVideoSizePercentageSelected(
