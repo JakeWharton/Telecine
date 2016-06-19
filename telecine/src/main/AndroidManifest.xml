@@ -47,6 +47,16 @@
         android:taskAffinity=""
         android:exported="true"
         />
+
+    <service
+        android:icon="@drawable/ic_videocam_white_24dp"
+        android:label="@string/tile_name"
+        android:name=".TelecineTileService"
+        android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+      <intent-filter>
+        <action android:name="android.service.quicksettings.action.QS_TILE"/>
+      </intent-filter>
+    </service>
   </application>
 
 </manifest>

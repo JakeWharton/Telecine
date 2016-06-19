@@ -5,6 +5,7 @@
   <string name="launcher_name" translatable="false">@string/app_name</string>
 
   <string name="shortcut_name">Launch</string>
+  <string name="tile_name">Launch Telecine</string>
   <string name="clear">Clear</string>
   <string name="record">Record</string>
   <string name="countdown_one">1…</string>
