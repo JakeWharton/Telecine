@@ -5,6 +5,7 @@ import com.bugsnag.android.Bugsnag;
 import com.bugsnag.android.Error;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Locale;
 import timber.log.Timber;
 
 /**
@@ -30,11 +31,11 @@ final class BugsnagTree extends Timber.Tree {
     }
   }
 
-  public void update(Error error) {
+  void update(Error error) {
     synchronized (buffer) {
       int i = 1;
       for (String message : buffer) {
-        error.addToTab("Log", String.format("%03d", i++), message);
+        error.addToTab("Log", String.format(Locale.US, "%03d", i++), message);
       }
     }
   }

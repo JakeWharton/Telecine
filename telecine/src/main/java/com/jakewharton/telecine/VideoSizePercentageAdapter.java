@@ -9,16 +9,12 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 final class VideoSizePercentageAdapter extends BaseAdapter {
-  public static int getSelectedPosition(int value) {
+  static int getSelectedPosition(int value) {
     switch (value) {
-      case 100:
-        return 0;
-      case 75:
-        return 1;
-      case 50:
-        return 2;
-      default:
-        return 0;
+      case 100: return 0;
+      case 75: return 1;
+      case 50: return 2;
+      default: return 0;
     }
   }
 
@@ -34,14 +30,10 @@ final class VideoSizePercentageAdapter extends BaseAdapter {
 
   @Override public Integer getItem(int position) {
     switch (position) {
-      case 0:
-        return 100;
-      case 1:
-        return 75;
-      case 2:
-        return 50;
-      default:
-        throw new IllegalArgumentException("Unknown position: " + position);
+      case 0: return 100;
+      case 1: return 75;
+      case 2: return 50;
+      default: throw new IllegalArgumentException("Unknown position: " + position);
     }
   }
 

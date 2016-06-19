@@ -28,7 +28,7 @@
 
     <service android:name=".TelecineService"/>
 
-    <receiver android:name=".RecordingSession$DeleteRecordingBroadcastReceiver"/>
+    <receiver android:name=".DeleteRecordingBroadcastReceiver"/>
 
     <activity
         android:name=".TelecineShortcutConfigureActivity"

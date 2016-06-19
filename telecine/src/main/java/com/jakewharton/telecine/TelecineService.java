@@ -21,7 +21,7 @@ public final class TelecineService extends Service {
   private static final int NOTIFICATION_ID = 99118822;
   private static final String SHOW_TOUCHES = "show_touches";
 
-  public static Intent newIntent(Context context, int resultCode, Intent data) {
+  static Intent newIntent(Context context, int resultCode, Intent data) {
     Intent intent = new Intent(context, TelecineService.class);
     intent.putExtra(EXTRA_RESULT_CODE, resultCode);
     intent.putExtra(EXTRA_DATA, data);
