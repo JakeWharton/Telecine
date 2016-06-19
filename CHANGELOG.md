@@ -1,6 +1,20 @@
 Change Log
 ==========
 
+1.6.0 *(2016-06-19)*
+--------------------
+
+Public:
+
+ * Added quick tile for launching the recording overlay (only available on Android N+).
+ * The recording overlay is now launched from the app using a floating action button.
+
+Internal:
+
+ * Switched from raster to vector icons.
+ * Use window insets to size overlay height.
+
+
 1.5.1 *(2016-04-03)*
 --------------------
 
