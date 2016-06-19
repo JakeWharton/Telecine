@@ -46,8 +46,13 @@ android {
   lintOptions {
     textReport true
     textOutput 'stdout'
+
+    // We run a full lint analysis as build part in CI, so skip vital checks for assemble tasks.
+    checkReleaseBuilds false
+
     warning 'MissingTranslation'
-    warning 'ResourceType' // TODO remove when updated to Butter Knife 8.0.
+    error 'UnusedResources'
+    error 'CheckResult'
   }
 
   dexOptions {
