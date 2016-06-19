@@ -23,14 +23,14 @@ Release
 
  4. Run `./release.sh /path/to/your.keystore`. Enter your password when prompted.
 
- 5. Create an annotated tag with `git tag -a X.Y.X -m "Version X.Y.Z"` replacing 'X.Y.Z' with the
-    version number.
+ 5. Install the release APK.
 
- 6. Push. Push tags (`git push --tags`).
-
- 7. Install the release APK.
-
- 8. Run `adb shell am start -n com.jakewharton.telecine/.TelecineActivity -e crash true` and ensure
+ 6. Run `adb shell am start -n com.jakewharton.telecine/.TelecineActivity -e crash true` and ensure
     that the app crashed and that the exception was reported to Bugsnag.
 
- 9. :shipit:
+ 7. Upload to the Play Store Developer Console and ensure the APK is accepted.
+
+ 8. Create an annotated tag with `git tag -a X.Y.X -m "Version X.Y.Z"` replacing 'X.Y.Z' with the
+    version number.
+
+ 9. Push master (`git push`). Push tags (`git push --tags`).

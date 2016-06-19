@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+1.6.1 *(2016-06-19)*
+--------------------
+
+Internal:
+
+ * Remove `WAKE_LOCK` permission added from Google Play Services.
+
+
 1.6.0 *(2016-06-19)*
 --------------------
 
