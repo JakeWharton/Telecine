@@ -8,6 +8,7 @@ buildscript {
   dependencies {
     classpath 'com.android.tools.build:gradle:2.1.0'
     classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    classpath 'com.google.gms:google-services:3.0.0'
   }
 }
 
@@ -89,3 +90,5 @@ dependencies {
   testCompile 'junit:junit:4.12'
   testCompile 'com.google.truth:truth:0.28'
 }
+
+apply plugin: 'com.google.gms.google-services'
