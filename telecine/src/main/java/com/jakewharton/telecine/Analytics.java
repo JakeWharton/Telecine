@@ -7,6 +7,7 @@ interface Analytics {
   String CATEGORY_SETTINGS = "Settings";
   String CATEGORY_RECORDING = "Recording";
   String CATEGORY_SHORTCUT = "Shortcut";
+  String CATEGORY_QUICK_TILE = "Quick Tile";
 
   String ACTION_CAPTURE_INTENT_LAUNCH = "Launch Overlay Launch";
   String ACTION_CAPTURE_INTENT_RESULT = "Launch Overlay Result";
@@ -22,6 +23,9 @@ interface Analytics {
   String ACTION_RECORDING_STOP = "Recording Stop";
   String ACTION_SHORTCUT_ADDED = "Shortcut Added";
   String ACTION_SHORTCUT_LAUNCHED = "Shortcut Launched";
+  String ACTION_QUICK_TILE_ADDED = "Quick Tile Added";
+  String ACTION_QUICK_TILE_LAUNCHED = "Quick Tile Launched";
+  String ACTION_QUICK_TILE_REMOVED = "Quick Tile Removed";
 
   String VARIABLE_RECORDING_LENGTH = "Recording Length";
 
