@@ -77,15 +77,15 @@ android {
 }
 
 dependencies {
-  compile 'com.android.support:support-annotations:24.0.0'
-  compile 'com.android.support:design:24.0.0'
-  compile 'com.google.android.gms:play-services-analytics:9.0.2'
-  compile 'com.jakewharton:butterknife:8.1.0'
-  apt 'com.jakewharton:butterknife-compiler:8.1.0'
+  compile 'com.android.support:support-annotations:24.2.1'
+  compile 'com.android.support:design:24.2.1'
+  compile 'com.google.android.gms:play-services-analytics:9.4.0'
+  compile 'com.jakewharton:butterknife:8.4.0'
+  apt 'com.jakewharton:butterknife-compiler:8.4.0'
   compile 'com.jakewharton.timber:timber:4.1.2'
   compile 'com.bugsnag:bugsnag-android:3.4.0'
-  compile 'com.google.dagger:dagger:2.5'
-  apt 'com.google.dagger:dagger-compiler:2.5'
+  compile 'com.google.dagger:dagger:2.7'
+  apt 'com.google.dagger:dagger-compiler:2.7'
   testCompile 'junit:junit:4.12'
   testCompile 'com.google.truth:truth:0.28'
 }
