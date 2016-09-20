@@ -6,8 +6,7 @@ def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 buildscript {
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.1.0'
-    classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    classpath 'com.android.tools.build:gradle:2.2.0'
   }
 }
 
@@ -19,7 +18,6 @@ def getAnalyticsKey() {
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 
 android {
   compileSdkVersion 24
@@ -81,11 +79,11 @@ dependencies {
   compile 'com.android.support:design:24.2.1'
   compile 'com.google.android.gms:play-services-analytics:9.4.0'
   compile 'com.jakewharton:butterknife:8.4.0'
-  apt 'com.jakewharton:butterknife-compiler:8.4.0'
+  annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
   compile 'com.jakewharton.timber:timber:4.1.2'
   compile 'com.bugsnag:bugsnag-android:3.4.0'
   compile 'com.google.dagger:dagger:2.7'
-  apt 'com.google.dagger:dagger-compiler:2.7'
+  annotationProcessor 'com.google.dagger:dagger-compiler:2.7'
   testCompile 'junit:junit:4.12'
   testCompile 'com.google.truth:truth:0.28'
 }
