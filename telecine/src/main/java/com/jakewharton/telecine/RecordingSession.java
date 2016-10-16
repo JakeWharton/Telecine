@@ -47,6 +47,8 @@ import static android.hardware.display.DisplayManager.VIRTUAL_DISPLAY_FLAG_PRESE
 import static android.media.MediaRecorder.OutputFormat.MPEG_4;
 import static android.media.MediaRecorder.VideoEncoder.H264;
 import static android.media.MediaRecorder.VideoSource.SURFACE;
+import static android.os.Build.VERSION.SDK_INT;
+import static android.os.Build.VERSION_CODES.M;
 import static android.os.Environment.DIRECTORY_MOVIES;
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -362,11 +364,15 @@ final class RecordingSession {
       }
 
       @Override protected void onPostExecute(@Nullable Bitmap bitmap) {
-        if (bitmap != null) {
+        if (bitmap != null && !notificationDismissed()) {
           showNotification(uri, bitmap);
         } else {
           listener.onEnd();
         }
+      }
+
+      private boolean notificationDismissed() {
+        return SDK_INT >= M && notificationManager.getActiveNotifications().length == 0;
       }
     }.execute();
   }
