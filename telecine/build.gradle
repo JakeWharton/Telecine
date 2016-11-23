@@ -6,7 +6,7 @@ def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 buildscript {
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.2.0'
+    classpath 'com.android.tools.build:gradle:2.2.2'
   }
 }
 
@@ -20,8 +20,8 @@ def getAnalyticsKey() {
 apply plugin: 'com.android.application'
 
 android {
-  compileSdkVersion 24
-  buildToolsVersion '24.0.2'
+  compileSdkVersion 25
+  buildToolsVersion '25.0.1'
 
   defaultConfig {
     applicationId 'com.jakewharton.telecine'
@@ -75,15 +75,15 @@ android {
 }
 
 dependencies {
-  compile 'com.android.support:support-annotations:24.2.1'
-  compile 'com.android.support:design:24.2.1'
-  compile 'com.google.android.gms:play-services-analytics:9.4.0'
+  compile 'com.android.support:support-annotations:25.0.1'
+  compile 'com.android.support:design:25.0.1'
+  compile 'com.google.android.gms:play-services-analytics:10.0.0'
   compile 'com.jakewharton:butterknife:8.4.0'
   annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-  compile 'com.jakewharton.timber:timber:4.1.2'
-  compile 'com.bugsnag:bugsnag-android:3.4.0'
-  compile 'com.google.dagger:dagger:2.7'
-  annotationProcessor 'com.google.dagger:dagger-compiler:2.7'
+  compile 'com.jakewharton.timber:timber:4.3.1'
+  compile 'com.bugsnag:bugsnag-android:3.7.0'
+  compile 'com.google.dagger:dagger:2.8'
+  annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
   testCompile 'junit:junit:4.12'
-  testCompile 'com.google.truth:truth:0.28'
+  testCompile 'com.google.truth:truth:0.30'
 }
