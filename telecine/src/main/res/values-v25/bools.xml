@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Static shortcuts are used on API 25 instead. -->
+  <bool name="widget_shortcut_enabled">false</bool>
+</resources>

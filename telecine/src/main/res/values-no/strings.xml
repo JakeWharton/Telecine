@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-  <string name="shortcut_name">Start</string>
+  <string name="launch">Start</string>
   <string name="clear">Slett</string>
   <string name="record">Ta opp</string>
   <string name="launch_overlay">Start overlay</string>

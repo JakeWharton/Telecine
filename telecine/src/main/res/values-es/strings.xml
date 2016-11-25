@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="shortcut_name">Inicia</string>
+    <string name="launch">Inicia</string>
     <string name="clear">Despejar</string>
     <string name="record">Grabar</string>
     <string name="launch_overlay">Inicia superposición</string>

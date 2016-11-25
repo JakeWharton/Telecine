@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-  <string name="shortcut_name">起動</string>
+  <string name="launch">起動</string>
   <string name="clear">クリア</string>
   <string name="record">録画</string>
   <string name="countdown_one">1…</string>

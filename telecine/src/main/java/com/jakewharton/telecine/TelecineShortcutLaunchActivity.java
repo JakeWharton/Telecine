@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 public final class TelecineShortcutLaunchActivity extends Activity {
   private static final String KEY_ACTION = "launch-action";
+  static final String EXTRA_AUTO_RECORDING = "auto-recording";
 
   static Intent createQuickTileIntent(Context context) {
     Intent intent = new Intent(context, TelecineShortcutLaunchActivity.class);
@@ -36,6 +37,10 @@ public final class TelecineShortcutLaunchActivity extends Activity {
   }
 
   @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    if (getIntent().getBooleanExtra(EXTRA_AUTO_RECORDING, false) && data != null) {
+      // Add the auto-recording extra from the original intent to the result data.
+      data.putExtra(EXTRA_AUTO_RECORDING, true);
+    }
     if (!CaptureHelper.handleActivityResult(this, requestCode, resultCode, data, analytics)) {
       super.onActivityResult(requestCode, resultCode, data);
     }

@@ -16,7 +16,7 @@
   <string name="recents_hide">Не показывать в недавних приложениях</string>
   <string name="record">Запись</string>
   <string name="recording_notification">Уведомление о записи экрана</string>
-  <string name="shortcut_name">Начать запись</string>
+  <string name="launch">Начать запись</string>
   <string name="show_touches">Показывать нажатия на экран</string>
   <string name="video_size_percentage">Размер видео</string>
 </resources>

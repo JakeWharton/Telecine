@@ -3,6 +3,6 @@
 <resources>
   <string name="launcher_name" translatable="false">Telecine Debug</string>
 
-  <string name="shortcut_name">Launch Debug</string>
-  <string name="tile_name">Launch Telecine Debug</string>
+  <string name="launch">Launch Debug</string>
+  <string name="launch_telecine">Launch Telecine Debug</string>
 </resources>

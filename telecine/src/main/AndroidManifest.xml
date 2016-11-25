@@ -30,6 +30,10 @@
       <intent-filter>
         <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES"/>
       </intent-filter>
+      <meta-data
+          android:name="android.app.shortcuts"
+          android:resource="@xml/shortcuts"
+          />
     </activity>
 
     <service android:name=".TelecineService"/>
@@ -41,6 +45,7 @@
         android:theme="@style/Theme.Telecine.Transparent"
         android:excludeFromRecents="true"
         android:taskAffinity=""
+        android:enabled="@bool/widget_shortcut_enabled"
         >
       <intent-filter>
         <action android:name="android.intent.action.CREATE_SHORTCUT" />
@@ -56,7 +61,7 @@
 
     <service
         android:icon="@drawable/ic_videocam_white_24dp"
-        android:label="@string/tile_name"
+        android:label="@string/launch_telecine"
         android:name=".TelecineTileService"
         android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
       <intent-filter>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="shortcut_name">ჩაწერის დაწყება</string>
+    <string name="launch">ჩაწერის დაწყება</string>
     <string name="clear">წაშლა</string>
     <string name="record">ჩაწერა</string>
     <string name="launch_overlay">ჩაწერის დაწყება ფონურ რეჟიმში</string>

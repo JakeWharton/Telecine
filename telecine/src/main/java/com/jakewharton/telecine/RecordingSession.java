@@ -194,6 +194,24 @@ final class RecordingSession {
         cameraWidth, cameraHeight, cameraFrameRate, sizePercentage);
   }
 
+  /** Perform a click on the start button to simulate the auto-recording. */
+  void triggerAutoRecording() {
+    if (overlayView == null) {
+      throw new AssertionError();
+    }
+    // Most of the time, overlayView is not yet attached to the Window
+    if (overlayView.isAttachedToWindow()) {
+      overlayView.onStartClicked();
+    } else {
+      overlayView.post(new Runnable() {
+        @Override
+        public void run() {
+          triggerAutoRecording();
+        }
+      });
+    }
+  }
+
   private void startRecording() {
     Timber.d("Starting screen recording...");
 

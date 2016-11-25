@@ -4,10 +4,9 @@
   <string name="app_name" translatable="false">Telecine</string>
   <string name="launcher_name" translatable="false">@string/app_name</string>
 
-  <string name="shortcut_name">Launch</string>
-  <string name="tile_name">Launch Telecine</string>
   <string name="clear">Clear</string>
   <string name="record">Record</string>
+  <string name="start_recording">Start Recording</string>
   <string name="countdown_one">1…</string>
   <string name="countdown_two">2…</string>
   <string name="countdown_three">3…</string>
@@ -24,6 +23,8 @@
   <string name="notification_recording_subtitle">Touch the clock area to stop recording.</string>
   <string name="recording_notification">Recording Notification</string>
   <string name="show_touches">Show Touches</string>
+  <string name="launch">Launch</string>
+  <string name="launch_telecine">Launch Telecine</string>
 
   <array name="countdown">
     <item>@string/countdown_three</item>

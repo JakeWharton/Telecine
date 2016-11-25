@@ -26,6 +26,8 @@ interface Analytics {
   String ACTION_QUICK_TILE_ADDED = "Quick Tile Added";
   String ACTION_QUICK_TILE_LAUNCHED = "Quick Tile Launched";
   String ACTION_QUICK_TILE_REMOVED = "Quick Tile Removed";
+  String ACTION_STATIC_SHORTCUT_RECORD = "Static Shortcut Record";
+  String ACTION_STATIC_SHORTCUT_OVERLAY = "Static Shortcut Overlay";
 
   String VARIABLE_RECORDING_LENGTH = "Recording Length";
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-  <string name="shortcut_name">Lancer</string>
+  <string name="launch">Lancer</string>
   <string name="clear">Effacer</string>
   <string name="record">Enregistrer</string>
   <string name="countdown_one">1…</string>
@@ -13,10 +13,10 @@
   <string name="recents_hide">Masquer dans les applications récentes</string>
   <string name="video_size_percentage">Taille de la vidéo</string>
   <string name="notification_captured_title">Capture d\'écran vidéo réussie.</string>
-  <string name="notification_captured_subtitle">Appuyez pour afficher votre capture d\'écran vidéo.</string>  
+  <string name="notification_captured_subtitle">Appuyez pour afficher votre capture d\'écran vidéo.</string>
   <string name="notification_captured_share">Partager</string>
   <string name="notification_captured_delete">Supprimer</string>
-  <string name="notification_recording_title">Capture d\'écran vidéo en cours.</string>  
+  <string name="notification_recording_title">Capture d\'écran vidéo en cours.</string>
   <string name="notification_recording_subtitle">Appuyez sur la zone de l\'horloge pour arrêter.</string>
   <string name="recording_notification">Notification d\'enregistrement</string>
   <string name="show_touches">Afficher les appuis</string>

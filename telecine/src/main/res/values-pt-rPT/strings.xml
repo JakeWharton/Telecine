@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="shortcut_name">Iniciar</string>
+  <string name="launch">Iniciar</string>
   <string name="clear">Limpar</string>
   <string name="record">Gravar</string>
   <string name="countdown_one">1…</string>

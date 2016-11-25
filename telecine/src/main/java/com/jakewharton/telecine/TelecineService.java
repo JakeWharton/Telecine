@@ -98,6 +98,10 @@ public final class TelecineService extends Service {
             videoSizePercentageProvider);
     recordingSession.showOverlay();
 
+    if (data.getBooleanExtra(TelecineShortcutLaunchActivity.EXTRA_AUTO_RECORDING, false)) {
+      Timber.d("Auto-recording requested!");
+      recordingSession.triggerAutoRecording();
+    }
     return START_NOT_STICKY;
   }
 

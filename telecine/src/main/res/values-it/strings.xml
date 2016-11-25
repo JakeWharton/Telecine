@@ -2,7 +2,7 @@
 
 
 <resources>
-  <string name="shortcut_name">Avvia</string>
+  <string name="launch">Avvia</string>
   <string name="clear">Clear</string>
   <string name="record">Registra</string>
   <string name="countdown_one">1…</string>

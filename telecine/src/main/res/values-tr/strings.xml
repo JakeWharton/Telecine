@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <string name="shortcut_name">Çalıştır</string>
+    <string name="launch">Çalıştır</string>
     <string name="clear">Temizle</string>
     <string name="record">Kayıt</string>
     <string name="countdown_one">1…</string>

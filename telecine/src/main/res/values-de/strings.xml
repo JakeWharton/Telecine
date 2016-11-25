@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-  <string name="shortcut_name">Aufnahme starten</string>
+  <string name="launch">Aufnahme starten</string>
   <string name="clear">Leeren</string>
   <string name="record">Aufnehmen</string>
   <string name="countdown_one">1…</string>

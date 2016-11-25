@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-  <string name="shortcut_name">Uruchom</string>
+  <string name="launch">Uruchom</string>
   <string name="clear">Wyczyść</string>
   <string name="record">Nagraj</string>
   <string name="countdown_one">1…</string>
