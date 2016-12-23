@@ -51,45 +51,45 @@ final class TelecineModule {
     return app.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
   }
 
-  @Provides @Singleton @ShowCountdown BooleanPreference provideShowCountdownPreference(
+  @Provides @Singleton @ShowCountdown static BooleanPreference provideShowCountdownPreference(
       SharedPreferences prefs) {
     return new BooleanPreference(prefs, "show-countdown", DEFAULT_SHOW_COUNTDOWN);
   }
 
-  @Provides @ShowCountdown Boolean provideShowCountdown(@ShowCountdown BooleanPreference pref) {
+  @Provides @ShowCountdown static Boolean provideShowCountdown(@ShowCountdown BooleanPreference pref) {
     return pref.get();
   }
 
   @Provides @Singleton @RecordingNotification
-  BooleanPreference provideRecordingNotificationPreference(SharedPreferences prefs) {
+  static BooleanPreference provideRecordingNotificationPreference(SharedPreferences prefs) {
     return new BooleanPreference(prefs, "recording-notification", DEFAULT_RECORDING_NOTIFICATION);
   }
 
-  @Provides @RecordingNotification Boolean provideRecordingNotification(
+  @Provides @RecordingNotification static Boolean provideRecordingNotification(
       @RecordingNotification BooleanPreference pref) {
     return pref.get();
   }
 
-  @Provides @Singleton @HideFromRecents BooleanPreference provideHideFromRecentsPreference(
+  @Provides @Singleton @HideFromRecents static BooleanPreference provideHideFromRecentsPreference(
       SharedPreferences prefs) {
     return new BooleanPreference(prefs, "hide-from-recents", DEFAULT_HIDE_FROM_RECENTS);
   }
 
-  @Provides @Singleton @ShowTouches BooleanPreference provideShowTouchesPreference(
+  @Provides @Singleton @ShowTouches static BooleanPreference provideShowTouchesPreference(
       SharedPreferences prefs) {
     return new BooleanPreference(prefs, "show-touches", DEFAULT_SHOW_TOUCHES);
   }
 
-  @Provides @ShowTouches Boolean provideShowTouches(@ShowTouches BooleanPreference pref) {
+  @Provides @ShowTouches static Boolean provideShowTouches(@ShowTouches BooleanPreference pref) {
     return pref.get();
   }
 
-  @Provides @Singleton @VideoSizePercentage IntPreference provideVideoSizePercentagePreference(
+  @Provides @Singleton @VideoSizePercentage static IntPreference provideVideoSizePercentagePreference(
       SharedPreferences prefs) {
     return new IntPreference(prefs, "video-size", DEFAULT_VIDEO_SIZE_PERCENTAGE);
   }
 
-  @Provides @VideoSizePercentage Integer provideVideoSizePercentage(
+  @Provides @VideoSizePercentage static Integer provideVideoSizePercentage(
       @VideoSizePercentage IntPreference pref) {
     return pref.get();
   }
