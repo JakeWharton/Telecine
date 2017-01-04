@@ -6,7 +6,7 @@
     >
   <shortcut
       android:enabled="true"
-      android:icon="@drawable/ic_shortcut_overlay"
+      android:icon="@drawable/ic_shortcut_overlay_48dp"
       android:shortcutDisabledMessage="@string/launch"
       android:shortcutId="overlay"
       android:shortcutLongLabel="@string/launch_telecine"
@@ -26,7 +26,7 @@
   </shortcut>
   <shortcut
       android:enabled="true"
-      android:icon="@drawable/ic_shortcut_record"
+      android:icon="@drawable/ic_shortcut_record_48dp"
       android:shortcutDisabledMessage="@string/record"
       android:shortcutId="record"
       android:shortcutLongLabel="@string/start_recording"
