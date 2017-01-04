@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:targetApi="n_mr1"
+    >
+  <shortcut
+      android:enabled="true"
+      android:icon="@drawable/ic_shortcut_overlay_48dp"
+      android:shortcutDisabledMessage="@string/launch"
+      android:shortcutId="overlay"
+      android:shortcutLongLabel="@string/launch_telecine"
+      android:shortcutShortLabel="@string/launch"
+      >
+    <intent
+        android:action="com.jakewharton.telecine.STATIC_SHORTCUT_OVERLAY"
+        android:targetClass="com.jakewharton.telecine.TelecineShortcutLaunchActivity"
+        android:targetPackage="com.jakewharton.telecine.debug"
+        >
+      <extra
+          android:name="launch-action"
+          android:value="Static Shortcut Overlay"
+          />
+    </intent>
+    <categories android:name="android.shortcut.conversation"/>
+  </shortcut>
+  <shortcut
+      android:enabled="true"
+      android:icon="@drawable/ic_shortcut_record_48dp"
+      android:shortcutDisabledMessage="@string/record"
+      android:shortcutId="record"
+      android:shortcutLongLabel="@string/start_recording"
+      android:shortcutShortLabel="@string/record"
+      >
+    <intent
+        android:action="com.jakewharton.telecine.STATIC_SHORTCUT_RECORD"
+        android:targetClass="com.jakewharton.telecine.TelecineShortcutLaunchActivity"
+        android:targetPackage="com.jakewharton.telecine.debug"
+        >
+      <extra
+          android:name="launch-action"
+          android:value="Static Shortcut Record"
+          />
+      <extra
+          android:name="auto-recording"
+          android:value="true"
+          />
+    </intent>
+    <categories android:name="android.shortcut.conversation"/>
+  </shortcut>
+</shortcuts>
