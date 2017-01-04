@@ -15,7 +15,7 @@
     <intent
         android:action="com.jakewharton.telecine.STATIC_SHORTCUT_OVERLAY"
         android:targetClass="com.jakewharton.telecine.TelecineShortcutLaunchActivity"
-        android:targetPackage="com.jakewharton.telecine"
+        android:targetPackage="com.jakewharton.telecine.debug"
         >
       <extra
           android:name="launch-action"
@@ -35,7 +35,7 @@
     <intent
         android:action="com.jakewharton.telecine.STATIC_SHORTCUT_RECORD"
         android:targetClass="com.jakewharton.telecine.TelecineShortcutLaunchActivity"
-        android:targetPackage="com.jakewharton.telecine"
+        android:targetPackage="com.jakewharton.telecine.debug"
         >
       <extra
           android:name="launch-action"
