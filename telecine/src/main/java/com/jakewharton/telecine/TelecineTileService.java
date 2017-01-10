@@ -44,7 +44,7 @@ public final class TelecineTileService extends TileService {
     Timber.i("Quick tile removed");
     analytics.send(new HitBuilders.EventBuilder() //
         .setCategory(Analytics.CATEGORY_QUICK_TILE)
-        .setAction(Analytics.ACTION_QUICK_TILE_ADDED)
+        .setAction(Analytics.ACTION_QUICK_TILE_REMOVED)
         .build());
   }
 }
