@@ -67,6 +67,12 @@ final class OverlayView extends FrameLayout {
     void onCancel();
 
     /**
+     * Called when start is clicked and the view is animating itself out,
+     * before {@link #onStart()}.
+     */
+    void onPrepare();
+
+    /**
      * Called when start is clicked and it is appropriate to start recording. This view will hide
      * itself completely before invoking this callback.
      */
@@ -175,6 +181,7 @@ final class OverlayView extends FrameLayout {
   }
 
   private void countdownComplete() {
+    listener.onPrepare();
     recordingView.animate()
         .alpha(0)
         .setDuration(COUNTDOWN_DELAY)

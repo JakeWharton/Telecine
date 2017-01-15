@@ -6,7 +6,7 @@ def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 buildscript {
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.2.2'
+    classpath 'com.android.tools.build:gradle:2.2.3'
   }
 }
 
@@ -21,7 +21,7 @@ apply plugin: 'com.android.application'
 
 android {
   compileSdkVersion 25
-  buildToolsVersion '25.0.1'
+  buildToolsVersion '25.0.2'
 
   defaultConfig {
     applicationId 'com.jakewharton.telecine'
@@ -75,9 +75,10 @@ android {
 }
 
 dependencies {
-  compile 'com.android.support:support-annotations:25.0.1'
-  compile 'com.android.support:design:25.0.1'
-  compile 'com.google.android.gms:play-services-analytics:10.0.0'
+  compile 'com.android.support:support-annotations:25.1.0'
+  compile 'com.android.support:design:25.1.0'
+  compile 'com.google.android.gms:play-services-analytics:10.0.1'
+  compile 'com.nightlynexus.demomode:demomode:0.1.1'
   compile 'com.jakewharton:butterknife:8.4.0'
   annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
   compile 'com.jakewharton.timber:timber:4.3.1'
