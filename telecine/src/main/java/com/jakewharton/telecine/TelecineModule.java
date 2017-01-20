@@ -19,6 +19,7 @@ final class TelecineModule {
   private static final boolean DEFAULT_SHOW_COUNTDOWN = true;
   private static final boolean DEFAULT_HIDE_FROM_RECENTS = false;
   private static final boolean DEFAULT_SHOW_TOUCHES = false;
+  private static final boolean DEFAULT_USE_DEMO_MODE = false;
   private static final boolean DEFAULT_RECORDING_NOTIFICATION = false;
   private static final int DEFAULT_VIDEO_SIZE_PERCENTAGE = 100;
 
@@ -81,6 +82,15 @@ final class TelecineModule {
   }
 
   @Provides @ShowTouches static Boolean provideShowTouches(@ShowTouches BooleanPreference pref) {
+    return pref.get();
+  }
+
+  @Provides @Singleton @UseDemoMode static BooleanPreference provideUseDemoModePreference(
+      SharedPreferences prefs) {
+    return new BooleanPreference(prefs, "use-demo-mode", DEFAULT_USE_DEMO_MODE);
+  }
+
+  @Provides @UseDemoMode static Boolean provideUseDemoMode(@UseDemoMode BooleanPreference pref) {
     return pref.get();
   }
 

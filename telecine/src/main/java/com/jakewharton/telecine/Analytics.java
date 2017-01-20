@@ -16,6 +16,7 @@ interface Analytics {
   String ACTION_CHANGE_HIDE_RECENTS = "Hide In Recents";
   String ACTION_CHANGE_RECORDING_NOTIFICATION = "Recording Notification";
   String ACTION_CHANGE_SHOW_TOUCHES = "Show Touches";
+  String ACTION_CHANGE_USE_DEMO_MODE = "Use Demo Mode";
   String ACTION_OVERLAY_SHOW = "Overlay Show";
   String ACTION_OVERLAY_HIDE = "Overlay Hide";
   String ACTION_OVERLAY_CANCEL = "Overlay Cancel";

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -126,6 +125,28 @@
             />
         <Switch
             android:id="@+id/switch_show_touches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+      </LinearLayout>
+
+      <LinearLayout
+          android:id="@+id/container_use_demo_mode"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/preference_height"
+          android:gravity="center_vertical"
+          android:orientation="horizontal"
+          android:visibility="gone"
+          >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/use_demo_mode"
+            android:textAlignment="viewStart"
+            />
+        <Switch
+            android:id="@+id/switch_use_demo_mode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />

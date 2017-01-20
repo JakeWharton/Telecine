@@ -8,12 +8,22 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import timber.log.Timber;
-
+import android.support.v4.content.ContextCompat;
+import com.nightlynexus.demomode.BarsBuilder;
+import com.nightlynexus.demomode.BatteryBuilder;
+import com.nightlynexus.demomode.ClockBuilder;
+import com.nightlynexus.demomode.DemoMode;
+import com.nightlynexus.demomode.NetworkBuilder;
+import com.nightlynexus.demomode.NotificationsBuilder;
+import com.nightlynexus.demomode.SystemIconsBuilder;
+import com.nightlynexus.demomode.WifiBuilder;
 import javax.inject.Inject;
 import javax.inject.Provider;
+import timber.log.Timber;
 
 import static android.app.Notification.PRIORITY_MIN;
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 public final class TelecineService extends Service {
   private static final String EXTRA_RESULT_CODE = "result-code";
@@ -32,6 +42,7 @@ public final class TelecineService extends Service {
   @Inject @VideoSizePercentage Provider<Integer> videoSizePercentageProvider;
   @Inject @RecordingNotification Provider<Boolean> recordingNotificationProvider;
   @Inject @ShowTouches Provider<Boolean> showTouchesProvider;
+  @Inject @UseDemoMode Provider<Boolean> useDemoModeProvider;
 
   @Inject Analytics analytics;
   @Inject ContentResolver contentResolver;
@@ -40,8 +51,39 @@ public final class TelecineService extends Service {
   private RecordingSession recordingSession;
 
   private final RecordingSession.Listener listener = new RecordingSession.Listener() {
+    private boolean showTouches;
+    private boolean useDemoMode;
+
+    @Override public void onPrepare() {
+      showTouches = showTouchesProvider.get();
+      useDemoMode = useDemoModeProvider.get();
+      if (useDemoMode) {
+        sendBroadcast(new BarsBuilder().mode(BarsBuilder.BarsMode.TRANSPARENT).build());
+        sendBroadcast(new BatteryBuilder().level(100).plugged(FALSE).build());
+        sendBroadcast(new ClockBuilder().setTimeInHoursAndMinutes("1200").build());
+        sendBroadcast(new NetworkBuilder().airplane(FALSE)
+            .carriernetworkchange(FALSE)
+            .mobile(TRUE, NetworkBuilder.Datatype.LTE, 0, 4)
+            .nosim(FALSE)
+            .build());
+        sendBroadcast(new NotificationsBuilder().visible(FALSE).build());
+        sendBroadcast(new SystemIconsBuilder().alarm(FALSE)
+            .bluetooth(SystemIconsBuilder.BluetoothMode.HIDE)
+            .cast(FALSE)
+            .hotspot(FALSE)
+            .location(FALSE)
+            .mute(FALSE)
+            .speakerphone(FALSE)
+            .tty(FALSE)
+            .vibrate(FALSE)
+            .zen(SystemIconsBuilder.ZenMode.HIDE)
+            .build());
+        sendBroadcast(new WifiBuilder().fully(TRUE).wifi(TRUE, 4).build());
+      }
+    }
+
     @Override public void onStart() {
-      if (showTouchesProvider.get()) {
+      if (showTouches) {
         Settings.System.putInt(contentResolver, SHOW_TOUCHES, 1);
       }
 
@@ -56,7 +98,7 @@ public final class TelecineService extends Service {
           .setContentTitle(title)
           .setContentText(subtitle)
           .setSmallIcon(R.drawable.ic_videocam_white_24dp)
-          .setColor(context.getResources().getColor(R.color.primary_normal))
+          .setColor(ContextCompat.getColor(context, R.color.primary_normal))
           .setAutoCancel(true)
           .setPriority(PRIORITY_MIN)
           .build();
@@ -66,8 +108,11 @@ public final class TelecineService extends Service {
     }
 
     @Override public void onStop() {
-      if (showTouchesProvider.get()) {
+      if (showTouches) {
         Settings.System.putInt(contentResolver, SHOW_TOUCHES, 0);
+      }
+      if (useDemoMode) {
+        sendBroadcast(DemoMode.buildExit());
       }
     }
 

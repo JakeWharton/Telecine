@@ -59,6 +59,9 @@ final class RecordingSession {
   private static final String MIME_TYPE = "video/mp4";
 
   interface Listener {
+    /** Invoked before {@link #onStart()} to prepare UI before recording. */
+    void onPrepare();
+
     /** Invoked immediately prior to the start of recording. */
     void onStart();
 
@@ -121,6 +124,10 @@ final class RecordingSession {
     OverlayView.Listener overlayListener = new OverlayView.Listener() {
       @Override public void onCancel() {
         cancelOverlay();
+      }
+
+      @Override public void onPrepare() {
+        listener.onPrepare();
       }
 
       @Override public void onStart() {

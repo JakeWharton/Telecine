@@ -24,6 +24,8 @@ import javax.inject.Inject;
 import timber.log.Timber;
 
 import static android.graphics.Bitmap.Config.ARGB_8888;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 public final class TelecineActivity extends AppCompatActivity {
   @BindView(R.id.spinner_video_size_percentage) Spinner videoSizePercentageView;
@@ -31,6 +33,8 @@ public final class TelecineActivity extends AppCompatActivity {
   @BindView(R.id.switch_hide_from_recents) Switch hideFromRecentsView;
   @BindView(R.id.switch_recording_notification) Switch recordingNotificationView;
   @BindView(R.id.switch_show_touches) Switch showTouchesView;
+  @BindView(R.id.container_use_demo_mode) View useDemoModeContainerView;
+  @BindView(R.id.switch_use_demo_mode) Switch useDemoModeView;
   @BindView(R.id.launch) View launchView;
 
   @BindString(R.string.app_name) String appName;
@@ -41,10 +45,12 @@ public final class TelecineActivity extends AppCompatActivity {
   @Inject @HideFromRecents BooleanPreference hideFromRecentsPreference;
   @Inject @RecordingNotification BooleanPreference recordingNotificationPreference;
   @Inject @ShowTouches BooleanPreference showTouchesPreference;
+  @Inject @UseDemoMode BooleanPreference useDemoModePreference;
 
   @Inject Analytics analytics;
 
   private VideoSizePercentageAdapter videoSizePercentageAdapter;
+  private DemoModeHelper.ShowDemoModeSetting showDemoModeSetting;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -72,6 +78,18 @@ public final class TelecineActivity extends AppCompatActivity {
     hideFromRecentsView.setChecked(hideFromRecentsPreference.get());
     recordingNotificationView.setChecked(recordingNotificationPreference.get());
     showTouchesView.setChecked(showTouchesPreference.get());
+    useDemoModeView.setChecked(useDemoModePreference.get());
+    showDemoModeSetting = new DemoModeHelper.ShowDemoModeSetting() {
+      @Override public void show() {
+        useDemoModeContainerView.setVisibility(VISIBLE);
+      }
+
+      @Override public void hide() {
+        useDemoModeView.setChecked(false);
+        useDemoModeContainerView.setVisibility(GONE);
+      }
+    };
+    DemoModeHelper.showDemoModeSetting(this, showDemoModeSetting);
   }
 
   @NonNull private Bitmap rasterizeTaskIcon() {
@@ -169,8 +187,24 @@ public final class TelecineActivity extends AppCompatActivity {
     }
   }
 
+  @OnCheckedChanged(R.id.switch_use_demo_mode) void onUseDemoModeChanged() {
+    boolean newValue = useDemoModeView.isChecked();
+    boolean oldValue = useDemoModePreference.get();
+    if (newValue != oldValue) {
+      Timber.d("Use demo mode preference changing to %s", newValue);
+      useDemoModePreference.set(newValue);
+
+      analytics.send(new HitBuilders.EventBuilder() //
+          .setCategory(Analytics.CATEGORY_SETTINGS)
+          .setAction(Analytics.ACTION_CHANGE_SHOW_TOUCHES)
+          .setValue(newValue ? 1 : 0)
+          .build());
+    }
+  }
+
   @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    if (!CaptureHelper.handleActivityResult(this, requestCode, resultCode, data, analytics)) {
+    if (!CaptureHelper.handleActivityResult(this, requestCode, resultCode, data, analytics)
+        && !DemoModeHelper.handleActivityResult(this, requestCode, showDemoModeSetting)) {
       super.onActivityResult(requestCode, resultCode, data);
     }
   }

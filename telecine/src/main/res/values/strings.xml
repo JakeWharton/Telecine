@@ -24,6 +24,9 @@
   <string name="notification_recording_subtitle">Touch the clock area to stop recording.</string>
   <string name="recording_notification">Recording Notification</string>
   <string name="show_touches">Show Touches</string>
+  <string name="use_demo_mode">Use Demo Mode</string>
+  <string name="root_permission_denied">Allow root access to use Demo Mode</string>
+  <string name="enable_demo_mode_in_settings">Enable Demo Mode in Settings</string>
 
   <array name="countdown">
     <item>@string/countdown_three</item>
