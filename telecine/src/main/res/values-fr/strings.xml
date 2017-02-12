@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-  <string name="shortcut_name">Lancer</string>
+  <string name="shortcut_name">Démarrer</string>
+  <string name="tile_name">Démarrer Telecine</string>
   <string name="clear">Effacer</string>
   <string name="record">Enregistrer</string>
   <string name="countdown_one">1…</string>
   <string name="countdown_two">2…</string>
   <string name="countdown_three">3…</string>
-  <string name="launch_overlay">Lancer le calque</string>
+  <string name="launch_overlay">Démarrer la surcouche</string>
   <string name="preferences">Paramètres</string>
   <string name="countdown">Compte à rebours de 3 secondes</string>
   <string name="recents_hide">Masquer dans les applications récentes</string>
   <string name="video_size_percentage">Taille de la vidéo</string>
-  <string name="notification_captured_title">Capture d\'écran vidéo réussie.</string>
-  <string name="notification_captured_subtitle">Appuyez pour afficher votre capture d\'écran vidéo.</string>  
+  <string name="notification_captured_title">Capture vidéo effectuée</string>
+  <string name="notification_captured_subtitle">Affichez la capture vidéo</string>  
   <string name="notification_captured_share">Partager</string>
   <string name="notification_captured_delete">Supprimer</string>
-  <string name="notification_recording_title">Capture d\'écran vidéo en cours.</string>  
-  <string name="notification_recording_subtitle">Appuyez sur la zone de l\'horloge pour arrêter.</string>
+  <string name="notification_recording_title">Capture vidéo en cours</string>  
+  <string name="notification_recording_subtitle">Appuyer sur la zone de l\'horloge pour arrêter</string>
   <string name="recording_notification">Notification d\'enregistrement</string>
   <string name="show_touches">Afficher les appuis</string>
+  <string name="use_demo_mode">Utiliser le mode de démonstration</string>
+  <string name="root_permission_denied">Autoriser l\'accès \"Root\" pour utiliser le mode de démonstration</string>
+  <string name="enable_demo_mode_in_settings">Activer le mode de démonstration dans Paramètres</string>
 </resources>
