@@ -196,7 +196,7 @@ public final class TelecineActivity extends AppCompatActivity {
 
       analytics.send(new HitBuilders.EventBuilder() //
           .setCategory(Analytics.CATEGORY_SETTINGS)
-          .setAction(Analytics.ACTION_CHANGE_SHOW_TOUCHES)
+          .setAction(Analytics.ACTION_CHANGE_USE_DEMO_MODE)
           .setValue(newValue ? 1 : 0)
           .build());
     }
