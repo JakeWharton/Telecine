@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="clear">Приховати</string>
+  <string name="record">Запис</string>
+  <string name="countdown_one">1…</string>
+  <string name="countdown_two">2…</string>
+  <string name="countdown_three">3…</string>
+  <string name="launch_overlay">Запустити накладення</string>
+  <string name="preferences">Налаштування</string>
+  <string name="countdown">Зворотній відлік (3 сек)</string>
+  <string name="recents_hide">Приховати з недавніх додатків</string>
+  <string name="video_size_percentage">Розмір відео</string>
+  <string name="notification_captured_title">Запис екрану завершено.</string>
+  <string name="notification_captured_subtitle">Натисніть, щоб переглянути записане відео.</string>
+  <string name="notification_captured_share">Поділитися</string>
+  <string name="notification_captured_delete">Видалити</string>
+  <string name="notification_recording_title">Відбувається запис екрану.</string>
+  <string name="notification_recording_subtitle">Натисніть на годинник, щоб зупинити запис.</string>
+  <string name="recording_notification">Сповіщення про запис екрану</string>
+  <string name="show_touches">Показувати натиснення на екран</string>
+</resources>
