@@ -6,7 +6,7 @@ def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 buildscript {
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.2.3'
+    classpath 'com.android.tools.build:gradle:3.0.0-alpha3'
   }
 }
 
@@ -75,16 +75,16 @@ android {
 }
 
 dependencies {
-  compile 'com.android.support:support-annotations:25.1.0'
-  compile 'com.android.support:design:25.1.0'
-  compile 'com.google.android.gms:play-services-analytics:10.0.1'
-  compile 'com.nightlynexus.demomode:demomode:0.1.1'
-  compile 'com.jakewharton:butterknife:8.4.0'
+  implementation 'com.android.support:support-annotations:25.1.0'
+  implementation 'com.android.support:design:25.1.0'
+  implementation 'com.google.android.gms:play-services-analytics:10.0.1'
+  implementation 'com.nightlynexus.demomode:demomode:0.1.1'
+  implementation 'com.jakewharton:butterknife:8.4.0'
   annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-  compile 'com.jakewharton.timber:timber:4.3.1'
-  compile 'com.bugsnag:bugsnag-android:3.7.0'
-  compile 'com.google.dagger:dagger:2.8'
+  implementation 'com.jakewharton.timber:timber:4.3.1'
+  implementation 'com.bugsnag:bugsnag-android:3.7.0'
+  implementation 'com.google.dagger:dagger:2.8'
   annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
-  testCompile 'junit:junit:4.12'
-  testCompile 'com.google.truth:truth:0.30'
+  testImplementation 'junit:junit:4.12'
+  testImplementation 'com.google.truth:truth:0.30'
 }
