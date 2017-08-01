@@ -6,7 +6,7 @@ def versionBuild = 0 // bump for dogfood builds, public betas, etc.
 
 buildscript {
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.0.0-alpha3'
+    classpath 'com.android.tools.build:gradle:3.0.0-alpha9'
   }
 }
 
@@ -83,8 +83,10 @@ dependencies {
   annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
   implementation 'com.jakewharton.timber:timber:4.3.1'
   implementation 'com.bugsnag:bugsnag-android:3.7.0'
-  implementation 'com.google.dagger:dagger:2.8'
-  annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
+  implementation 'com.google.dagger:dagger:2.11'
+  annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+  implementation 'com.google.dagger:dagger-android:2.11'
+  annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
   testImplementation 'junit:junit:4.12'
   testImplementation 'com.google.truth:truth:0.30'
 }

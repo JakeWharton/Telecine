@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.gms.analytics.HitBuilders;
+import dagger.android.AndroidInjection;
 import javax.inject.Inject;
 
 public final class TelecineShortcutLaunchActivity extends Activity {
@@ -19,8 +20,8 @@ public final class TelecineShortcutLaunchActivity extends Activity {
   @Inject Analytics analytics;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
+    AndroidInjection.inject(this);
     super.onCreate(savedInstanceState);
-    ((TelecineApplication) getApplication()).injector().inject(this);
 
     String launchAction = getIntent().getStringExtra(KEY_ACTION);
     if (launchAction == null) {

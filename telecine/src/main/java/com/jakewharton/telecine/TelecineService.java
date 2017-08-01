@@ -17,6 +17,7 @@ import com.nightlynexus.demomode.NetworkBuilder;
 import com.nightlynexus.demomode.NotificationsBuilder;
 import com.nightlynexus.demomode.SystemIconsBuilder;
 import com.nightlynexus.demomode.WifiBuilder;
+import dagger.android.AndroidInjection;
 import javax.inject.Inject;
 import javax.inject.Provider;
 import timber.log.Timber;
@@ -122,6 +123,11 @@ public final class TelecineService extends Service {
     }
   };
 
+  @Override public void onCreate() {
+    AndroidInjection.inject(this);
+    super.onCreate();
+  }
+
   @Override public int onStartCommand(@NonNull Intent intent, int flags, int startId) {
     if (running) {
       Timber.d("Already running! Ignoring...");
@@ -135,8 +141,6 @@ public final class TelecineService extends Service {
     if (resultCode == 0 || data == null) {
       throw new IllegalStateException("Result code or data missing.");
     }
-
-    ((TelecineApplication) getApplication()).injector().inject(this);
 
     recordingSession =
         new RecordingSession(this, listener, resultCode, data, analytics, showCountdownProvider,
