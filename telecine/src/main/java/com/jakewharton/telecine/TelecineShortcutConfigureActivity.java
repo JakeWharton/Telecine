@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.gms.analytics.HitBuilders;
+import dagger.android.AndroidInjection;
 import javax.inject.Inject;
 
 import static android.content.Intent.ShortcutIconResource;
@@ -12,9 +13,9 @@ public final class TelecineShortcutConfigureActivity extends Activity {
   @Inject Analytics analytics;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
+    AndroidInjection.inject(this);
     super.onCreate(savedInstanceState);
 
-    ((TelecineApplication) getApplication()).injector().inject(this);
     analytics.send(new HitBuilders.EventBuilder() //
         .setCategory(Analytics.CATEGORY_SHORTCUT) //
         .setAction(Analytics.ACTION_SHORTCUT_ADDED) //

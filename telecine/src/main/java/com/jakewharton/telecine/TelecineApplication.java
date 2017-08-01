@@ -1,16 +1,25 @@
 package com.jakewharton.telecine;
 
+import android.app.Activity;
 import android.app.Application;
+import android.app.Service;
 import com.bugsnag.android.BeforeNotify;
 import com.bugsnag.android.Bugsnag;
 import com.bugsnag.android.Error;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
+import dagger.android.HasServiceInjector;
+import javax.inject.Inject;
 import timber.log.Timber;
 
-public final class TelecineApplication extends Application {
-
-  private TelecineComponent telecineComponent;
+public final class TelecineApplication extends Application
+    implements HasActivityInjector, HasServiceInjector {
+  @Inject DispatchingAndroidInjector<Activity> dispatchingActivityInjector;
+  @Inject DispatchingAndroidInjector<Service> dispatchingServiceInjector;
 
   @Override public void onCreate() {
+    DaggerTelecineComponent.builder().application(this).build().inject(this);
     super.onCreate();
 
     if (BuildConfig.DEBUG) {
@@ -30,13 +39,13 @@ public final class TelecineApplication extends Application {
 
       Timber.plant(tree);
     }
-
-    telecineComponent = DaggerTelecineComponent.builder()
-        .telecineModule(new TelecineModule(this))
-        .build();
   }
 
-  final TelecineComponent injector() {
-    return telecineComponent;
+  @Override public AndroidInjector<Activity> activityInjector() {
+    return dispatchingActivityInjector;
+  }
+
+  @Override public AndroidInjector<Service> serviceInjector() {
+    return dispatchingServiceInjector;
   }
 }
