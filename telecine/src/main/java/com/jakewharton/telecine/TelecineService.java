@@ -62,7 +62,7 @@ public final class TelecineService extends Service {
         sendBroadcast(new BatteryBuilder().level(100).plugged(FALSE).build());
         sendBroadcast(new ClockBuilder().setTimeInHoursAndMinutes("1200").build());
         sendBroadcast(new NetworkBuilder().airplane(FALSE)
-            .carriernetworkchange(FALSE)
+            .carrierNetworkChange(FALSE)
             .mobile(TRUE, NetworkBuilder.Datatype.LTE, 0, 4)
             .nosim(FALSE)
             .build());

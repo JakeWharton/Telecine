@@ -78,7 +78,7 @@ dependencies {
   implementation 'com.android.support:support-annotations:25.1.0'
   implementation 'com.android.support:design:25.1.0'
   implementation 'com.google.android.gms:play-services-analytics:10.0.1'
-  implementation 'com.nightlynexus.demomode:demomode:0.1.1'
+  implementation 'com.nightlynexus.demomode:demomode:0.1.2'
   implementation 'com.jakewharton:butterknife:8.4.0'
   annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
   implementation 'com.jakewharton.timber:timber:4.3.1'
