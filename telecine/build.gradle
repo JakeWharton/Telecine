@@ -20,8 +20,8 @@ def getAnalyticsKey() {
 apply plugin: 'com.android.application'
 
 android {
-  compileSdkVersion 25
-  buildToolsVersion '25.0.2'
+  compileSdkVersion 26
+  buildToolsVersion '26.0.1'
 
   defaultConfig {
     applicationId 'com.jakewharton.telecine'
@@ -75,8 +75,8 @@ android {
 }
 
 dependencies {
-  implementation 'com.android.support:support-annotations:25.1.0'
-  implementation 'com.android.support:design:25.1.0'
+  implementation 'com.android.support:support-annotations:26.0.0'
+  implementation 'com.android.support:design:26.0.0'
   implementation 'com.google.android.gms:play-services-analytics:10.0.1'
   implementation 'com.nightlynexus.demomode:demomode:0.1.2'
   implementation 'com.jakewharton:butterknife:8.4.0'
