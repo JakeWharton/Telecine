@@ -1,7 +1,6 @@
-[![Telecine](art/feature.png)][1]
+**DEPRECATED**: Android 11 now includes native screen recording!
 
-[![Get it on Google Play](art/en-play-badge.png)][1]
-
+![Telecine](art/feature.png)
 
 
 License
@@ -20,7 +19,3 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
-
-
- [1]: https://play.google.com/store/apps/details?id=com.jakewharton.telecine
